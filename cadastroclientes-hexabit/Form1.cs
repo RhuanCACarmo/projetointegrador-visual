@@ -85,15 +85,15 @@ namespace cadastroclientes_hexabit
         }
         private void btnCadastar_Click(object sender, EventArgs e)
         {
-            // Validação do Nome Completo
+            // Validação do Nome Completo (obrigatório)
             if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
             {
                 MessageBox.Show("Por favor, digite o nome completo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNomeCompleto.Focus();
-                return; 
+                return;
             }
 
-            // Validação do CPF/CNPJ (apenas se não está vazio)
+            // Validação do CPF/CNPJ (obrigatório e formato numérico)
             if (string.IsNullOrWhiteSpace(txtCpfCnpj.Text))
             {
                 MessageBox.Show("Por favor, digite o CPF ou CNPJ.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -101,38 +101,95 @@ namespace cadastroclientes_hexabit
                 return;
             }
 
-            // Remove caracteres não numéricos (como pontos, traços, barras)
             string cpfCnpjNumerico = new string(txtCpfCnpj.Text.Where(char.IsDigit).ToArray());
-
-            // Verifica se o texto resultante contém apenas números e tem tamanho válido
-            if (cpfCnpjNumerico.Length != 11 && cpfCnpjNumerico.Length != 14) // CPF = 11 dígitos, CNPJ = 14
+            if (cpfCnpjNumerico.Length != 11 && cpfCnpjNumerico.Length != 14)
             {
                 MessageBox.Show("CPF deve ter 11 dígitos ou CNPJ deve ter 14 dígitos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCpfCnpj.Focus();
                 return;
             }
-
-            // Atualiza o campo com os números puros (opcional)
             txtCpfCnpj.Text = cpfCnpjNumerico;
 
-            // Validação do CEP
+            // Validação do CEP (obrigatório e formato) - AGORA ANTES DO NÚMERO
             if (string.IsNullOrWhiteSpace(txtCep.Text))
             {
                 MessageBox.Show("Por favor, digite o CEP.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCep.Focus();
-                return; 
+                return;
             }
 
-            // Validação do Número (e converte para double)
+            // Verifica se o CEP tem 8 dígitos (validação adicional)
+            string cepNumerico = new string(txtCep.Text.Where(char.IsDigit).ToArray());
+            if (cepNumerico.Length != 8)
+            {
+                MessageBox.Show("CEP deve conter 8 dígitos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCep.Focus();
+                return;
+            }
+
+            // Validação do Número (obrigatório e numérico)
             if (string.IsNullOrWhiteSpace(txtNumero.Text) || !double.TryParse(txtNumero.Text, out double numero))
             {
                 MessageBox.Show("Por favor, digite um número de endereço válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNumero.Focus();
-                return; 
+                return;
             }
+
+            // Validação do E-mail
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("Digite um e-mail válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //Validação do número de Telefone
+            if (txtTelefone.Text.Length != 11)
+            {
+                MessageBox.Show("O número de telefone deve haver 11 dígitos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTelefone.Focus();
+                return;
+            }
+
+            // Verifica se o Telefone tem 11 dígitos (validação adicional)
+            string telefoneNumerico = new string(txtTelefone.Text.Where(char.IsDigit).ToArray());
+            if (telefoneNumerico.Length != 11)
+            {
+                MessageBox.Show("O telefone deve conter 11 dígitos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCep.Focus();
+                return;
+            }
+
+            //Validaçãõ de Rua
+            if (string.IsNullOrEmpty(txtRua.Text))
+            {
+                MessageBox.Show("Por favor, preencha o nome da rua.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRua.Focus();
+                return;
+            }
+            if(string.IsNullOrEmpty(txtBairro.Text))
+            {
+                MessageBox.Show("Por favor, preencha o nome do bairro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBairro.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(txtCidade.Text))
+            {
+                MessageBox.Show("Por favor, preencha o nome da cidade.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCidade.Focus();
+                return;
+            }
+
             // Se todas as validações passarem:
             MessageBox.Show("Cliente cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Aqui você pode adicionar a lógica para salvar no banco de dados
+        }
+
+        private void eSTOQUEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show(); // Não modal
+            // form2.ShowDialog(); // Modal
         }
 
         // Aqui você pode salvar os dados no banco de dados ou fazer outras operações
