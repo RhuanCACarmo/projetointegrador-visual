@@ -187,10 +187,21 @@ namespace cadastroclientes_hexabit
 
         private void eSTOQUEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            frmCadastrarEstoque form2 = new frmCadastrarEstoque();
             form2.Show(); // Não modal
             // form2.ShowDialog(); // Modal
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRua_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
         // Aqui você pode salvar os dados no banco de dados ou fazer outras operações
         // Exemplo:

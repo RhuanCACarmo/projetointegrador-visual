@@ -72,7 +72,7 @@ namespace cadastroclientes_hexabit
             // 
             this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(21, 332);
+            this.pbLogo.Location = new System.Drawing.Point(21, 369);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(110, 106);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -83,11 +83,11 @@ namespace cadastroclientes_hexabit
             // 
             this.lblNomeCompleto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNomeCompleto.AutoSize = true;
-            this.lblNomeCompleto.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeCompleto.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomeCompleto.ForeColor = System.Drawing.Color.White;
-            this.lblNomeCompleto.Location = new System.Drawing.Point(99, 139);
+            this.lblNomeCompleto.Location = new System.Drawing.Point(149, 157);
             this.lblNomeCompleto.Name = "lblNomeCompleto";
-            this.lblNomeCompleto.Size = new System.Drawing.Size(169, 26);
+            this.lblNomeCompleto.Size = new System.Drawing.Size(172, 35);
             this.lblNomeCompleto.TabIndex = 2;
             this.lblNomeCompleto.Text = "NOME COMPLETO";
             // 
@@ -95,11 +95,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(99, 176);
+            this.label1.Location = new System.Drawing.Point(149, 194);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 26);
+            this.label1.Size = new System.Drawing.Size(97, 35);
             this.label1.TabIndex = 3;
             this.label1.Text = "CPF/CNPJ";
             // 
@@ -107,11 +107,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(537, 179);
+            this.label2.Location = new System.Drawing.Point(746, 188);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 26);
+            this.label2.Size = new System.Drawing.Size(77, 35);
             this.label2.TabIndex = 4;
             this.label2.Text = "E-MAIL";
             // 
@@ -119,11 +119,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(610, 139);
+            this.label3.Location = new System.Drawing.Point(814, 154);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 26);
+            this.label3.Size = new System.Drawing.Size(101, 35);
             this.label3.TabIndex = 5;
             this.label3.Text = "TELEFONE";
             // 
@@ -131,11 +131,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(100, 250);
+            this.label4.Location = new System.Drawing.Point(149, 258);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 26);
+            this.label4.Size = new System.Drawing.Size(47, 35);
             this.label4.TabIndex = 6;
             this.label4.Text = "CEP";
             // 
@@ -143,23 +143,24 @@ namespace cadastroclientes_hexabit
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(315, 253);
+            this.label5.Location = new System.Drawing.Point(517, 256);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 26);
+            this.label5.Size = new System.Drawing.Size(52, 35);
             this.label5.TabIndex = 7;
             this.label5.Text = "RUA";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(99, 283);
+            this.label6.Location = new System.Drawing.Point(149, 299);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 26);
+            this.label6.Size = new System.Drawing.Size(96, 35);
             this.label6.TabIndex = 8;
             this.label6.Text = "NÚMERO";
             // 
@@ -167,11 +168,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(287, 286);
+            this.label7.Location = new System.Drawing.Point(487, 295);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 26);
+            this.label7.Size = new System.Drawing.Size(83, 35);
             this.label7.TabIndex = 9;
             this.label7.Text = "BAIRRO";
             // 
@@ -179,11 +180,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(398, 315);
+            this.label8.Location = new System.Drawing.Point(600, 334);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 26);
+            this.label8.Size = new System.Drawing.Size(80, 35);
             this.label8.TabIndex = 11;
             this.label8.Text = "CIDADE";
             // 
@@ -191,11 +192,11 @@ namespace cadastroclientes_hexabit
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(99, 312);
+            this.label9.Location = new System.Drawing.Point(149, 337);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(150, 26);
+            this.label9.Size = new System.Drawing.Size(154, 35);
             this.label9.TabIndex = 10;
             this.label9.Text = "COMPLEMENTO";
             // 
@@ -203,7 +204,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtNomeCompleto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNomeCompleto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeCompleto.Location = new System.Drawing.Point(273, 138);
+            this.txtNomeCompleto.Location = new System.Drawing.Point(323, 161);
             this.txtNomeCompleto.Name = "txtNomeCompleto";
             this.txtNomeCompleto.Size = new System.Drawing.Size(330, 27);
             this.txtNomeCompleto.TabIndex = 12;
@@ -212,7 +213,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(615, 178);
+            this.txtEmail.Location = new System.Drawing.Point(824, 192);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(210, 27);
             this.txtEmail.TabIndex = 15;
@@ -221,7 +222,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtNumero.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNumero.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumero.Location = new System.Drawing.Point(198, 282);
+            this.txtNumero.Location = new System.Drawing.Point(323, 303);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(70, 27);
             this.txtNumero.TabIndex = 16;
@@ -230,7 +231,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtComplemento.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtComplemento.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComplemento.Location = new System.Drawing.Point(254, 315);
+            this.txtComplemento.Location = new System.Drawing.Point(323, 341);
             this.txtComplemento.Name = "txtComplemento";
             this.txtComplemento.Size = new System.Drawing.Size(109, 27);
             this.txtComplemento.TabIndex = 18;
@@ -239,7 +240,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtBairro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBairro.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBairro.Location = new System.Drawing.Point(369, 285);
+            this.txtBairro.Location = new System.Drawing.Point(568, 299);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(466, 27);
             this.txtBairro.TabIndex = 20;
@@ -248,28 +249,29 @@ namespace cadastroclientes_hexabit
             // 
             this.txtRua.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtRua.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRua.Location = new System.Drawing.Point(369, 252);
+            this.txtRua.Location = new System.Drawing.Point(568, 260);
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(466, 27);
             this.txtRua.TabIndex = 19;
+            this.txtRua.TextChanged += new System.EventHandler(this.txtRua_TextChanged);
             // 
             // txtCidade
             // 
             this.txtCidade.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCidade.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCidade.Location = new System.Drawing.Point(480, 317);
+            this.txtCidade.Location = new System.Drawing.Point(679, 338);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(355, 27);
             this.txtCidade.TabIndex = 21;
             // 
             // btnCadastar
             // 
-            this.btnCadastar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCadastar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCadastar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(88)))), ((int)(((byte)(123)))));
             this.btnCadastar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCadastar.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastar.Font = new System.Drawing.Font("Open Sans Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastar.ForeColor = System.Drawing.Color.White;
-            this.btnCadastar.Location = new System.Drawing.Point(659, 376);
+            this.btnCadastar.Location = new System.Drawing.Point(897, 430);
             this.btnCadastar.Name = "btnCadastar";
             this.btnCadastar.Size = new System.Drawing.Size(154, 44);
             this.btnCadastar.TabIndex = 22;
@@ -279,31 +281,33 @@ namespace cadastroclientes_hexabit
             // 
             // pESQUISARToolStripMenuItem
             // 
-            this.pESQUISARToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.pESQUISARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.pESQUISARToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vISUALIZARToolStripMenuItem1});
-            this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
             this.pESQUISARToolStripMenuItem.Text = "PESQUISAR";
             // 
             // vISUALIZARToolStripMenuItem1
             // 
+            this.vISUALIZARToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.vISUALIZARToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.vISUALIZARToolStripMenuItem1.Name = "vISUALIZARToolStripMenuItem1";
-            this.vISUALIZARToolStripMenuItem1.Size = new System.Drawing.Size(188, 24);
-            this.vISUALIZARToolStripMenuItem1.Text = "VISUALIZAR";
+            this.vISUALIZARToolStripMenuItem1.Size = new System.Drawing.Size(190, 44);
+            this.vISUALIZARToolStripMenuItem1.Text = "Visualizar";
             // 
             // cLIENTESToolStripMenuItem
             // 
-            this.cLIENTESToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.cLIENTESToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.cLIENTESToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cADASTRARToolStripMenuItem,
             this.vISUALIZARToolStripMenuItem});
-            this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
+            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(118, 43);
             this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
             // 
             // cADASTRARToolStripMenuItem
@@ -311,27 +315,27 @@ namespace cadastroclientes_hexabit
             this.cADASTRARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.cADASTRARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cADASTRARToolStripMenuItem.Name = "cADASTRARToolStripMenuItem";
-            this.cADASTRARToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
-            this.cADASTRARToolStripMenuItem.Text = "CADASTRAR";
+            this.cADASTRARToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
+            this.cADASTRARToolStripMenuItem.Text = "Cadastrar";
             // 
             // vISUALIZARToolStripMenuItem
             // 
             this.vISUALIZARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.vISUALIZARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.vISUALIZARToolStripMenuItem.Name = "vISUALIZARToolStripMenuItem";
-            this.vISUALIZARToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
-            this.vISUALIZARToolStripMenuItem.Text = "VISUALIZAR";
+            this.vISUALIZARToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
+            this.vISUALIZARToolStripMenuItem.Text = "Visualizar";
             // 
             // eSTOQUEToolStripMenuItem
             // 
-            this.eSTOQUEToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.eSTOQUEToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.eSTOQUEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cADASTRARToolStripMenuItem1,
             this.gERENCIARToolStripMenuItem});
-            this.eSTOQUEToolStripMenuItem.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eSTOQUEToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eSTOQUEToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.eSTOQUEToolStripMenuItem.Name = "eSTOQUEToolStripMenuItem";
-            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
+            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(118, 43);
             this.eSTOQUEToolStripMenuItem.Text = "ESTOQUE";
             this.eSTOQUEToolStripMenuItem.Click += new System.EventHandler(this.eSTOQUEToolStripMenuItem_Click);
             // 
@@ -340,57 +344,58 @@ namespace cadastroclientes_hexabit
             this.cADASTRARToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.cADASTRARToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.cADASTRARToolStripMenuItem1.Name = "cADASTRARToolStripMenuItem1";
-            this.cADASTRARToolStripMenuItem1.Size = new System.Drawing.Size(188, 24);
-            this.cADASTRARToolStripMenuItem1.Text = "CADASTRAR";
+            this.cADASTRARToolStripMenuItem1.Size = new System.Drawing.Size(207, 44);
+            this.cADASTRARToolStripMenuItem1.Text = "Cadastrar";
             // 
             // gERENCIARToolStripMenuItem
             // 
             this.gERENCIARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.gERENCIARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.gERENCIARToolStripMenuItem.Name = "gERENCIARToolStripMenuItem";
-            this.gERENCIARToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+            this.gERENCIARToolStripMenuItem.Size = new System.Drawing.Size(207, 44);
             this.gERENCIARToolStripMenuItem.Text = "VISUALIZAR";
             // 
             // pAGAMENTOSToolStripMenuItem
             // 
-            this.pAGAMENTOSToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.pAGAMENTOSToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.pAGAMENTOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gERARPAGAMENTOToolStripMenuItem,
             this.gERENCIARPAGAMENTOToolStripMenuItem});
-            this.pAGAMENTOSToolStripMenuItem.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pAGAMENTOSToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pAGAMENTOSToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pAGAMENTOSToolStripMenuItem.Name = "pAGAMENTOSToolStripMenuItem";
-            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
+            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(167, 43);
             this.pAGAMENTOSToolStripMenuItem.Text = "PAGAMENTOS";
             // 
             // gERARPAGAMENTOToolStripMenuItem
             // 
             this.gERARPAGAMENTOToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.gERARPAGAMENTOToolStripMenuItem.Name = "gERARPAGAMENTOToolStripMenuItem";
-            this.gERARPAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
-            this.gERARPAGAMENTOToolStripMenuItem.Text = "GERAR";
+            this.gERARPAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(279, 44);
+            this.gERARPAGAMENTOToolStripMenuItem.Text = "Gerar Pagamentos";
             // 
             // gERENCIARPAGAMENTOToolStripMenuItem
             // 
             this.gERENCIARPAGAMENTOToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.gERENCIARPAGAMENTOToolStripMenuItem.Name = "gERENCIARPAGAMENTOToolStripMenuItem";
-            this.gERENCIARPAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
-            this.gERENCIARPAGAMENTOToolStripMenuItem.Text = "VISUALIZAR";
+            this.gERENCIARPAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(279, 44);
+            this.gERENCIARPAGAMENTOToolStripMenuItem.Text = "Visualizar";
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pESQUISARToolStripMenuItem,
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOSToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(181, 29);
+            this.menuStrip1.Location = new System.Drawing.Point(470, 28);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(609, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(549, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -398,7 +403,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtCep.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCep.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCep.Location = new System.Drawing.Point(149, 249);
+            this.txtCep.Location = new System.Drawing.Point(323, 262);
             this.txtCep.Mask = "00000-000";
             this.txtCep.Name = "txtCep";
             this.txtCep.Size = new System.Drawing.Size(100, 27);
@@ -409,7 +414,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtCpfCnpj.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCpfCnpj.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCpfCnpj.Location = new System.Drawing.Point(198, 175);
+            this.txtCpfCnpj.Location = new System.Drawing.Point(323, 198);
             this.txtCpfCnpj.Name = "txtCpfCnpj";
             this.txtCpfCnpj.Size = new System.Drawing.Size(119, 27);
             this.txtCpfCnpj.TabIndex = 25;
@@ -418,7 +423,7 @@ namespace cadastroclientes_hexabit
             // 
             this.txtTelefone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTelefone.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefone.Location = new System.Drawing.Point(706, 138);
+            this.txtTelefone.Location = new System.Drawing.Point(915, 158);
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(119, 27);
             this.txtTelefone.TabIndex = 26;
@@ -428,7 +433,7 @@ namespace cadastroclientes_hexabit
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.ClientSize = new System.Drawing.Size(922, 450);
+            this.ClientSize = new System.Drawing.Size(1076, 487);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtCpfCnpj);
             this.Controls.Add(this.txtCep);

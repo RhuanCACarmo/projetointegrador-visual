@@ -121,7 +121,7 @@
   <data name="pbLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAUIAAAFFCAYAAACZqOQkAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAJi9JREFUeF7t3WmsnPdZ/vH4HPvYTuM0SaNs/ddZCyFJk6KqaRpndZzdSWzHW7Mv
+        vwAADr8BOAVTJAAAJi9JREFUeF7t3WmsnPdZ/vH4HPvYTuM0SaNs/ddZCyFJk6KqaRpndZzdSWzHW7Mv
         bhwnTpw4jpM4DWEXCBBCgMoiBFUFCIlF0CJVCISKSiUqKOo7JLYXgFqkohRetNAWnv99zTlzPGfOd/Zn
         5n5mnuvFR7bvmTPL/ftdt59ZzylFUZiZ1RoWzczqBItmZnWCRTOzOsGimVmdYNHMrE6waGZWJ1g0M6sT
         LJqZ1QkWzczqBItmZnWCRTOzOsGimVmdYNHMrE6waGZWJ1g0M6sTLJqZ1QkWzczqBItmZnWCRTOzOsGi
@@ -289,5 +289,8 @@
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
   </metadata>
 </root>
