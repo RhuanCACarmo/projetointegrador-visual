@@ -40,9 +40,8 @@
             this.txtMarca = new System.Windows.Forms.TextBox();
             this.txtQuantidade = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pesquisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,11 +49,12 @@
             this.eSTOQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pAGAMENTOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerarPagamentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pAGAMENTOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNomeProduto
@@ -169,52 +169,39 @@
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSalvar.Font = new System.Drawing.Font("Open Sans Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnSalvar.Location = new System.Drawing.Point(1425, 827);
+            this.btnSalvar.Location = new System.Drawing.Point(1425, 804);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(169, 68);
             this.btnSalvar.TabIndex = 12;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "SALVAR";
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // pbLogo
-            // 
-            this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(12, 812);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(110, 106);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 13;
-            this.pbLogo.TabStop = false;
-            // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pESQUISARToolStripMenuItem,
+            this.pesquisarToolStripMenuItem,
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
-            this.pAGAMENTOSToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(470, 28);
+            this.pAGAMENTOToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(384, 53);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(249, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(549, 47);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // pESQUISARToolStripMenuItem
+            // pesquisarToolStripMenuItem
             // 
-            this.pESQUISARToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pesquisarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.visualizarToolStripMenuItem});
-            this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
-            this.pESQUISARToolStripMenuItem.Text = "PESQUISAR";
+            this.pesquisarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
+            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
+            this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
             // 
             // visualizarToolStripMenuItem
             // 
@@ -276,31 +263,42 @@
             this.visualizarToolStripMenuItem2.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem2.Text = "Visualizar";
             // 
-            // pAGAMENTOSToolStripMenuItem
+            // pAGAMENTOToolStripMenuItem
             // 
-            this.pAGAMENTOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gerarPagamentosToolStripMenuItem,
+            this.pAGAMENTOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gerarPagamentoToolStripMenuItem,
             this.visualizarToolStripMenuItem3});
-            this.pAGAMENTOSToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.pAGAMENTOSToolStripMenuItem.Name = "pAGAMENTOSToolStripMenuItem";
-            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(167, 43);
-            this.pAGAMENTOSToolStripMenuItem.Text = "PAGAMENTOS";
+            this.pAGAMENTOToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.pAGAMENTOToolStripMenuItem.Name = "pAGAMENTOToolStripMenuItem";
+            this.pAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(167, 43);
+            this.pAGAMENTOToolStripMenuItem.Text = "PAGAMENTOS";
             // 
-            // gerarPagamentosToolStripMenuItem
+            // gerarPagamentoToolStripMenuItem
             // 
-            this.gerarPagamentosToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.gerarPagamentosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.gerarPagamentosToolStripMenuItem.Name = "gerarPagamentosToolStripMenuItem";
-            this.gerarPagamentosToolStripMenuItem.Size = new System.Drawing.Size(279, 44);
-            this.gerarPagamentosToolStripMenuItem.Text = "Gerar Pagamentos";
+            this.gerarPagamentoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.gerarPagamentoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.gerarPagamentoToolStripMenuItem.Name = "gerarPagamentoToolStripMenuItem";
+            this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
+            this.gerarPagamentoToolStripMenuItem.Text = "Gerar Pagamento";
             // 
             // visualizarToolStripMenuItem3
             // 
             this.visualizarToolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.visualizarToolStripMenuItem3.ForeColor = System.Drawing.Color.White;
             this.visualizarToolStripMenuItem3.Name = "visualizarToolStripMenuItem3";
-            this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(279, 44);
+            this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem3.Text = "Visualizar";
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
+            this.pbLogo.Location = new System.Drawing.Point(24, 781);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(110, 106);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogo.TabIndex = 15;
+            this.pbLogo.TabStop = false;
             // 
             // frmCadastrarEstoque
             // 
@@ -322,13 +320,14 @@
             this.Controls.Add(this.lblNomeProduto);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmCadastrarEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastrar Estoque";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,9 +345,8 @@
         private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.TextBox txtQuantidade;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem pESQUISARToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pesquisarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
@@ -356,8 +354,9 @@
         private System.Windows.Forms.ToolStripMenuItem eSTOQUEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem pAGAMENTOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gerarPagamentosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pAGAMENTOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem3;
+        private System.Windows.Forms.PictureBox pbLogo;
     }
 }

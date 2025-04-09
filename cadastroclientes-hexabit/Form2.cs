@@ -45,13 +45,13 @@ namespace cadastroclientes_hexabit
 
             if (string.IsNullOrWhiteSpace(txtMarca.Text))
             {
-                MessageBox.Show("Por favor, preencha a marca do produto.", "Marca");
+                MessageBox.Show("Por favor, insira a marca do produto.", "Marca");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtQuantidade.Text))
             {
-                MessageBox.Show("Por favor, preencha a quantidade do produto.", "Quantidade");
+                MessageBox.Show("Por favor, insira a quantidade do produto.", "Quantidade");
                 return;
             }
 
