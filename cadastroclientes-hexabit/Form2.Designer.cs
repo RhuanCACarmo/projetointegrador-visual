@@ -42,7 +42,6 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pesquisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,20 +195,10 @@
             // 
             // pesquisarToolStripMenuItem
             // 
-            this.pesquisarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.visualizarToolStripMenuItem});
             this.pesquisarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
             this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
             this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
-            // 
-            // visualizarToolStripMenuItem
-            // 
-            this.visualizarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.visualizarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
-            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(190, 44);
-            this.visualizarToolStripMenuItem.Text = "Visualizar";
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -280,6 +269,7 @@
             this.gerarPagamentoToolStripMenuItem.Name = "gerarPagamentoToolStripMenuItem";
             this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
             this.gerarPagamentoToolStripMenuItem.Text = "Gerar Pagamento";
+            this.gerarPagamentoToolStripMenuItem.Click += new System.EventHandler(this.gerarPagamentoToolStripMenuItem_Click);
             // 
             // visualizarToolStripMenuItem3
             // 
@@ -347,7 +337,6 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pesquisarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem1;

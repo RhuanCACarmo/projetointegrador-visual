@@ -254,32 +254,42 @@ namespace cadastroclientes_hexabit
             // form2.ShowDialog(); // Modal
         }
 
+        private void vISUALIZARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVisualizarClientes form4 = new frmVisualizarClientes();
+            form4.Show();
+        }
 
-
-
-
-
-        // Aqui você pode salvar os dados no banco de dados ou fazer outras operações
-        // Exemplo:
-        // var cliente = new Cliente
-        // {
-        //     Nome = txtNomeCompleto.Text,
-        //     Email = txtEmail.Text,
-        //     CpfCnpj = txtCpfCnpj.Text,
-        //     Telefone = txtTelefone.Text,
-        //     Endereco = new Endereco
-        //     {
-        //         Cep = txtCep.Text,
-        //         Rua = txtRua.Text,
-        //         Numero = numeroRua, // Já convertido para double
-        //         Bairro = txtBairro.Text,
-        //         Complemento = txtComplemento.Text,
-        //         Cidade = txtCidade.Text
-        //     }
-        // };
-        // _clienteService.Cadastrar(cliente);
+        private void gERARPAGAMENTOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGerarPagamento form3 = new frmGerarPagamento();
+            form3.Show();
+        }
     }
+
+
+
+    // Aqui você pode salvar os dados no banco de dados ou fazer outras operações
+    // Exemplo:
+    // var cliente = new Cliente
+    // {
+    //     Nome = txtNomeCompleto.Text,
+    //     Email = txtEmail.Text,
+    //     CpfCnpj = txtCpfCnpj.Text,
+    //     Telefone = txtTelefone.Text,
+    //     Endereco = new Endereco
+    //     {
+    //         Cep = txtCep.Text,
+    //         Rua = txtRua.Text,
+    //         Numero = numeroRua, // Já convertido para double
+    //         Bairro = txtBairro.Text,
+    //         Complemento = txtComplemento.Text,
+    //         Cidade = txtCidade.Text
+    //     }
+    // };
+    // _clienteService.Cadastrar(cliente);
 }
+
 
 
 

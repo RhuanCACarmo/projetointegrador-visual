@@ -111,3 +111,5 @@ C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-he
 C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\bin\x64\Debug\MySql.Data.xml
 C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\bin\x64\Debug\System.Configuration.ConfigurationManager.xml
 C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\bin\x64\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\obj\x64\Debug\cadastroclientes_hexabit.frmGerarPagamento.resources
+C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\obj\x64\Debug\cadastroclientes_hexabit.frmVisualizarClientes.resources

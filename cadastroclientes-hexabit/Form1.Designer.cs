@@ -48,7 +48,6 @@ namespace cadastroclientes_hexabit
             this.txtRua = new System.Windows.Forms.TextBox();
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vISUALIZARToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cADASTRARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vISUALIZARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -254,21 +253,11 @@ namespace cadastroclientes_hexabit
             // pESQUISARToolStripMenuItem
             // 
             this.pESQUISARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.pESQUISARToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.vISUALIZARToolStripMenuItem1});
             this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
             this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
             this.pESQUISARToolStripMenuItem.Text = "PESQUISAR";
-            // 
-            // vISUALIZARToolStripMenuItem1
-            // 
-            this.vISUALIZARToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.vISUALIZARToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.vISUALIZARToolStripMenuItem1.Name = "vISUALIZARToolStripMenuItem1";
-            this.vISUALIZARToolStripMenuItem1.Size = new System.Drawing.Size(190, 44);
-            this.vISUALIZARToolStripMenuItem1.Text = "Visualizar";
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -297,6 +286,7 @@ namespace cadastroclientes_hexabit
             this.vISUALIZARToolStripMenuItem.Name = "vISUALIZARToolStripMenuItem";
             this.vISUALIZARToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
             this.vISUALIZARToolStripMenuItem.Text = "Visualizar";
+            this.vISUALIZARToolStripMenuItem.Click += new System.EventHandler(this.vISUALIZARToolStripMenuItem_Click);
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -346,6 +336,7 @@ namespace cadastroclientes_hexabit
             this.gERARPAGAMENTOToolStripMenuItem.Name = "gERARPAGAMENTOToolStripMenuItem";
             this.gERARPAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
             this.gERARPAGAMENTOToolStripMenuItem.Text = "Gerar Pagamento";
+            this.gERARPAGAMENTOToolStripMenuItem.Click += new System.EventHandler(this.gERARPAGAMENTOToolStripMenuItem_Click);
             // 
             // gERENCIARPAGAMENTOToolStripMenuItem
             // 
@@ -368,7 +359,7 @@ namespace cadastroclientes_hexabit
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(384, 53);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(549, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(669, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -502,7 +493,6 @@ namespace cadastroclientes_hexabit
         private System.Windows.Forms.MaskedTextBox txtCep;
         private System.Windows.Forms.TextBox txtCpfCnpj;
         private System.Windows.Forms.TextBox txtTelefone;
-        private System.Windows.Forms.ToolStripMenuItem vISUALIZARToolStripMenuItem1;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
