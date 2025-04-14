@@ -19,7 +19,7 @@ namespace cadastroclientes_hexabit
     public partial class frmGerarPagamento : Form
     {
         MySqlConnection Conexao;
-        string data_source = "datasource =localhost; username=root;password=;database=db_cadastro";
+        string data_source = "datasource =localhost; username=root;password=;database=hexabits";
 
         public frmGerarPagamento()
         {
@@ -31,10 +31,10 @@ namespace cadastroclientes_hexabit
             try
             {
 
-                if (string.IsNullOrEmpty(txtIdEstoque.Text.Trim()) ||
-                   string.IsNullOrEmpty(txtPrecodeCompra.Text.Trim()) ||
-                   string.IsNullOrEmpty(txtQuantidade.Text.Trim()) ||
-                   string.IsNullOrEmpty(txtDatadeCompra.Text.Trim()))
+                if 
+                   (string.IsNullOrEmpty(txtPrecodeCompra.Text.Trim()) ||
+                   string.IsNullOrEmpty(txtQuantidade.Text.Trim())) 
+                  
                 {
                     MessageBox.Show("Todos os campos devem ser preenchidos.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -66,14 +66,14 @@ namespace cadastroclientes_hexabit
 
                 cmd.Prepare();
 
-                cmd.CommandText = "INSERT INTO pagamento(cpf_cnpj,idestoque,precodecompra,quantidade,datadecompra)" +
-                    "VALUES (@cpf_cnpj,@idestoque,@precodecompra,@quantidade,@datadecompra)";
+                cmd.CommandText = "INSERT INTO pagamento(cpf_cnpj,precodecompra,quantidade)" +
+                    "VALUES (@cpf_cnpj,@precodecompra,@quantidade)";
 
                 cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim());
-                cmd.Parameters.AddWithValue("@idestoque", txtIdEstoque.Text.Trim());
+             
                 cmd.Parameters.AddWithValue("@precodecompra", txtPrecodeCompra.Text.Trim());
                 cmd.Parameters.AddWithValue("@quantidade", txtQuantidade.Text.Trim());
-                cmd.Parameters.AddWithValue("@datadecompra", txtDatadeCompra.Text.Trim());
+              
 
                 cmd.ExecuteNonQuery();
 
@@ -95,8 +95,6 @@ namespace cadastroclientes_hexabit
 
             }
         }
-
-      
     }
 }
     

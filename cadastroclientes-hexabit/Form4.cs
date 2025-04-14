@@ -22,7 +22,7 @@ namespace cadastroclientes_hexabit
         {
             InitializeComponent();
 
-            // Configuração inicial da ListView para a exib~ição dos dados
+            // Configuração inicial da ListView para a exibição dos dados
             lstClientes.View = View.Details;
             lstClientes.LabelEdit = true;
             lstClientes.AllowColumnReorder = true;
@@ -32,10 +32,12 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstClientes.Columns.Add("CPF/CNPJ", 100, HorizontalAlignment.Left);
-            lstClientes.Columns.Add("NOME", 200, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("NOME", 300, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("EMAIL", 300, HorizontalAlignment.Left);
             lstClientes.Columns.Add("TELEFONE", 200, HorizontalAlignment.Left);
-            lstClientes.Columns.Add("EMAIL", 200, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("ENDEREÇO", 400, HorizontalAlignment.Left);
+
 
 
             //Carrega os dados dos clientes na interface
@@ -74,10 +76,11 @@ namespace cadastroclientes_hexabit
                 {
                     string[] row =
                     {
-                        Convert.ToString(reader.GetInt32(0)),
+                        Convert.ToString(reader.GetInt64(0)),
                         reader.GetString(1),
                         reader.GetString(2),
-                        reader.GetString(3)
+                        reader.GetString(3),
+                        reader.GetString(6)
                     };
 
                     lstClientes.Items.Add(new ListViewItem(row));
@@ -117,8 +120,9 @@ namespace cadastroclientes_hexabit
 
         private void carregar_clientes()
         {
-            string query = "SELECT * FROM cadastroclientes ORDER BY cpf/cnpj DESC";
+            string query = "SELECT * FROM cliente  ORDER BY cpf_cnpj DESC ";
             carregar_clientes_com_query(query);
+           
         }
 
 
@@ -126,7 +130,7 @@ namespace cadastroclientes_hexabit
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM cadastroclientes WHERE nome LIKE @q OR email LIKE @q ORDER BY cpf/cnpj DESC ";
+            string query = "SELECT * FROM cliente WHERE nome LIKE @q OR email LIKE @q ORDER BY cpf_cnpj DESC ";
             carregar_clientes_com_query(query);
         }
     }

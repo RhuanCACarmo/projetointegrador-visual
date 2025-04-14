@@ -16,7 +16,7 @@ namespace cadastroclientes_hexabit
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCadastroClientes());
+            Application.Run(new frmPesquisar());
         }
     }
 }

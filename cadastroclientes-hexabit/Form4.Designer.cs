@@ -53,14 +53,15 @@
             this.lstClientes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstClientes.AutoArrange = false;
             this.lstClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.lstClientes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstClientes.Font = new System.Drawing.Font("Open Sans Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstClientes.ForeColor = System.Drawing.Color.White;
             this.lstClientes.HideSelection = false;
-            this.lstClientes.Location = new System.Drawing.Point(22, 238);
+            this.lstClientes.Location = new System.Drawing.Point(122, 238);
             this.lstClientes.Name = "lstClientes";
-            this.lstClientes.Size = new System.Drawing.Size(1550, 492);
+            this.lstClientes.Size = new System.Drawing.Size(1378, 492);
             this.lstClientes.TabIndex = 2;
             this.lstClientes.UseCompatibleStateImageBehavior = false;
             // 
@@ -69,7 +70,7 @@
             this.txtBuscarCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBuscarCliente.Font = new System.Drawing.Font("Open Sans Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscarCliente.ForeColor = System.Drawing.Color.Black;
-            this.txtBuscarCliente.Location = new System.Drawing.Point(428, 195);
+            this.txtBuscarCliente.Location = new System.Drawing.Point(417, 169);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
             this.txtBuscarCliente.Size = new System.Drawing.Size(458, 33);
             this.txtBuscarCliente.TabIndex = 3;

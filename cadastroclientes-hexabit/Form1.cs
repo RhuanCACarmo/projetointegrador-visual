@@ -37,6 +37,7 @@ namespace cadastroclientes_hexabit
         {
 
             InitializeComponent();
+           
         }
         private async void ConsultarCEP(string cep)
         {
