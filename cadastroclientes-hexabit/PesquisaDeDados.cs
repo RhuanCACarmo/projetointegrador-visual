@@ -46,5 +46,17 @@ namespace cadastroclientes_hexabit
             frmGerarPagamento form3 = new frmGerarPagamento();
             form3.Show();
         }
+        private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVisualizarEstoque form5 = new frmVisualizarEstoque();
+            form5.Show();
+        }
+
+        private void txtBuscarCPF_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
