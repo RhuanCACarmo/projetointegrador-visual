@@ -61,7 +61,7 @@
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(453, 22);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(503, 43);
+            this.menuStrip1.Size = new System.Drawing.Size(623, 43);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
@@ -125,7 +125,7 @@
             this.visualizarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.visualizarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
-            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(180, 40);
+            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(177, 40);
             this.visualizarToolStripMenuItem.Text = "Visualizar";
             this.visualizarToolStripMenuItem.Click += new System.EventHandler(this.visualizarToolStripMenuItem_Click);
             // 
@@ -155,6 +155,7 @@
             this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
             this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(243, 40);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
+            this.visualizarToolStripMenuItem1.Click += new System.EventHandler(this.visualizarToolStripMenuItem1_Click);
             // 
             // pictureBox1
             // 

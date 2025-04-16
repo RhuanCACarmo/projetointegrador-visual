@@ -115,3 +115,4 @@ C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-he
 C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\obj\x64\Debug\cadastroclientes_hexabit.frmPesquisar.resources
 C:\Users\rhuan.cacarmo\Source\Repos\projetointegrador-visual\cadastroclientes-hexabit\obj\x64\Debug\cadastroclientes-hexabit.csproj.CopyComplete
 C:\Users\rhuan.cacarmo\Source\Repos\projetointegrador-visual\cadastroclientes-hexabit\obj\x64\Debug\cadastroclientes_hexabit.frmVisualizarEstoque.resources
+C:\Users\rhuan.cacarmo\source\repos\projetointegrador-visual\cadastroclientes-hexabit\obj\x64\Debug\cadastroclientes_hexabit.frmVisualizarPagamentos.resources

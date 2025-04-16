@@ -52,11 +52,16 @@ namespace cadastroclientes_hexabit
             form5.Show();
         }
 
+        private void visualizarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmVisualizarPagamentos form6 = new frmVisualizarPagamentos();
+            form6.Show();
+        }
+
         private void txtBuscarCPF_Enter(object sender, EventArgs e)
         {
 
         }
-
 
     }
 }

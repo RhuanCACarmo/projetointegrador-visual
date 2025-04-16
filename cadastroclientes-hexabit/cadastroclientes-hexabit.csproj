@@ -165,6 +165,12 @@
     <Compile Include="VisualizarEstoque.Designer.cs">
       <DependentUpon>VisualizarEstoque.cs</DependentUpon>
     </Compile>
+    <Compile Include="VisualizarPagamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisualizarPagamentos.Designer.cs">
+      <DependentUpon>VisualizarPagamentos.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CadastroCliente.resx">
       <DependentUpon>CadastroCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +197,9 @@
     </Compile>
     <EmbeddedResource Include="VisualizarEstoque.resx">
       <DependentUpon>VisualizarEstoque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VisualizarPagamentos.resx">
+      <DependentUpon>VisualizarPagamentos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
