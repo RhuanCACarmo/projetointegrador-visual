@@ -256,7 +256,8 @@ namespace cadastroclientes_hexabit
             this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
+            this.pESQUISARToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
             this.pESQUISARToolStripMenuItem.Text = "PESQUISAR";
             // 
             // cLIENTESToolStripMenuItem
@@ -268,7 +269,8 @@ namespace cadastroclientes_hexabit
             this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(118, 43);
+            this.cLIENTESToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
             // 
             // cADASTRARToolStripMenuItem
@@ -297,7 +299,8 @@ namespace cadastroclientes_hexabit
             this.eSTOQUEToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eSTOQUEToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.eSTOQUEToolStripMenuItem.Name = "eSTOQUEToolStripMenuItem";
-            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(118, 43);
+            this.eSTOQUEToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.eSTOQUEToolStripMenuItem.Text = "ESTOQUE";
             this.eSTOQUEToolStripMenuItem.Click += new System.EventHandler(this.eSTOQUEToolStripMenuItem_Click);
             // 
@@ -326,7 +329,8 @@ namespace cadastroclientes_hexabit
             this.pAGAMENTOSToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pAGAMENTOSToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pAGAMENTOSToolStripMenuItem.Name = "pAGAMENTOSToolStripMenuItem";
-            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(167, 43);
+            this.pAGAMENTOSToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(319, 43);
             this.pAGAMENTOSToolStripMenuItem.Text = "PAGAMENTOS";
             // 
             // gERARPAGAMENTOToolStripMenuItem
@@ -359,7 +363,7 @@ namespace cadastroclientes_hexabit
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(384, 53);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(669, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1277, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 

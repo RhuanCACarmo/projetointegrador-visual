@@ -65,16 +65,18 @@
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(390, 55);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(623, 43);
+            this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
             // 
             // pESQUISARToolStripMenuItem
             // 
+            this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(129, 39);
+            this.pESQUISARToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(295, 43);
             this.pESQUISARToolStripMenuItem.Text = "PESQUISAR ";
             // 
             // cLIENTESToolStripMenuItem
@@ -82,9 +84,11 @@
             this.cLIENTESToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrarToolStripMenuItem,
             this.vizualisarToolStripMenuItem});
+            this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(107, 39);
+            this.cLIENTESToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
             // 
             // cadastrarToolStripMenuItem
@@ -92,7 +96,7 @@
             this.cadastrarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.cadastrarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
-            this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(181, 40);
+            this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
             this.cadastrarToolStripMenuItem.Text = "Cadastrar ";
             // 
             // vizualisarToolStripMenuItem
@@ -100,7 +104,7 @@
             this.vizualisarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.vizualisarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.vizualisarToolStripMenuItem.Name = "vizualisarToolStripMenuItem";
-            this.vizualisarToolStripMenuItem.Size = new System.Drawing.Size(181, 40);
+            this.vizualisarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
             this.vizualisarToolStripMenuItem.Text = "Visuailzar";
             // 
             // eSTOQUEToolStripMenuItem
@@ -108,9 +112,11 @@
             this.eSTOQUEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrarToolStripMenuItem1,
             this.visualizarToolStripMenuItem});
+            this.eSTOQUEToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eSTOQUEToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.eSTOQUEToolStripMenuItem.Name = "eSTOQUEToolStripMenuItem";
-            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(108, 39);
+            this.eSTOQUEToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.eSTOQUEToolStripMenuItem.Text = "ESTOQUE";
             // 
             // cadastrarToolStripMenuItem1
@@ -118,7 +124,7 @@
             this.cadastrarToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.cadastrarToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.cadastrarToolStripMenuItem1.Name = "cadastrarToolStripMenuItem1";
-            this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(177, 40);
+            this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem1.Text = "Cadastrar";
             // 
             // visualizarToolStripMenuItem
@@ -126,7 +132,7 @@
             this.visualizarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.visualizarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
-            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(177, 40);
+            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem.Text = "Visualizar";
             // 
             // pAGAMENTOSToolStripMenuItem
@@ -134,9 +140,11 @@
             this.pAGAMENTOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gerarPagamentoToolStripMenuItem,
             this.visualizarToolStripMenuItem1});
+            this.pAGAMENTOSToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pAGAMENTOSToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.pAGAMENTOSToolStripMenuItem.Name = "pAGAMENTOSToolStripMenuItem";
-            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(151, 39);
+            this.pAGAMENTOSToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(319, 43);
             this.pAGAMENTOSToolStripMenuItem.Text = "PAGAMENTOS";
             // 
             // gerarPagamentoToolStripMenuItem
@@ -144,7 +152,7 @@
             this.gerarPagamentoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.gerarPagamentoToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.gerarPagamentoToolStripMenuItem.Name = "gerarPagamentoToolStripMenuItem";
-            this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(243, 40);
+            this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
             this.gerarPagamentoToolStripMenuItem.Text = "Gerar Pagamento";
             // 
             // visualizarToolStripMenuItem1
@@ -152,7 +160,7 @@
             this.visualizarToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.visualizarToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
-            this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(243, 40);
+            this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
             // 
             // lblCpf_Cnpj

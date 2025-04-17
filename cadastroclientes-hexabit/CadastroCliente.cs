@@ -19,9 +19,8 @@ namespace cadastroclientes_hexabit
     public partial class frmCadastroClientes : Form
     {
         MySqlConnection conexao;
-        string data_source = "datasource=localhost; username=root; password=; database=hexabits";
-
-        
+        private readonly string connectionString = "datasource=localhost;username=root;password=;database=hexabits";
+        private int? _idcliente = null;
 
         public class EnderecoViaCEP
         {
@@ -33,12 +32,52 @@ namespace cadastroclientes_hexabit
             public string uf { get; set; }            // Estado (sigla)
             public string erro { get; set; }          // Indica se o CEP é inválido
         }
-        public frmCadastroClientes()
+        public frmCadastroClientes(int? idcliente = null)
         {
-
             InitializeComponent();
-           
+            _idcliente = idcliente;
+
+            if (_idcliente.HasValue)
+            {
+                carregar_cliente(_idcliente.Value);
+                this.Text = "Editar Cliente"; // Altera título do form
+            }
+            else
+            {
+                this.Text = "Novo Cliente";
+            }
         }
+
+        private void carregar_cliente(int idcliente)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(connectionString))
+                {
+                    conexao.Open();
+                    var cmd = new MySqlCommand("SELECT * FROM cliente WHERE idcliente = @id", conexao);
+                    cmd.Parameters.AddWithValue("@id", idcliente);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Preenche os campos com os dados do banco
+                            txtNomeCompleto.Text = reader["nome"].ToString();
+                            txtEmail.Text = reader["email"].ToString();
+                            txtCpfCnpj.Text = reader["CPF/CNPJ"].ToString();
+
+                            // ... outros campos
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar cliente: {ex.Message}");
+            }
+        }
+
         private async void ConsultarCEP(string cep)
         {
            try
@@ -92,7 +131,10 @@ namespace cadastroclientes_hexabit
             ConsultarCEP(txtCep.Text);
         }
         private void btnSalvar_Click(object sender, EventArgs e)
-        { try
+
+
+        { 
+            try
             {
                 // Validação do Nome Completo (obrigatório)
                 if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
@@ -189,7 +231,7 @@ namespace cadastroclientes_hexabit
                 }
 
                 //Conexão com o banco de dados
-                conexao = new MySqlConnection(data_source);
+                conexao = new MySqlConnection(connectionString);
                 conexao.Open();
 
                 //Comando SQL para inserir um novo cliente no banco de dados 
@@ -241,12 +283,6 @@ namespace cadastroclientes_hexabit
 
             }
         }
-
-
-
-
-
-
 
         private void eSTOQUEToolStripMenuItem_Click(object sender, EventArgs e)
         {

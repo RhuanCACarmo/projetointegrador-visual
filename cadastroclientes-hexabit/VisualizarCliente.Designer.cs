@@ -72,7 +72,7 @@
             this.txtBuscarCliente.ForeColor = System.Drawing.Color.Black;
             this.txtBuscarCliente.Location = new System.Drawing.Point(417, 169);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(458, 33);
+            this.txtBuscarCliente.Size = new System.Drawing.Size(608, 33);
             this.txtBuscarCliente.TabIndex = 3;
             // 
             // btnAtualizar
@@ -112,9 +112,9 @@
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(361, 22);
+            this.menuStrip1.Location = new System.Drawing.Point(118, 22);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(549, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,7 +122,8 @@
             // 
             this.pesquisarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
-            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(138, 43);
+            this.pesquisarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
             this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
             // 
             // cLIENTESToolStripMenuItem
@@ -132,7 +133,8 @@
             this.visualizarToolStripMenuItem1});
             this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(118, 43);
+            this.cLIENTESToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
             // 
             // cadastrarToolStripMenuItem
@@ -158,7 +160,8 @@
             this.visualizarToolStripMenuItem2});
             this.eSTOQUEToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.eSTOQUEToolStripMenuItem.Name = "eSTOQUEToolStripMenuItem";
-            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(118, 43);
+            this.eSTOQUEToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.eSTOQUEToolStripMenuItem.Text = "ESTOQUE";
             // 
             // cadastrarToolStripMenuItem1
@@ -184,7 +187,8 @@
             this.visualizarToolStripMenuItem3});
             this.pAGAMENTOToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.pAGAMENTOToolStripMenuItem.Name = "pAGAMENTOToolStripMenuItem";
-            this.pAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(167, 43);
+            this.pAGAMENTOToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.pAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(319, 43);
             this.pAGAMENTOToolStripMenuItem.Text = "PAGAMENTOS";
             // 
             // gerarPagamentoToolStripMenuItem

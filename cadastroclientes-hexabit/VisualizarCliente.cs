@@ -12,11 +12,12 @@ using MySql.Data.MySqlClient;
 
 namespace cadastroclientes_hexabit
 {
-    public partial class frmVisualizarClientes: Form
+    public partial class frmVisualizarClientes : Form
     {
         MySqlConnection conexao;
         string data_source = "datasource=localhost; username=root; password=; database=hexabits";
 
+        private int? idcliente = null;
 
         public frmVisualizarClientes()
         {
@@ -32,6 +33,7 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
+            lstClientes.Columns.Add("ID CLIENTE", 200, HorizontalAlignment.Left);
             lstClientes.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
             lstClientes.Columns.Add("NOME", 300, HorizontalAlignment.Left);
             lstClientes.Columns.Add("EMAIL", 300, HorizontalAlignment.Left);
@@ -45,7 +47,7 @@ namespace cadastroclientes_hexabit
 
 
         }
-        private void carregar_clientes_com_query (string query)
+        private void carregar_clientes_com_query(string query)
         {
             try
             {
@@ -77,16 +79,17 @@ namespace cadastroclientes_hexabit
                     string[] row =
                     {
                         Convert.ToString(reader.GetInt64(0)),
-                        reader.GetString(1),
+                        Convert.ToString(reader.GetInt64(1)),
                         reader.GetString(2),
                         reader.GetString(3),
-                        reader.GetString(6)
+                        reader.GetString(4),
+                        reader.GetString(7)
                     };
 
                     lstClientes.Items.Add(new ListViewItem(row));
 
                 }
-                
+
 
             }
 
@@ -117,21 +120,71 @@ namespace cadastroclientes_hexabit
 
         }
 
-
         private void carregar_clientes()
         {
             string query = "SELECT * FROM cliente  ORDER BY cpf_cnpj DESC ";
             carregar_clientes_com_query(query);
-           
+
         }
-
-
-
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM cliente WHERE nome LIKE @q OR email LIKE @q ORDER BY cpf_cnpj DESC ";
-            carregar_clientes_com_query(query);
+            conexao = new MySqlConnection(data_source);
+            conexao.Open();
+
+            //MessageBox.Show("Conexão aberta com sucesso.");
+
+            //Comando SQL para inserir um novo cliente no banco de dados
+            MySqlCommand cmd = new MySqlCommand
+            {
+                Connection = conexao
+            };
+
+            cmd.Prepare();
+
+            {
+                try
+                {
+                    // Verifica se há itens selecionados
+                    if (lstClientes.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Selecione um cliente primeiro!", "Aviso",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // Pega o primeiro item selecionado
+                    ListViewItem itemSelecionado = lstClientes.SelectedItems[0];
+
+                    // Verifica se há subitens suficientes
+                    if (itemSelecionado.SubItems.Count < 1)
+                    {
+                        MessageBox.Show("Dados do cliente incompletos!", "Erro",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Conversão segura do ID do cliente
+                    if (!int.TryParse(itemSelecionado.SubItems[0].Text, out int idcliente))
+                    {
+                        MessageBox.Show("ID do cliente inválido!", "Erro",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Agora você pode usar o idCliente com segurança
+                    var formCadastro = new frmCadastroClientes(idcliente);
+                    formCadastro.ShowDialog();
+
+                    // Atualiza a lista após edição
+                    carregar_clientes();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao editar cliente: {ex.Message}", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
