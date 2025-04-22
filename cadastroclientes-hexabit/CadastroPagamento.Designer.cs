@@ -203,6 +203,7 @@
             this.txtCpfCnpj.Name = "txtCpfCnpj";
             this.txtCpfCnpj.Size = new System.Drawing.Size(214, 40);
             this.txtCpfCnpj.TabIndex = 8;
+      
             // 
             // txtPrecodeCompra
             // 

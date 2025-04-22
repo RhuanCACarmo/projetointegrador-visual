@@ -74,6 +74,7 @@
             this.txtBuscarCliente.Name = "txtBuscarCliente";
             this.txtBuscarCliente.Size = new System.Drawing.Size(608, 33);
             this.txtBuscarCliente.TabIndex = 3;
+         
             // 
             // btnAtualizar
             // 

@@ -15,127 +15,211 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmCadastrarEstoque : Form
     {
-        MySqlConnection conexao;
-        string data_source = "datasource=localhost; username=root; password=; database=hexabits";
+        private readonly string connectionString = "datasource=localhost;username=root;password=;database=hexabits";
 
+        private int? _idestoque = null;
 
-        public frmCadastrarEstoque()
+        public frmCadastrarEstoque(int? idestoque = null)
         {
             InitializeComponent();
+            _idestoque = idestoque;
+
+            if (_idestoque.HasValue)
+            {
+                this.Text = "Editar Produto";
+                CarregarProduto(_idestoque.Value);
+            }
+            else
+            {
+                this.Text = "Novo Produto";
+            }
+        }
+
+        private void CarregarProduto(int idestoque)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(connectionString))
+                {
+                    conexao.Open();
+                    var cmd = new MySqlCommand("SELECT * FROM estoque WHERE idestoque = @id", conexao);
+                    cmd.Parameters.AddWithValue("@id", idestoque);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            txtNomeProduto.Text = reader["nomedoproduto"].ToString();
+                            txtPrecoCompra.Text = reader["precodecompra"].ToString();
+                            txtPrecoVenda.Text = reader["precodevenda"].ToString();
+                            txtMarca.Text = reader["marca"].ToString();
+                            txtQuantidade.Text = reader["quantidade"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar produto: {ex.Message}");
+            }
+        }
+
+        private bool ValidarCampos()
+        {
+            // Validação do Nome do Produto
+            if (string.IsNullOrWhiteSpace(txtNomeProduto.Text))
+            {
+                MessageBox.Show("Por favor, digite o nome do produto.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtNomeProduto.Focus();
+                return false;
+            }
+
+            // Validação do Preço de Compra
+            if (!decimal.TryParse(txtPrecoCompra.Text, out decimal precoCompra) || precoCompra <= 0)
+            {
+                MessageBox.Show("Por favor, digite um preço de compra válido (maior que zero).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecoCompra.Focus();
+                return false;
+            }
+
+            // Validação do Preço de Venda
+            if (!decimal.TryParse(txtPrecoVenda.Text, out decimal precoVenda) || precoVenda <= 0)
+            {
+                MessageBox.Show("Por favor, digite um preço de venda válido (maior que zero).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecoVenda.Focus();
+                return false;
+            }
+
+            // Validação se preço de venda é maior que preço de compra
+            if (precoVenda < precoCompra)
+            {
+                MessageBox.Show("O preço de venda deve ser maior ou igual ao preço de compra.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecoVenda.Focus();
+                return false;
+            }
+
+            // Validação da Marca
+            if (string.IsNullOrWhiteSpace(txtMarca.Text))
+            {
+                MessageBox.Show("Por favor, digite a marca do produto.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtMarca.Focus();
+                return false;
+            }
+
+            // Validação da Quantidade
+            if (!int.TryParse(txtQuantidade.Text, out int quantidade) || quantidade < 0)
+            {
+                MessageBox.Show("Por favor, digite uma quantidade válida (número inteiro positivo).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantidade.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (!ValidarCampos())
+                return;
+
             try
             {
-                string nomeProduto;
-                double precoCompra;
-                double precoVenda;
-                string marca;
-                int quantidade;
-
-
-                if (string.IsNullOrWhiteSpace(txtNomeProduto.Text))
+                using (var conexao = new MySqlConnection(connectionString))
                 {
-                    MessageBox.Show("Por favor, preencha o nome do produto.", "Nome do Produto");
-                    return;
+                    conexao.Open();
+
+                    using (var cmd = new MySqlCommand { Connection = conexao })
+                    {
+                        if (_idestoque.HasValue)
+                        {
+                            // UPDATE
+                            cmd.CommandText = @"UPDATE estoque SET 
+                                        nomedoproduto = @nome,
+                                        precodecompra = @precoCompra,
+                                        precodevenda = @precoVenda,
+                                        marca = @marca,
+                                        quantidade = @quantidade
+                                        WHERE idestoque = @id";
+
+                            cmd.Parameters.AddWithValue("@id", _idestoque.Value);
+                        }
+                        else
+                        {
+                            // INSERT
+                            cmd.CommandText = @"INSERT INTO estoque(
+                                        nomedoproduto, precodecompra, precodevenda, 
+                                        marca, quantidade) 
+                                        VALUES (
+                                        @nome, @precoCompra, @precoVenda, 
+                                        @marca, @quantidade)";
+                        }
+
+                        // Parâmetros comuns
+                        cmd.Parameters.AddWithValue("@nome", txtNomeProduto.Text.Trim());
+                        cmd.Parameters.AddWithValue("@precoCompra", decimal.Parse(txtPrecoCompra.Text));
+                        cmd.Parameters.AddWithValue("@precoVenda", decimal.Parse(txtPrecoVenda.Text));
+                        cmd.Parameters.AddWithValue("@marca", txtMarca.Text.Trim());
+                        cmd.Parameters.AddWithValue("@quantidade", int.Parse(txtQuantidade.Text));
+
+                        int linhasAfetadas = cmd.ExecuteNonQuery();
+
+                        if (linhasAfetadas > 0)
+                        {
+                            MessageBox.Show(_idestoque.HasValue
+                                ? "Produto atualizado com sucesso!"
+                                : "Produto cadastrado com sucesso!",
+                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            this.Close();
+                        }
+                    }
                 }
-
-                if (!double.TryParse(txtPrecoCompra.Text, out double txtprecoCompra))
-                {
-                    MessageBox.Show("Por favor, insira o preço de compra.", "Preço de Compra");
-                    return;
-                }
-                if (!double.TryParse(txtPrecoVenda.Text, out double txtprecoVenda))
-                {
-                    MessageBox.Show("Por favor, insira o preço de venda.", "Preço de Venda");
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtMarca.Text))
-                {
-                    MessageBox.Show("Por favor, insira a marca do produto.", "Marca");
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtQuantidade.Text))
-                {
-                    MessageBox.Show("Por favor, insira a quantidade do produto.", "Quantidade");
-                    return;
-                }
-
-                //Continuação da validação
-
-                nomeProduto = txtNomeProduto.Text;
-                precoCompra = Convert.ToDouble(txtPrecoCompra.Text);
-                precoVenda = Convert.ToDouble(txtPrecoVenda.Text);
-                marca = txtMarca.Text;
-                quantidade = Convert.ToInt32(txtQuantidade.Text);
-
-
-               
-
-
-
-                //Conexão com o banco de dados
-                conexao = new MySqlConnection(data_source);
-                conexao.Open();
-
-                //Comando SQL para inserir um novo cliente no banco de dados 
-                MySqlCommand cmd = new MySqlCommand
-                {
-                    Connection = conexao
-                };
-                cmd.Prepare();
-
-                cmd.CommandText = "INSERT INTO estoque(nomedoproduto, precodecompra, precodevenda, quantidade,marca) " +
-                    "VALUES (@nomedoproduto, @precodecompra, @precodevenda, @quantidade, @marca) ";
-
-
-                cmd.Parameters.AddWithValue("@nomedoproduto", txtNomeProduto.Text.Trim());
-                cmd.Parameters.AddWithValue("@precodecompra", txtPrecoCompra.Text.Trim());
-                cmd.Parameters.AddWithValue("@precodevenda", txtPrecoVenda.Text.Trim());
-                cmd.Parameters.AddWithValue("@quantidade", txtQuantidade.Text.Trim());
-                cmd.Parameters.AddWithValue("@marca", txtMarca.Text.Trim());
-
-                cmd.ExecuteNonQuery();
-
-
-                MessageBox.Show("Produto cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erro" + ex.Number + "Ocorreu:" + ex.Message,
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro MySQL ({ex.Number}): {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-            finally
+            catch (Exception ex)
             {
-                if (conexao != null && conexao.State == ConnectionState.Open)
-                {
-                    conexao.Close();
-                }
-
+                MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-     
-    
+        private void txtPrecoCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite apenas números, vírgula e backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
 
+            // Permite apenas uma vírgula
+            if (e.KeyChar == ',' && (sender as TextBox).Text.IndexOf(',') > -1)
+            {
+                e.Handled = true;
+            }
+        }
 
+        private void txtPrecoVenda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            txtPrecoCompra_KeyPress(sender, e); // Reutiliza a mesma validação
+        }
 
+        private void txtQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite apenas números e backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
-
-
-private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
-             
             frmGerarPagamento form3 = new frmGerarPagamento();
             form3.Show();
         }
     }
-    
 }

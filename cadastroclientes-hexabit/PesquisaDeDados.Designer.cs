@@ -102,7 +102,7 @@
             this.vizualisarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.vizualisarToolStripMenuItem.Name = "vizualisarToolStripMenuItem";
             this.vizualisarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
-            this.vizualisarToolStripMenuItem.Text = "Visuailzar";
+            this.vizualisarToolStripMenuItem.Text = "Visualizar";
             this.vizualisarToolStripMenuItem.Click += new System.EventHandler(this.vizualisarToolStripMenuItem_Click);
             // 
             // eSTOQUEToolStripMenuItem
@@ -195,6 +195,8 @@
             this.txtBuscarCPF.Name = "txtBuscarCPF";
             this.txtBuscarCPF.Size = new System.Drawing.Size(548, 33);
             this.txtBuscarCPF.TabIndex = 4;
+            this.txtBuscarCPF.Text = "Digite um nome ou CPF";
+            this.txtBuscarCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBuscarCPF.Click += new System.EventHandler(this.txtBuscarCPF_Click);
             this.txtBuscarCPF.Enter += new System.EventHandler(this.txtBuscarCPF_Enter);
             // 

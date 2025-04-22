@@ -20,7 +20,7 @@ namespace cadastroclientes_hexabit
         public frmVisualizarEstoque()
         {
             InitializeComponent();
-        
+
 
             // Configuração inicial da ListView para a exibição dos dados
             lstProdutos.View = View.Details;
@@ -47,54 +47,38 @@ namespace cadastroclientes_hexabit
         {
             try
             {
-                conexao = new MySqlConnection(data_source);
-                conexao.Open();
-
-                MySqlCommand cmd = new MySqlCommand(query, conexao);
-
-                if (query.Contains("@q"))
-                {
-                    cmd.Parameters.AddWithValue("@q", "%" + txtBuscarProduto.Text + "%");
-                }
-
-                MySqlDataReader reader = cmd.ExecuteReader();
                 lstProdutos.Items.Clear();
 
-                while (reader.Read())
+                using (conexao = new MySqlConnection(data_source))
                 {
-                    // CORREÇÃO: Usar ToString() para converter os valores numéricos
-                    string[] row =
-                    {
-                reader["nomedoproduto"].ToString(),       // Nome do produto
-                reader["precodecompra"].ToString(),       // Preço de compra
-                reader["precodevenda"].ToString(),        // Preço de venda
-                reader["marca"].ToString(),               // Marca
-                reader["quantidade"].ToString()           // Quantidade
-            };
+                    conexao.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conexao);
 
-                    lstProdutos.Items.Add(new ListViewItem(row));
+                    if (query.Contains("@q"))
+                    {
+                        cmd.Parameters.AddWithValue("@q", "%" + txtBuscarProduto.Text + "%");
+                    }
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Armazena o ID como Tag do item (não visível)
+                            ListViewItem item = new ListViewItem(reader["nomedoproduto"].ToString());
+                            item.SubItems.Add(reader["precodecompra"].ToString());
+                            item.SubItems.Add(reader["precodevenda"].ToString());
+                            item.SubItems.Add(reader["marca"].ToString());
+                            item.SubItems.Add(reader["quantidade"].ToString());
+                            item.Tag = reader["idestoque"]; // Armazena o ID
+
+                            lstProdutos.Items.Add(item);
+                        }
+                    }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show($"Erro {ex.Number} ocorreu: {ex.Message}",
-                     "Erro",
-                      MessageBoxButtons.OK,
-                      MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu: {ex.Message}",
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (conexao != null && conexao.State == ConnectionState.Open)
-                {
-                    conexao.Close();
-                }
+                MessageBox.Show($"Erro: {ex.Message}");
             }
         }
         private void carregar_produtos()
@@ -105,8 +89,65 @@ namespace cadastroclientes_hexabit
         }
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM estoque WHERE nomedoproduto LIKE @q OR marca LIKE @q ORDER BY idestoque DESC ";
-            carregar_produtos_com_query(query);
+            try
+            {
+                // Verifica se há itens selecionados
+                if (lstProdutos.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecione um produto primeiro!", "Aviso",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Pega o primeiro item selecionado
+                ListViewItem itemSelecionado = lstProdutos.SelectedItems[0];
+
+                // Precisamos obter o ID do produto - precisamos modificcar o carregar_produtos para incluir o ID
+                // Primeiro, precisamos buscar o ID do produto selecionado
+                int idProduto = ObterIdProdutoSelecionado(itemSelecionado);
+
+                if (idProduto <= 0)
+                {
+                    MessageBox.Show("Não foi possível identificar o produto selecionado!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Abre o formulário de edição correto
+                var formEdicao = new frmCadastrarEstoque(idProduto);
+                formEdicao.ShowDialog();
+
+                // Atualiza a lista após edição
+                carregar_produtos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao editar estoque: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int ObterIdProdutoSelecionado(ListViewItem item)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(data_source))
+                {
+                    conexao.Open();
+
+                    // Busca o ID do produto baseado no nome (ou outros campos únicos)
+                    string query = "SELECT idestoque FROM estoque WHERE nomedoproduto = @nome LIMIT 1";
+                    MySqlCommand cmd = new MySqlCommand(query, conexao);
+                    cmd.Parameters.AddWithValue("@nome", item.SubItems[0].Text);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : -1;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
         }
     }
 }

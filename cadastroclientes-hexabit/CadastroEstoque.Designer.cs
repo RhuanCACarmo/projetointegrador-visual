@@ -189,7 +189,7 @@
             this.pAGAMENTOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(384, 53);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1277, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 

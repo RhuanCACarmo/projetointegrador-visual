@@ -32,9 +32,10 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstPagamentos.Columns.Add("ID PEDIDO", 400, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("DATA", 200, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("ID PEDIDO", 300, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("CPF/CNPJ", 300, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("DATA", 300, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("PREÇO DE COMPRA", 270, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("SITUAÇÃO", 200, HorizontalAlignment.Left);
 
             //Carrega os dados dos clientes na interface
@@ -62,10 +63,11 @@ namespace cadastroclientes_hexabit
                     // CORREÇÃO: Usar ToString() para converter os valores numéricos
                     string[] row =
                     {
-                reader["ID PEDIDO"].ToString(),      
-                reader["CPF/CNPJ"].ToString(),       
-                reader["DATA"].ToString(),        
-                reader["SITUAÇÂO"].ToString(),               
+                reader["idpedido"].ToString(),
+                reader["cpf_cnpj"].ToString(),
+                reader["datadacompra"].ToString(),
+                reader["precodecompra"].ToString(),
+                reader["situacao"].ToString()
             };
 
                     lstPagamentos.Items.Add(new ListViewItem(row));

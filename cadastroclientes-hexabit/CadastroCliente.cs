@@ -65,9 +65,14 @@ namespace cadastroclientes_hexabit
                             // Preenche os campos com os dados do banco
                             txtNomeCompleto.Text = reader["nome"].ToString();
                             txtEmail.Text = reader["email"].ToString();
-                            txtCpfCnpj.Text = reader["CPF/CNPJ"].ToString();
-
-                            // ... outros campos
+                            txtCpfCnpj.Text = reader["cpf_cnpj"].ToString();
+                            txtCep.Text = reader["cep"].ToString();
+                            txtCidade.Text = reader["cidade"].ToString();
+                            txtBairro.Text = reader["bairro"].ToString();
+                            txtComplemento.Text = reader["complemento"].ToString();
+                            txtNumero.Text = reader["numero"].ToString();
+                            txtTelefone.Text = reader["telefone"].ToString();
+                            txtRua.Text = reader["rua"].ToString();
                         }
                     }
                 }
@@ -133,7 +138,7 @@ namespace cadastroclientes_hexabit
         private void btnSalvar_Click(object sender, EventArgs e)
 
 
-        { 
+        {
             try
             {
                 // Validação do Nome Completo (obrigatório)
@@ -210,7 +215,7 @@ namespace cadastroclientes_hexabit
                     return;
                 }
 
-                //Validaçãõ de Rua
+                //Validação de Rua
                 if (string.IsNullOrEmpty(txtRua.Text))
                 {
                     MessageBox.Show("Por favor, preencha o nome da rua.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -230,59 +235,104 @@ namespace cadastroclientes_hexabit
                     return;
                 }
 
-                //Conexão com o banco de dados
-                conexao = new MySqlConnection(connectionString);
-                conexao.Open();
-
-                //Comando SQL para inserir um novo cliente no banco de dados 
-                MySqlCommand cmd = new MySqlCommand
+                using (conexao = new MySqlConnection(connectionString))
                 {
-                    Connection = conexao
-                };
-                cmd.Prepare();
+                    conexao.Open();
 
+                    // 1. Verificação de email duplicado
+                    using (var cmdVerifica = new MySqlCommand { Connection = conexao })
+                    {
+                        string verificaEmailSql = _idcliente.HasValue
+                            ? "SELECT COUNT(*) FROM cliente WHERE email = @email AND idcliente != @id_cliente"
+                            : "SELECT COUNT(*) FROM cliente WHERE email = @email";
 
-                cmd.CommandText = "INSERT INTO cliente(cpf_cnpj,nome,email,telefone,complemento,numero,rua,bairro,cidade,cep) " +
-                    "VALUES (@cpf_cnpj, @nome, @email,@telefone, @complemento, @numero, @rua, @bairro, @cidade, @cep)";
+                        cmdVerifica.CommandText = verificaEmailSql;
+                        cmdVerifica.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
 
+                        // Mudei o nome do parâmetro para @id_cliente para evitar conflito
+                        if (_idcliente.HasValue)
+                            cmdVerifica.Parameters.AddWithValue("@id_cliente", _idcliente.Value);
 
+                        int emailExistente = Convert.ToInt32(cmdVerifica.ExecuteScalar());
 
-                cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim());
-                cmd.Parameters.AddWithValue("@nome", txtNomeCompleto.Text.Trim());
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text.Trim());
-                cmd.Parameters.AddWithValue("@complemento", txtComplemento.Text.Trim());
-                cmd.Parameters.AddWithValue("@numero", txtNumero.Text.Trim());
-                cmd.Parameters.AddWithValue("@rua", txtRua.Text.Trim());
-                cmd.Parameters.AddWithValue("@bairro", txtBairro.Text.Trim());
-                cmd.Parameters.AddWithValue("@cidade", txtCidade.Text.Trim());
-                cmd.Parameters.AddWithValue("@cep", txtCep.Text.Trim());
+                        if (emailExistente > 0)
+                        {
+                            MessageBox.Show("Este e-mail já está cadastrado para outro cliente!", "Erro",
+                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
 
+                    // 2. Comando principal (INSERT ou UPDATE)
+                    using (var cmd = new MySqlCommand { Connection = conexao })
+                    {
+                        if (_idcliente.HasValue)
+                        {
+                            // UPDATE
+                            cmd.CommandText = @"UPDATE cliente SET 
+                                      cpf_cnpj = @cpf_cnpj,
+                                      nome = @nome,
+                                      email = @email,
+                                      telefone = @telefone,
+                                      complemento = @complemento,
+                                      numero = @numero,
+                                      rua = @rua,
+                                      bairro = @bairro,
+                                      cidade = @cidade,
+                                      cep = @cep
+                                      WHERE idcliente = @id";
 
-                cmd.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@id", _idcliente.Value);
+                        }
+                        else
+                        {
+                            // INSERT
+                            cmd.CommandText = @"INSERT INTO cliente(
+                                      cpf_cnpj, nome, email, telefone, 
+                                      complemento, numero, rua, bairro, cidade, cep) 
+                                      VALUES (
+                                      @cpf_cnpj, @nome, @email, @telefone, 
+                                      @complemento, @numero, @rua, @bairro, @cidade, @cep)";
+                        }
 
+                        // Parâmetros comuns (não inclua @id aqui para INSERT)
+                        cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim());
+                        cmd.Parameters.AddWithValue("@nome", txtNomeCompleto.Text.Trim());
+                        cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text.Trim());
+                        cmd.Parameters.AddWithValue("@complemento", txtComplemento.Text.Trim());
+                        cmd.Parameters.AddWithValue("@numero", txtNumero.Text.Trim());
+                        cmd.Parameters.AddWithValue("@rua", txtRua.Text.Trim());
+                        cmd.Parameters.AddWithValue("@bairro", txtBairro.Text.Trim());
+                        cmd.Parameters.AddWithValue("@cidade", txtCidade.Text.Trim());
+                        cmd.Parameters.AddWithValue("@cep", txtCep.Text.Trim());
 
+                        int linhasAfetadas = cmd.ExecuteNonQuery();
 
+                        if (linhasAfetadas > 0)
+                        {
+                            MessageBox.Show(_idcliente.HasValue
+                                ? "Cliente atualizado com sucesso!"
+                                : "Cliente cadastrado com sucesso!",
+                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Se todas as validações passarem:
-                MessageBox.Show("Cliente cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                            this.Close();
+                        }
+                    }
+                }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erro" + ex.Number + "Ocorreu:" + ex.Message,
-                    "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro MySQL ({ex.Number}): {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            finally
+            catch (Exception ex)
             {
-                if (conexao != null && conexao.State == ConnectionState.Open)
-                {
-                    conexao.Close();
-                }
-
+                MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void eSTOQUEToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -303,28 +353,6 @@ namespace cadastroclientes_hexabit
             form3.Show();
         }
     }
-
-
-
-    // Aqui você pode salvar os dados no banco de dados ou fazer outras operações
-    // Exemplo:
-    // var cliente = new Cliente
-    // {
-    //     Nome = txtNomeCompleto.Text,
-    //     Email = txtEmail.Text,
-    //     CpfCnpj = txtCpfCnpj.Text,
-    //     Telefone = txtTelefone.Text,
-    //     Endereco = new Endereco
-    //     {
-    //         Cep = txtCep.Text,
-    //         Rua = txtRua.Text,
-    //         Numero = numeroRua, // Já convertido para double
-    //         Bairro = txtBairro.Text,
-    //         Complemento = txtComplemento.Text,
-    //         Cidade = txtCidade.Text
-    //     }
-    // };
-    // _clienteService.Cadastrar(cliente);
 }
 
 
