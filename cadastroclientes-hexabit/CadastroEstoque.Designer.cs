@@ -52,6 +52,7 @@
             this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
@@ -294,12 +295,28 @@
             this.pbLogo.TabIndex = 15;
             this.pbLogo.TabStop = false;
             // 
+            // btnFecharPrograma
+            // 
+            this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
+            this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1544, 28);
+            this.btnFecharPrograma.Name = "btnFecharPrograma";
+            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
+            this.btnFecharPrograma.TabIndex = 16;
+            this.btnFecharPrograma.Text = "X";
+            this.btnFecharPrograma.UseVisualStyleBackColor = false;
+            this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
+            // 
             // frmCadastrarEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(1620, 920);
+            this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtQuantidade);
@@ -351,5 +368,6 @@
         private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem3;
         private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Button btnFecharPrograma;
     }
 }

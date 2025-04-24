@@ -66,11 +66,10 @@ namespace cadastroclientes_hexabit
 
                 cmd.Prepare();
 
-                cmd.CommandText = "INSERT INTO pagamento(cpf_cnpj,precodecompra,quantidade)" +
-                    "VALUES (@cpf_cnpj,@precodecompra,@quantidade)";
+                cmd.CommandText = "INSERT INTO pagamento(cpf_cnpj,quantidade,precodecompra)" +
+                    "VALUES (@cpf_cnpj,@quantidade,@precodecompra)";
 
                 cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim());
-             
                 cmd.Parameters.AddWithValue("@precodecompra", txtPrecodeCompra.Text.Trim());
                 cmd.Parameters.AddWithValue("@quantidade", txtQuantidade.Text.Trim());
               

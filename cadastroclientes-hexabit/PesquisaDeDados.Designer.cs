@@ -42,15 +42,16 @@
             this.visualizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblBanco = new System.Windows.Forms.Label();
-            this.txtBuscarCPF = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtPesquisa = new System.Windows.Forms.TextBox();
+            this.btnFecharPrograma = new System.Windows.Forms.Button();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -187,26 +188,41 @@
             this.lblBanco.TabIndex = 3;
             this.lblBanco.Text = "BANCO DE CLIENTES";
             // 
-            // txtBuscarCPF
+            // txtPesquisa
             // 
-            this.txtBuscarCPF.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarCPF.ForeColor = System.Drawing.Color.Black;
-            this.txtBuscarCPF.Location = new System.Drawing.Point(454, 572);
-            this.txtBuscarCPF.Name = "txtBuscarCPF";
-            this.txtBuscarCPF.Size = new System.Drawing.Size(548, 33);
-            this.txtBuscarCPF.TabIndex = 4;
-            this.txtBuscarCPF.Text = "Digite um nome ou CPF";
-            this.txtBuscarCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBuscarCPF.Click += new System.EventHandler(this.txtBuscarCPF_Click);
-            this.txtBuscarCPF.Enter += new System.EventHandler(this.txtBuscarCPF_Enter);
+            this.txtPesquisa.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisa.ForeColor = System.Drawing.Color.Black;
+            this.txtPesquisa.Location = new System.Drawing.Point(454, 572);
+            this.txtPesquisa.Name = "txtPesquisa";
+            this.txtPesquisa.Size = new System.Drawing.Size(548, 33);
+            this.txtPesquisa.TabIndex = 4;
+            this.txtPesquisa.Text = "Digite um nome ou CPF";
+            this.txtPesquisa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // flowLayoutPanel1
+            // btnFecharPrograma
             // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1584, 861);
-            this.flowLayoutPanel1.TabIndex = 5;
+            this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
+            this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1344, 12);
+            this.btnFecharPrograma.Name = "btnFecharPrograma";
+            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
+            this.btnFecharPrograma.TabIndex = 5;
+            this.btnFecharPrograma.Text = "X";
+            this.btnFecharPrograma.UseVisualStyleBackColor = false;
+            this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.Location = new System.Drawing.Point(1024, 572);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(42, 33);
+            this.btnPesquisar.TabIndex = 6;
+            this.btnPesquisar.Text = "button1";
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // frmPesquisar
             // 
@@ -215,11 +231,12 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1584, 861);
-            this.Controls.Add(this.txtBuscarCPF);
+            this.Controls.Add(this.btnPesquisar);
+            this.Controls.Add(this.btnFecharPrograma);
+            this.Controls.Add(this.txtPesquisa);
             this.Controls.Add(this.lblBanco);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPesquisar";
@@ -249,7 +266,8 @@
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblBanco;
-        private System.Windows.Forms.TextBox txtBuscarCPF;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TextBox txtPesquisa;
+        private System.Windows.Forms.Button btnFecharPrograma;
+        private System.Windows.Forms.Button btnPesquisar;
     }
 }

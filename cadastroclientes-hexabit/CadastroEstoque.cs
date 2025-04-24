@@ -221,5 +221,10 @@ namespace cadastroclientes_hexabit
             frmGerarPagamento form3 = new frmGerarPagamento();
             form3.Show();
         }
+
+        private void btnFecharPrograma_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
