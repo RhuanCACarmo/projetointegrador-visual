@@ -349,7 +349,7 @@ namespace cadastroclientes_hexabit
 
         private void gERARPAGAMENTOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGerarPagamento form3 = new frmGerarPagamento();
+            frmCadastroPagamento form3 = new frmCadastroPagamento();
             form3.Show();
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace cadastroclientes_hexabit
 {
-    partial class frmGerarPagamento
+    partial class frmCadastroPagamento
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGerarPagamento));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastroPagamento));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,14 +40,20 @@
             this.pAGAMENTOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnGerarPagamento = new System.Windows.Forms.Button();
             this.lblCpf_Cnpj = new System.Windows.Forms.Label();
             this.lblPrecodeCompra = new System.Windows.Forms.Label();
             this.lblQuantidade = new System.Windows.Forms.Label();
+            this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.txtCpfCnpj = new System.Windows.Forms.TextBox();
-            this.txtPrecodeCompra = new System.Windows.Forms.TextBox();
+            this.txtIdEstoque = new System.Windows.Forms.TextBox();
             this.txtQuantidade = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnGerarPagamento = new System.Windows.Forms.Button();
+            this.txtPrecoDeCompra = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbFormaPagamento = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -163,64 +169,6 @@
             this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
             // 
-            // lblCpf_Cnpj
-            // 
-            this.lblCpf_Cnpj.AutoSize = true;
-            this.lblCpf_Cnpj.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCpf_Cnpj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblCpf_Cnpj.Location = new System.Drawing.Point(479, 336);
-            this.lblCpf_Cnpj.Name = "lblCpf_Cnpj";
-            this.lblCpf_Cnpj.Size = new System.Drawing.Size(87, 31);
-            this.lblCpf_Cnpj.TabIndex = 2;
-            this.lblCpf_Cnpj.Text = "CPF/CNPJ";
-            // 
-            // lblPrecodeCompra
-            // 
-            this.lblPrecodeCompra.AutoSize = true;
-            this.lblPrecodeCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecodeCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblPrecodeCompra.Location = new System.Drawing.Point(479, 389);
-            this.lblPrecodeCompra.Name = "lblPrecodeCompra";
-            this.lblPrecodeCompra.Size = new System.Drawing.Size(146, 31);
-            this.lblPrecodeCompra.TabIndex = 4;
-            this.lblPrecodeCompra.Text = "Preço de Compra";
-            // 
-            // lblQuantidade
-            // 
-            this.lblQuantidade.AutoSize = true;
-            this.lblQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblQuantidade.Location = new System.Drawing.Point(479, 444);
-            this.lblQuantidade.Name = "lblQuantidade";
-            this.lblQuantidade.Size = new System.Drawing.Size(104, 31);
-            this.lblQuantidade.TabIndex = 5;
-            this.lblQuantidade.Text = "Quantidade";
-            // 
-            // txtCpfCnpj
-            // 
-            this.txtCpfCnpj.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtCpfCnpj.Location = new System.Drawing.Point(635, 327);
-            this.txtCpfCnpj.Name = "txtCpfCnpj";
-            this.txtCpfCnpj.Size = new System.Drawing.Size(214, 40);
-            this.txtCpfCnpj.TabIndex = 8;
-      
-            // 
-            // txtPrecodeCompra
-            // 
-            this.txtPrecodeCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtPrecodeCompra.Location = new System.Drawing.Point(635, 383);
-            this.txtPrecodeCompra.Name = "txtPrecodeCompra";
-            this.txtPrecodeCompra.Size = new System.Drawing.Size(214, 40);
-            this.txtPrecodeCompra.TabIndex = 10;
-            // 
-            // txtQuantidade
-            // 
-            this.txtQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtQuantidade.Location = new System.Drawing.Point(635, 438);
-            this.txtQuantidade.Name = "txtQuantidade";
-            this.txtQuantidade.Size = new System.Drawing.Size(214, 40);
-            this.txtQuantidade.TabIndex = 11;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -243,9 +191,126 @@
             this.btnGerarPagamento.TabIndex = 14;
             this.btnGerarPagamento.Text = "Gerar Pagamento";
             this.btnGerarPagamento.UseVisualStyleBackColor = false;
-            this.btnGerarPagamento.Click += new System.EventHandler(this.btnGerarPagamento_Click);
             // 
-            // frmGerarPagamento
+            // lblCpf_Cnpj
+            // 
+            this.lblCpf_Cnpj.AutoSize = true;
+            this.lblCpf_Cnpj.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCpf_Cnpj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblCpf_Cnpj.Location = new System.Drawing.Point(488, 332);
+            this.lblCpf_Cnpj.Name = "lblCpf_Cnpj";
+            this.lblCpf_Cnpj.Size = new System.Drawing.Size(95, 31);
+            this.lblCpf_Cnpj.TabIndex = 2;
+            this.lblCpf_Cnpj.Text = "ID CLIENTE";
+            // 
+            // lblPrecodeCompra
+            // 
+            this.lblPrecodeCompra.AutoSize = true;
+            this.lblPrecodeCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecodeCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblPrecodeCompra.Location = new System.Drawing.Point(492, 388);
+            this.lblPrecodeCompra.Name = "lblPrecodeCompra";
+            this.lblPrecodeCompra.Size = new System.Drawing.Size(87, 31);
+            this.lblPrecodeCompra.TabIndex = 4;
+            this.lblPrecodeCompra.Text = "CPF/CNPJ\r\n";
+            // 
+            // lblQuantidade
+            // 
+            this.lblQuantidade.AutoSize = true;
+            this.lblQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblQuantidade.Location = new System.Drawing.Point(483, 443);
+            this.lblQuantidade.Name = "lblQuantidade";
+            this.lblQuantidade.Size = new System.Drawing.Size(104, 31);
+            this.lblQuantidade.TabIndex = 5;
+            this.lblQuantidade.Text = "ID ESTOQUE\r\n";
+            // 
+            // txtIdCliente
+            // 
+            this.txtIdCliente.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
+            this.txtIdCliente.Location = new System.Drawing.Point(635, 327);
+            this.txtIdCliente.Name = "txtIdCliente";
+            this.txtIdCliente.Size = new System.Drawing.Size(214, 40);
+            this.txtIdCliente.TabIndex = 8;
+            // 
+            // txtCpfCnpj
+            // 
+            this.txtCpfCnpj.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
+            this.txtCpfCnpj.Location = new System.Drawing.Point(635, 383);
+            this.txtCpfCnpj.Name = "txtCpfCnpj";
+            this.txtCpfCnpj.Size = new System.Drawing.Size(214, 40);
+            this.txtCpfCnpj.TabIndex = 10;
+            // 
+            // txtIdEstoque
+            // 
+            this.txtIdEstoque.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
+            this.txtIdEstoque.Location = new System.Drawing.Point(635, 438);
+            this.txtIdEstoque.Name = "txtIdEstoque";
+            this.txtIdEstoque.Size = new System.Drawing.Size(214, 40);
+            this.txtIdEstoque.TabIndex = 11;
+            // 
+            // txtQuantidade
+            // 
+            this.txtQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
+            this.txtQuantidade.Location = new System.Drawing.Point(635, 551);
+            this.txtQuantidade.Name = "txtQuantidade";
+            this.txtQuantidade.Size = new System.Drawing.Size(214, 40);
+            this.txtQuantidade.TabIndex = 19;
+            // 
+            // txtPrecoDeCompra
+            // 
+            this.txtPrecoDeCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
+            this.txtPrecoDeCompra.Location = new System.Drawing.Point(635, 495);
+            this.txtPrecoDeCompra.Name = "txtPrecoDeCompra";
+            this.txtPrecoDeCompra.Size = new System.Drawing.Size(214, 40);
+            this.txtPrecoDeCompra.TabIndex = 18;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.label2.Location = new System.Drawing.Point(479, 556);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 62);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "QUANTIDADE\r\n\r\n";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.label3.Location = new System.Drawing.Point(455, 500);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(161, 31);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "PREÇO DE COMPRA";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.label1.Location = new System.Drawing.Point(885, 322);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(197, 31);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "FORMA DE PAGAMENTO";
+            // 
+            // cmbFormaPagamento
+            // 
+            this.cmbFormaPagamento.FormattingEnabled = true;
+            this.cmbFormaPagamento.Items.AddRange(new object[] {
+            "Crédito",
+            "Débito",
+            "Pix"});
+            this.cmbFormaPagamento.Location = new System.Drawing.Point(880, 356);
+            this.cmbFormaPagamento.Name = "cmbFormaPagamento";
+            this.cmbFormaPagamento.Size = new System.Drawing.Size(214, 21);
+            this.cmbFormaPagamento.TabIndex = 22;
+            // 
+            // frmCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -253,18 +318,24 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(1604, 881);
+            this.Controls.Add(this.cmbFormaPagamento);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtQuantidade);
+            this.Controls.Add(this.txtPrecoDeCompra);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGerarPagamento);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.txtQuantidade);
-            this.Controls.Add(this.txtPrecodeCompra);
+            this.Controls.Add(this.txtIdEstoque);
             this.Controls.Add(this.txtCpfCnpj);
+            this.Controls.Add(this.txtIdCliente);
             this.Controls.Add(this.lblQuantidade);
             this.Controls.Add(this.lblPrecodeCompra);
             this.Controls.Add(this.lblCpf_Cnpj);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmGerarPagamento";
+            this.Name = "frmCadastroPagamento";
             this.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerar Pagamentos";
@@ -290,13 +361,19 @@
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnGerarPagamento;
         private System.Windows.Forms.Label lblCpf_Cnpj;
         private System.Windows.Forms.Label lblPrecodeCompra;
         private System.Windows.Forms.Label lblQuantidade;
+        private System.Windows.Forms.TextBox txtIdCliente;
         private System.Windows.Forms.TextBox txtCpfCnpj;
-        private System.Windows.Forms.TextBox txtPrecodeCompra;
+        private System.Windows.Forms.TextBox txtIdEstoque;
         private System.Windows.Forms.TextBox txtQuantidade;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnGerarPagamento;
+        private System.Windows.Forms.TextBox txtPrecoDeCompra;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbFormaPagamento;
     }
 }

@@ -14,12 +14,16 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmVisualizarPagamentos : Form
     {
+        private int _idPagamento;
+
         MySqlConnection conexao;
         string data_source = "datasource=localhost; username=root; password=; database=hexabits";
 
-        public frmVisualizarPagamentos()
+        public frmVisualizarPagamentos(int idPagamento)
         {
             InitializeComponent();
+            _idPagamento = idPagamento;
+            carregar_pagamentos();
 
 
             // Configuração inicial da ListView para a exibição dos dados
@@ -32,15 +36,17 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstPagamentos.Columns.Add("ID PEDIDO", 300, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("ID PEDIDO", 200, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("CPF/CNPJ", 300, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("DATA", 300, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("PREÇO DE COMPRA", 270, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("ID ESTOQUE", 200, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("PREÇO DE COMPRA", 200, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("QUANTIDADE", 100, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("FORMA DE PAGAMENTO", 200, HorizontalAlignment.Center);
             lstPagamentos.Columns.Add("SITUAÇÃO", 200, HorizontalAlignment.Left);
-
             //Carrega os dados dos clientes na interface
             carregar_pagamentos();
         }
+
         private void carregar_pagamentos_com_query(string query)
         {
             try
@@ -55,22 +61,22 @@ namespace cadastroclientes_hexabit
                     cmd.Parameters.AddWithValue("@q", "%" + txtBuscarPagamento.Text + "%");
                 }
 
-                MySqlDataReader reader = cmd.ExecuteReader();
-                lstPagamentos.Items.Clear();
-
-                while (reader.Read())
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    // CORREÇÃO: Usar ToString() para converter os valores numéricos
-                    string[] row =
+                    while (reader.Read())
                     {
-                reader["idpedido"].ToString(),
-                reader["cpf_cnpj"].ToString(),
-                reader["datadacompra"].ToString(),
-                reader["precodecompra"].ToString(),
-                reader["situacao"].ToString()
-            };
+                        // Armazena o ID como Tag do item (não visível)
+                        ListViewItem item = new ListViewItem(reader["idpedido"].ToString());
+                        item.SubItems.Add(reader["cpf_cnpj"].ToString());
+                        item.SubItems.Add(reader["idestoque"].ToString());
+                        item.SubItems.Add(reader["precodecompra"].ToString());
+                        item.SubItems.Add(reader["quantidade"].ToString());
+                        item.SubItems.Add(reader["formadepagamento"].ToString());
+                        item.SubItems.Add(reader["situacao"].ToString());
+                        item.Tag = reader["idpedido"]; // Armazena o ID
 
-                    lstPagamentos.Items.Add(new ListViewItem(row));
+                        lstPagamentos.Items.Add(item);
+                    }
                 }
             }
             catch (MySqlException ex)
@@ -103,8 +109,37 @@ namespace cadastroclientes_hexabit
         }
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM estoque WHERE cpf_cnpj LIKE @q OR situação LIKE @q ORDER BY idpedido DESC ";
-            carregar_pagamentos_com_query(query);
+            try
+            {
+                if (lstPagamentos.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecione um pagamento primeiro!", "Aviso",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                ListViewItem itemSelecionado = lstPagamentos.SelectedItems[0];
+
+                // Obtém o ID diretamente do Tag (que você já armazenou)
+                if (itemSelecionado.Tag == null || !int.TryParse(itemSelecionado.Tag.ToString(), out int idPagamento))
+                {
+                    MessageBox.Show("ID do pagamento inválido!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Abre o formulário de edição
+                var formEdicao = new frmCadastroPagamento(idPagamento);
+                formEdicao.ShowDialog();
+
+                // Atualiza a lista
+                carregar_pagamentos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao editar pagamento: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
