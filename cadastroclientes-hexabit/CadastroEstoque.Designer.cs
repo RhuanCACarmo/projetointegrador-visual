@@ -134,6 +134,7 @@
             this.txtPrecoCompra.Name = "txtPrecoCompra";
             this.txtPrecoCompra.Size = new System.Drawing.Size(183, 31);
             this.txtPrecoCompra.TabIndex = 7;
+            this.txtPrecoCompra.TextChanged += new System.EventHandler(this.txtPrecoCompra_TextChanged);
             // 
             // txtPrecoVenda
             // 
@@ -179,7 +180,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -188,7 +189,7 @@
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(384, 53);
+            this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
             this.menuStrip1.TabIndex = 14;
@@ -302,7 +303,7 @@
             this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
-            this.btnFecharPrograma.Location = new System.Drawing.Point(1544, 28);
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1559, 12);
             this.btnFecharPrograma.Name = "btnFecharPrograma";
             this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
             this.btnFecharPrograma.TabIndex = 16;

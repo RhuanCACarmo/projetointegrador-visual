@@ -46,6 +46,7 @@ namespace cadastroclientes_hexabit
             this.pAGAMENTOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -53,6 +54,7 @@ namespace cadastroclientes_hexabit
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnFecharPrograma);
             this.panel1.Controls.Add(this.btnAtualizar);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.txtBuscarProduto);
@@ -83,7 +85,7 @@ namespace cadastroclientes_hexabit
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(22, 764);
+            this.pictureBox1.Location = new System.Drawing.Point(19, 756);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(141, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -92,12 +94,14 @@ namespace cadastroclientes_hexabit
             // 
             // txtBuscarProduto
             // 
-            this.txtBuscarProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtBuscarProduto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBuscarProduto.Font = new System.Drawing.Font("Open Sans Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscarProduto.ForeColor = System.Drawing.Color.Black;
             this.txtBuscarProduto.Location = new System.Drawing.Point(417, 169);
             this.txtBuscarProduto.Name = "txtBuscarProduto";
-            this.txtBuscarProduto.Size = new System.Drawing.Size(458, 33);
+            this.txtBuscarProduto.Size = new System.Drawing.Size(663, 33);
             this.txtBuscarProduto.TabIndex = 20;
             // 
             // lstProdutos
@@ -119,7 +123,7 @@ namespace cadastroclientes_hexabit
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.menuStrip1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,9 +132,9 @@ namespace cadastroclientes_hexabit
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(369, 22);
+            this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1277, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -223,6 +227,20 @@ namespace cadastroclientes_hexabit
             this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem3.Text = "Visualizar";
             // 
+            // btnFecharPrograma
+            // 
+            this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
+            this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1543, 12);
+            this.btnFecharPrograma.Name = "btnFecharPrograma";
+            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
+            this.btnFecharPrograma.TabIndex = 23;
+            this.btnFecharPrograma.Text = "X";
+            this.btnFecharPrograma.UseVisualStyleBackColor = false;
+            // 
             // frmVisualizarEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,5 +281,6 @@ namespace cadastroclientes_hexabit
         private System.Windows.Forms.ListView lstProdutos;
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnFecharPrograma;
     }
 }

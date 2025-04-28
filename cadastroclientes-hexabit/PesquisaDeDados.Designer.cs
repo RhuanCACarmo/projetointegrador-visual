@@ -44,7 +44,7 @@
             this.lblBanco = new System.Windows.Forms.Label();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.btnFecharPrograma = new System.Windows.Forms.Button();
-            this.btnPesquisar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +60,7 @@
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOSToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(131, 22);
+            this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
             this.menuStrip1.TabIndex = 1;
@@ -168,21 +168,23 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(544, 145);
+            this.pictureBox1.Location = new System.Drawing.Point(434, 112);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(326, 282);
+            this.pictureBox1.Size = new System.Drawing.Size(738, 303);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
             // lblBanco
             // 
-            this.lblBanco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBanco.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblBanco.AutoSize = true;
             this.lblBanco.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBanco.Location = new System.Drawing.Point(617, 459);
+            this.lblBanco.Location = new System.Drawing.Point(698, 479);
             this.lblBanco.Name = "lblBanco";
             this.lblBanco.Size = new System.Drawing.Size(189, 35);
             this.lblBanco.TabIndex = 3;
@@ -190,9 +192,11 @@
             // 
             // txtPesquisa
             // 
+            this.txtPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPesquisa.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisa.ForeColor = System.Drawing.Color.Black;
-            this.txtPesquisa.Location = new System.Drawing.Point(454, 572);
+            this.txtPesquisa.Location = new System.Drawing.Point(515, 546);
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(548, 33);
             this.txtPesquisa.TabIndex = 4;
@@ -206,7 +210,7 @@
             this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
-            this.btnFecharPrograma.Location = new System.Drawing.Point(1344, 12);
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1523, 12);
             this.btnFecharPrograma.Name = "btnFecharPrograma";
             this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
             this.btnFecharPrograma.TabIndex = 5;
@@ -214,15 +218,19 @@
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
             this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
             // 
-            // btnPesquisar
+            // button1
             // 
-            this.btnPesquisar.Location = new System.Drawing.Point(1024, 572);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(42, 33);
-            this.btnPesquisar.TabIndex = 6;
-            this.btnPesquisar.Text = "button1";
-            this.btnPesquisar.UseVisualStyleBackColor = true;
-            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1069, 546);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(44, 33);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // frmPesquisar
             // 
@@ -231,7 +239,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1584, 861);
-            this.Controls.Add(this.btnPesquisar);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.txtPesquisa);
             this.Controls.Add(this.lblBanco);
@@ -268,6 +276,6 @@
         private System.Windows.Forms.Label lblBanco;
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.Button btnFecharPrograma;
-        private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -14,16 +14,13 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmVisualizarPagamentos : Form
     {
-        private int _idPagamento;
 
         MySqlConnection conexao;
         string data_source = "datasource=localhost; username=root; password=; database=hexabits";
 
-        public frmVisualizarPagamentos(int idPagamento)
+        public frmVisualizarPagamentos()
         {
             InitializeComponent();
-            _idPagamento = idPagamento;
-            carregar_pagamentos();
 
 
             // Configuração inicial da ListView para a exibição dos dados
@@ -36,109 +33,132 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstPagamentos.Columns.Add("ID PEDIDO", 200, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("CPF/CNPJ", 300, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("ID ESTOQUE", 200, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("PREÇO DE COMPRA", 200, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("ID DE CLIENTE", 400, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("ID DE ESTOQUE", 200, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("PREÇO DA COMPRA", 200, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("QUANTIDADE", 100, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("FORMA DE PAGAMENTO", 200, HorizontalAlignment.Center);
-            lstPagamentos.Columns.Add("SITUAÇÃO", 200, HorizontalAlignment.Left);
+
+
+
             //Carrega os dados dos clientes na interface
             carregar_pagamentos();
         }
-
         private void carregar_pagamentos_com_query(string query)
         {
             try
             {
-                conexao = new MySqlConnection(data_source);
-                conexao.Open();
+                lstPagamentos.Items.Clear();
 
-                MySqlCommand cmd = new MySqlCommand(query, conexao);
-
-                if (query.Contains("@q"))
+                using (conexao = new MySqlConnection(data_source))
                 {
-                    cmd.Parameters.AddWithValue("@q", "%" + txtBuscarPagamento.Text + "%");
-                }
+                    conexao.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conexao);
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
+                    if (query.Contains("@q"))
                     {
-                        // Armazena o ID como Tag do item (não visível)
-                        ListViewItem item = new ListViewItem(reader["idpedido"].ToString());
-                        item.SubItems.Add(reader["cpf_cnpj"].ToString());
-                        item.SubItems.Add(reader["idestoque"].ToString());
-                        item.SubItems.Add(reader["precodecompra"].ToString());
-                        item.SubItems.Add(reader["quantidade"].ToString());
-                        item.SubItems.Add(reader["formadepagamento"].ToString());
-                        item.SubItems.Add(reader["situacao"].ToString());
-                        item.Tag = reader["idpedido"]; // Armazena o ID
+                        cmd.Parameters.AddWithValue("@q", "%" + txtBuscarPagamento.Text + "%");
+                    }
 
-                        lstPagamentos.Items.Add(item);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Armazena o ID como Tag do item (não visível)
+                            ListViewItem item = new ListViewItem(reader["idcliente"].ToString());
+                            item.SubItems.Add(reader["cpf_cnpj"].ToString());
+                            item.SubItems.Add(reader["idestoque"].ToString());
+                            item.SubItems.Add(reader["precodecompra"].ToString());
+                            item.SubItems.Add(reader["quantidade"].ToString());
+                            item.Tag = reader["idpagamento"]; // Armazena o ID
+
+                            lstPagamentos.Items.Add(item);
+                        }
                     }
                 }
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show($"Erro {ex.Number} ocorreu: {ex.Message}",
-                     "Erro",
-                      MessageBoxButtons.OK,
-                      MessageBoxIcon.Error);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocorreu: {ex.Message}",
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (conexao != null && conexao.State == ConnectionState.Open)
-                {
-                    conexao.Close();
-                }
+                MessageBox.Show($"Erro: {ex.Message}");
             }
         }
         private void carregar_pagamentos()
         {
-            string query = "SELECT * FROM pagamento ORDER BY idpedido DESC ";
+            string query = "SELECT * FROM pagamento ORDER BY idpagamento DESC ";
             carregar_pagamentos_com_query(query);
 
         }
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
+
             try
             {
+                // Verifica se há itens selecionados
                 if (lstPagamentos.SelectedItems.Count == 0)
                 {
-                    MessageBox.Show("Selecione um pagamento primeiro!", "Aviso",
+                    MessageBox.Show("Selecione um produto primeiro!", "Aviso",
                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Pega o primeiro item selecionado
                 ListViewItem itemSelecionado = lstPagamentos.SelectedItems[0];
 
-                // Obtém o ID diretamente do Tag (que você já armazenou)
-                if (itemSelecionado.Tag == null || !int.TryParse(itemSelecionado.Tag.ToString(), out int idPagamento))
+                // Precisamos obter o ID do produto - precisamos modificcar o carregar_produtos para incluir o ID
+                // Primeiro, precisamos buscar o ID do produto selecionado
+                int idpagamento = ObterIdPagamentoSelecionado(itemSelecionado);
+
+                if (idpagamento <= 0)
                 {
-                    MessageBox.Show("ID do pagamento inválido!", "Erro",
+                    MessageBox.Show("Não foi possível identificar o pagamento selecionado!", "Erro",
                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Abre o formulário de edição
-                var formEdicao = new frmCadastroPagamento(idPagamento);
+                int idestoque = ObterIdPagamentoSelecionado(itemSelecionado);
+
+                if (idestoque <= 0)
+                {
+                    MessageBox.Show("Não foi possível identificar o produto selecionado!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Abre o formulário de edição correto
+                var formEdicao = new frmCadastroPagamento(idestoque);
+                formEdicao.ShowDialog();
                 formEdicao.ShowDialog();
 
-                // Atualiza a lista
+                // Atualiza a lista após edição
                 carregar_pagamentos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao editar pagamento: {ex.Message}", "Erro",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int ObterIdPagamentoSelecionado(ListViewItem item)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(data_source))
+                {
+                    conexao.Open();
+
+                    // Busca o ID do pagamento baseado no CPF/CNPJ (ou outros campos únicos)
+                    string query = "SELECT idpagamento FROM pagamento WHERE idcliente = @idcliente LIMIT 1";
+                    MySqlCommand cmd = new MySqlCommand(query, conexao);
+                    cmd.Parameters.AddWithValue("@idcliente", item.SubItems[0].Text);
+
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : -1;
+                }
+            }
+            catch
+            {
+                return -1;
             }
         }
     }

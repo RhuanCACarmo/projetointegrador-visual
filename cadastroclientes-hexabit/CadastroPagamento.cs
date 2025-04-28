@@ -1,7 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using MySql.Data.MySqlClient;
 
 namespace cadastroclientes_hexabit
@@ -9,18 +16,18 @@ namespace cadastroclientes_hexabit
     public partial class frmCadastroPagamento : Form
     {
         private readonly string connectionString = "datasource=localhost;username=root;password=;database=hexabits";
-        private int? _idPagamento = null;
-        private MySqlConnection conexao;
 
-        public frmCadastroPagamento(int? idPagamento = null)
+        private int? _idpagamento = null;
+
+        public frmCadastroPagamento(int? idpagamento = null)
         {
             InitializeComponent();
-            _idPagamento = idPagamento;
+            _idpagamento = idpagamento;
 
-            if (_idPagamento.HasValue)
+            if (_idpagamento.HasValue)
             {
                 this.Text = "Editar Pagamento";
-                CarregarPagamento(_idPagamento.Value);
+                CarregarPagamento(_idpagamento.Value);
             }
             else
             {
@@ -28,21 +35,15 @@ namespace cadastroclientes_hexabit
             }
         }
 
-        private void CarregarPagamento(int idPagamento)
+        private void CarregarPagamento(int idpagamento)
         {
             try
             {
-                using (conexao = new MySqlConnection(connectionString))
+                using (var conexao = new MySqlConnection(connectionString))
                 {
                     conexao.Open();
-                    string query = @"SELECT p.*, c.nome as nome_cliente, e.nomedoproduto 
-                                   FROM pagamento p
-                                   JOIN cliente c ON p.idcliente = c.idcliente
-                                   JOIN estoque e ON p.idestoque = e.idestoque
-                                   WHERE p.idpedido = @id";
-
-                    var cmd = new MySqlCommand(query, conexao);
-                    cmd.Parameters.AddWithValue("@id", idPagamento);
+                    var cmd = new MySqlCommand("SELECT * FROM pagamento WHERE idpagamento = @id", conexao); // Corrigido para idpagamento
+                    cmd.Parameters.AddWithValue("@id", idpagamento);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -53,125 +54,118 @@ namespace cadastroclientes_hexabit
                             txtIdEstoque.Text = reader["idestoque"].ToString();
                             txtPrecoDeCompra.Text = reader["precodecompra"].ToString();
                             txtQuantidade.Text = reader["quantidade"].ToString();
-                            cmbFormaPagamento.SelectedItem = reader["formadepagamento"].ToString();
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar pagamento: {ex.Message}", "Erro",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar pagamento: {ex.Message}");
             }
         }
-
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private bool ValidarPagamentos()
         {
+            // Validação do Nome do Pagamento
+            if (string.IsNullOrWhiteSpace(txtIdCliente.Text))
+            {
+                MessageBox.Show("Por favor, digite o ID do Cliente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdCliente.Focus();
+                return false;
+            }
+
+            // Validação do Preço de Compra
+            if (!decimal.TryParse(txtPrecoDeCompra.Text, out decimal precoCompra) || precoCompra <= 0)
+            {
+                MessageBox.Show("Por favor, digite um preço da compra válido (maior que zero).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecoDeCompra.Focus();
+                return false;
+            }
+
+            // Validação do Preço de Venda
+            if (!decimal.TryParse(txtPrecoDeCompra.Text, out decimal precoVenda) || precoVenda <= 0)
+            {
+                MessageBox.Show("Por favor, digite um preço da venda válido (maior que zero).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecoDeCompra.Focus();
+                return false;
+            }
+
+            // Validação da Marca
+            if (string.IsNullOrWhiteSpace(txtIdEstoque.Text))
+            {
+                MessageBox.Show("Por favor, digite o ID do Estoque.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdEstoque.Focus();
+                return false;
+            }
+
+            // Validação da Quantidade
+            if (!int.TryParse(txtQuantidade.Text, out int quantidade) || quantidade < 0)
+            {
+                MessageBox.Show("Por favor, digite uma quantidade válida (número inteiro positivo).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantidade.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            if (!ValidarPagamentos())
+                return;
+
             try
             {
-                // Validações básicas
-                if (string.IsNullOrWhiteSpace(txtIdCliente.Text) || !int.TryParse(txtIdCliente.Text, out int idCliente))
-                {
-                    MessageBox.Show("ID do cliente inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtCpfCnpj.Text))
-                {
-                    MessageBox.Show("CPF/CNPJ é obrigatório.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtIdEstoque.Text) || !int.TryParse(txtIdEstoque.Text, out int idEstoque))
-                {
-                    MessageBox.Show("ID do estoque inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtPrecoDeCompra.Text) || !decimal.TryParse(txtPrecoDeCompra.Text, out decimal preco))
-                {
-                    MessageBox.Show("Preço de compra inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtQuantidade.Text) || !int.TryParse(txtQuantidade.Text, out int quantidade))
-                {
-                    MessageBox.Show("Quantidade inválida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (cmbFormaPagamento.SelectedItem == null)
-                {
-                    MessageBox.Show("Selecione a forma de pagamento.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                using (conexao = new MySqlConnection(connectionString))
+                using (var conexao = new MySqlConnection(connectionString))
                 {
                     conexao.Open();
 
-                    // Verifica se o cliente existe
-                    if (!ClienteExiste(idCliente))
-                    {
-                        MessageBox.Show("Cliente não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Verifica se o item do estoque existe
-                    if (!EstoqueExiste(idEstoque))
-                    {
-                        MessageBox.Show("Item do estoque não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Comando principal (INSERT ou UPDATE)
                     using (var cmd = new MySqlCommand { Connection = conexao })
                     {
-                        if (_idPagamento.HasValue)
+                        if (_idpagamento.HasValue)
                         {
                             // UPDATE
                             cmd.CommandText = @"UPDATE pagamento SET 
-                                        idcliente = @idcliente,
-                                        cpf_cnpj = @cpf_cnpj,
-                                        idestoque = @idestoque,
-                                        precodecompra = @precodecompra,
-                                        quantidade = @quantidade,
-                                        formadepagamento = @formadepagamento,
-                                        situacao = @situacao
-                                        WHERE idpedido = @id";
+                                idcliente = @idcliente,
+                                cpf_cnpj = @cpf_cnpj,
+                                idestoque = @idestoque,
+                                precodecompra = @precodecompra,
+                                quantidade = @quantidade
+                                WHERE idpagamento = @id";
 
-                            cmd.Parameters.AddWithValue("@id", _idPagamento.Value);
+                            cmd.Parameters.AddWithValue("@id", _idpagamento.Value);
                         }
                         else
                         {
                             // INSERT
                             cmd.CommandText = @"INSERT INTO pagamento(
-                                        idcliente, cpf_cnpj, idestoque, precodecompra, 
-                                        quantidade, formadepagamento, situacao) 
-                                        VALUES (
-                                        @idcliente, @cpf_cnpj, @idestoque, @precodecompra, 
-                                        @quantidade, @formadepagamento, @situacao)";
+                                idcliente, cpf_cnpj, idestoque, 
+                                precodecompra, quantidade) 
+                                VALUES (
+                                @idcliente, @cpf_cnpj, @idestoque, 
+                                @precodecompra, @quantidade)";
                         }
 
-                        // Parâmetros comuns
-                        cmd.Parameters.AddWithValue("@idcliente", idCliente);
-                        cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim());
-                        cmd.Parameters.AddWithValue("@idestoque", idEstoque);
-                        cmd.Parameters.AddWithValue("@precodecompra", preco);
-                        cmd.Parameters.AddWithValue("@quantidade", quantidade);
-                        cmd.Parameters.AddWithValue("@formadepagamento", cmbFormaPagamento.SelectedItem.ToString());
+                        // Parâmetros comuns - CORRIGIDOS
+                        cmd.Parameters.AddWithValue("@idcliente", int.Parse(txtIdCliente.Text.Trim()));
+                        cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim()); // Mantido como string
+                        cmd.Parameters.AddWithValue("@idestoque", int.Parse(txtIdEstoque.Text.Trim()));
+                        cmd.Parameters.AddWithValue("@precodecompra", decimal.Parse(txtPrecoDeCompra.Text));
+                        cmd.Parameters.AddWithValue("@quantidade", int.Parse(txtQuantidade.Text.Trim()));
 
                         int linhasAfetadas = cmd.ExecuteNonQuery();
 
                         if (linhasAfetadas > 0)
                         {
-                            MessageBox.Show(_idPagamento.HasValue
+                            MessageBox.Show(_idpagamento.HasValue
                                 ? "Pagamento atualizado com sucesso!"
                                 : "Pagamento cadastrado com sucesso!",
                                 "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                             this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nenhum registro foi atualizado. Verifique se o ID existe.",
+                                          "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -185,42 +179,6 @@ namespace cadastroclientes_hexabit
             {
                 MessageBox.Show($"Erro: {ex.Message}", "Erro",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private bool ClienteExiste(int idCliente)
-        {
-            string query = "SELECT COUNT(*) FROM cliente WHERE idcliente = @id";
-            var cmd = new MySqlCommand(query, conexao);
-            cmd.Parameters.AddWithValue("@id", idCliente);
-            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
-        }
-
-        private bool EstoqueExiste(int idEstoque)
-        {
-            string query = "SELECT COUNT(*) FROM estoque WHERE idestoque = @id";
-            var cmd = new MySqlCommand(query, conexao);
-            cmd.Parameters.AddWithValue("@id", idEstoque);
-            return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
-        }
-
-        private void btnBuscarCliente_Click(object sender, EventArgs e)
-        {
-            var formBusca = new frmVisualizarClientes();
-            if (formBusca.ShowDialog() == DialogResult.OK)
-            {
-                txtIdCliente.Text = formBusca.ClienteSelecionado.Id.ToString();
-                txtCpfCnpj.Text = formBusca.ClienteSelecionado.CpfCnpj;
-            }
-        }
-
-        private void btnBuscarProduto_Click(object sender, EventArgs e)
-        {
-            var formBusca = new frmVisualizarClientes();
-            if (formBusca.ShowDialog() == DialogResult.OK)
-            {
-                txtIdEstoque.Text = formBusca.ProdutoSelecionado.Id.ToString();
-                txtPrecoDeCompra.Text = formBusca.ProdutoSelecionado.PrecoVenda.ToString();
             }
         }
     }

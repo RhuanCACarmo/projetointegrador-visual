@@ -226,5 +226,15 @@ namespace cadastroclientes_hexabit
         {
             Application.Exit();
         }
+
+        private void txtPrecoCompra_TextChanged(object sender, EventArgs e)
+        {
+            // Calcula o preço de venda automaticamente quando o preço de compra é alterado
+            if (decimal.TryParse(txtPrecoCompra.Text, out decimal precoCompra) && precoCompra > 0)
+            {
+                decimal precoVenda = precoCompra * 1.32m; // Aplica 32% de lucro
+                txtPrecoVenda.Text = precoVenda.ToString("N2"); // Formata com 2 casas decimais
+            }
+        }
     }
 }
