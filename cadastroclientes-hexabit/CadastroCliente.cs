@@ -18,6 +18,9 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmCadastroClientes : Form
     {
+        public int? idestoque { get; private set; }
+        public int? idpagamento { get; private set; }
+
         MySqlConnection conexao;
         private readonly string connectionString = "datasource=localhost;username=root;password=;database=hexabits";
         private int? _idcliente = null;
@@ -85,7 +88,7 @@ namespace cadastroclientes_hexabit
 
         private async void ConsultarCEP(string cep)
         {
-           try
+            try
             {
                 // Remove caracteres não numéricos
                 cep = new string(cep.Where(char.IsDigit).ToArray());
@@ -130,7 +133,7 @@ namespace cadastroclientes_hexabit
             {
                 MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           }
+        }
         private void txtCep_Leave(object sender, EventArgs e)
         {
             ConsultarCEP(txtCep.Text);
@@ -334,23 +337,47 @@ namespace cadastroclientes_hexabit
         }
 
 
-        private void eSTOQUEToolStripMenuItem_Click(object sender, EventArgs e)
+        public static class FormManager
         {
-            frmCadastrarEstoque form2 = new frmCadastrarEstoque();
-            form2.Show(); // Não modal
-            // form2.ShowDialog(); // Modal
-        }
+            // Versão sem parâmetros (para formulários que não precisam de argumentos)
+            public static void ShowForm<T>() where T : Form, new()
+            {
+                ShowForm<T>(null);
+            }
 
-        private void vISUALIZARToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmVisualizarClientes form4 = new frmVisualizarClientes();
-            form4.Show();
-        }
+            // Versão com parâmetros (para formulários que precisam de argumentos)
+            public static void ShowForm<T>(params object[] args) where T : Form
+            {
+                // Verifica se o formulário já está aberto
+                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                if (existingForm != null)
+                {
+                    existingForm.BringToFront();
+                    return;
+                }
 
-        private void gERARPAGAMENTOToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmCadastroPagamento form3 = new frmCadastroPagamento();
-            form3.Show();
+                // Cria nova instância com ou sem parâmetros
+                T form;
+                if (args == null || args.Length == 0)
+                {
+                    form = Activator.CreateInstance<T>();
+                }
+                else
+                {
+                    form = (T)Activator.CreateInstance(typeof(T), args);
+                }
+
+                form.Show();
+            }
+
+            public static void CloseAllForms()
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
+            }
+
         }
     }
 }

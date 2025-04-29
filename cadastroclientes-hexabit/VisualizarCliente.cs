@@ -186,7 +186,88 @@ namespace cadastroclientes_hexabit
                 }
             }
         }
+        private void btnDeletarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verifica se há itens selecionados
+                if (lstClientes.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecione um cliente primeiro!", "Aviso",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Pega o primeiro item selecionado
+                ListViewItem itemSelecionado = lstClientes.SelectedItems[0];
+
+                // Verifica se há subitens suficientes
+                if (itemSelecionado.SubItems.Count < 1)
+                {
+                    MessageBox.Show("Dados do cliente incompletos!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Conversão segura do ID do cliente
+                if (!int.TryParse(itemSelecionado.SubItems[0].Text, out int idcliente))
+                {
+                    MessageBox.Show("ID do cliente inválido!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Confirmação do usuário
+                DialogResult confirmacao = MessageBox.Show(
+                    $"Tem certeza que deseja excluir o cliente {itemSelecionado.SubItems[2].Text}?",
+                    "Confirmar Exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    using (var conexao = new MySqlConnection(data_source))
+                    {
+                        conexao.Open();
+
+                        // Comando SQL para deletar o cliente
+                        using (var cmd = new MySqlCommand(
+                            "DELETE FROM cliente WHERE idcliente = @id",
+                            conexao))
+                        {
+                            cmd.Parameters.AddWithValue("@id", idcliente);
+                            int linhasAfetadas = cmd.ExecuteNonQuery();
+
+                            if (linhasAfetadas > 0)
+                            {
+                                MessageBox.Show("Cliente excluído com sucesso!", "Sucesso",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                carregar_clientes(); // Atualiza a lista
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nenhum cliente foi excluído.", "Aviso",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                string mensagem = ex.Number == 1451 // Código de erro para violação de chave estrangeira
+                    ? "Este cliente não pode ser excluído porque possui registros vinculados."
+                    : $"Erro MySQL ({ex.Number}): {ex.Message}";
+
+                MessageBox.Show(mensagem, "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao excluir cliente: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
-
       

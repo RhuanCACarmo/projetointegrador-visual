@@ -31,6 +31,8 @@ namespace cadastroclientes_hexabit
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVisualizarEstoque));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDeletarCliente = new System.Windows.Forms.Button();
+            this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtBuscarProduto = new System.Windows.Forms.TextBox();
@@ -46,7 +48,6 @@ namespace cadastroclientes_hexabit
             this.pAGAMENTOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -54,6 +55,7 @@ namespace cadastroclientes_hexabit
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDeletarCliente);
             this.panel1.Controls.Add(this.btnFecharPrograma);
             this.panel1.Controls.Add(this.btnAtualizar);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -65,6 +67,35 @@ namespace cadastroclientes_hexabit
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1604, 881);
             this.panel1.TabIndex = 0;
+            // 
+            // btnDeletarCliente
+            // 
+            this.btnDeletarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletarCliente.BackColor = System.Drawing.Color.DimGray;
+            this.btnDeletarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeletarCliente.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnDeletarCliente.Location = new System.Drawing.Point(1125, 794);
+            this.btnDeletarCliente.Name = "btnDeletarCliente";
+            this.btnDeletarCliente.Size = new System.Drawing.Size(224, 54);
+            this.btnDeletarCliente.TabIndex = 30;
+            this.btnDeletarCliente.Text = "DELETAR";
+            this.btnDeletarCliente.UseVisualStyleBackColor = false;
+            this.btnDeletarCliente.Click += new System.EventHandler(this.btnDeletarCliente_Click);
+            // 
+            // btnFecharPrograma
+            // 
+            this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
+            this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1543, 12);
+            this.btnFecharPrograma.Name = "btnFecharPrograma";
+            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
+            this.btnFecharPrograma.TabIndex = 23;
+            this.btnFecharPrograma.Text = "X";
+            this.btnFecharPrograma.UseVisualStyleBackColor = false;
             // 
             // btnAtualizar
             // 
@@ -227,20 +258,6 @@ namespace cadastroclientes_hexabit
             this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem3.Text = "Visualizar";
             // 
-            // btnFecharPrograma
-            // 
-            this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
-            this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
-            this.btnFecharPrograma.Location = new System.Drawing.Point(1543, 12);
-            this.btnFecharPrograma.Name = "btnFecharPrograma";
-            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
-            this.btnFecharPrograma.TabIndex = 23;
-            this.btnFecharPrograma.Text = "X";
-            this.btnFecharPrograma.UseVisualStyleBackColor = false;
-            // 
             // frmVisualizarEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,5 +299,6 @@ namespace cadastroclientes_hexabit
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnFecharPrograma;
+        private System.Windows.Forms.Button btnDeletarCliente;
     }
 }

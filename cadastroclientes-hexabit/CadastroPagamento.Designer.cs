@@ -33,7 +33,7 @@
             this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vizualisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eSTOQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +72,7 @@
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1282, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
@@ -90,7 +90,7 @@
             // 
             this.cLIENTESToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrarToolStripMenuItem,
-            this.vizualisarToolStripMenuItem});
+            this.visualisarToolStripMenuItem});
             this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
@@ -106,13 +106,13 @@
             this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
             this.cadastrarToolStripMenuItem.Text = "Cadastrar ";
             // 
-            // vizualisarToolStripMenuItem
+            // visualisarToolStripMenuItem
             // 
-            this.vizualisarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.vizualisarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.vizualisarToolStripMenuItem.Name = "vizualisarToolStripMenuItem";
-            this.vizualisarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
-            this.vizualisarToolStripMenuItem.Text = "Visuailzar";
+            this.visualisarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.visualisarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.visualisarToolStripMenuItem.Name = "visualisarToolStripMenuItem";
+            this.visualisarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
+            this.visualisarToolStripMenuItem.Text = "Visuailzar";
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -393,7 +393,7 @@
         private System.Windows.Forms.ToolStripMenuItem eSTOQUEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pAGAMENTOSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vizualisarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualisarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;

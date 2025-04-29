@@ -161,5 +161,98 @@ namespace cadastroclientes_hexabit
                 return -1;
             }
         }
+
+        private void btnDeletarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verifica se há itens selecionados
+                if (lstPagamentos.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecione um pagamento primeiro!", "Aviso",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Pega o primeiro item selecionado
+                ListViewItem itemSelecionado = lstPagamentos.SelectedItems[0];
+
+                // Obtém o ID do pagamento a partir do Tag (que foi armazenado durante o carregamento)
+                if (itemSelecionado.Tag == null || !int.TryParse(itemSelecionado.Tag.ToString(), out int idPagamento))
+                {
+                    MessageBox.Show("Não foi possível identificar o pagamento selecionado!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Obtém informações para exibir na confirmação
+                string idCliente = itemSelecionado.SubItems[0].Text;
+                string valorCompra = itemSelecionado.SubItems[3].Text;
+
+                // Confirmação do usuário
+                DialogResult confirmacao = MessageBox.Show(
+                    $"Tem certeza que deseja excluir o pagamento do cliente {idCliente} no valor de {valorCompra}?",
+                    "Confirmar Exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2); // Default no "Não" para prevenir exclusões acidentais
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    using (var conexao = new MySqlConnection(data_source))
+                    {
+                        conexao.Open();
+
+                        using (var transaction = conexao.BeginTransaction())
+                        {
+                            try
+                            {
+                                // Comando SQL para deletar o pagamento
+                                using (var cmd = new MySqlCommand(
+                                    "DELETE FROM pagamento WHERE idpagamento = @id",
+                                    conexao, transaction))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", idPagamento);
+                                    int linhasAfetadas = cmd.ExecuteNonQuery();
+
+                                    if (linhasAfetadas > 0)
+                                    {
+                                        transaction.Commit();
+                                        MessageBox.Show("Pagamento excluído com sucesso!", "Sucesso",
+                                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        carregar_pagamentos(); // Atualiza a lista
+                                    }
+                                    else
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("Nenhum pagamento foi excluído.", "Aviso",
+                                                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                transaction.Rollback();
+                                throw;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                string mensagem = ex.Number == 1451 // Código de erro para violação de chave estrangeira
+                    ? "Este pagamento não pode ser excluído porque possui registros vinculados."
+                    : $"Erro MySQL ({ex.Number}): {ex.Message}";
+
+                MessageBox.Show(mensagem, "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao excluir pagamento: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

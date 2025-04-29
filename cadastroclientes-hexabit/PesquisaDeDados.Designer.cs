@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPesquisar));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vizualisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eSTOQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pAGAMENTOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visualizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPesquisar = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCadastroCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVisualizarCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCadastrarEstoque = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVisualizarEstoque = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGerarPagamentos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGerarPagamento = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVisualizarPagamentos = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblBanco = new System.Windows.Forms.Label();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
@@ -56,115 +56,116 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pESQUISARToolStripMenuItem,
-            this.cLIENTESToolStripMenuItem,
-            this.eSTOQUEToolStripMenuItem,
-            this.pAGAMENTOSToolStripMenuItem});
+            this.tsmPesquisar,
+            this.clientesToolStripMenuItem,
+            this.estoqueToolStripMenuItem,
+            this.tsmGerarPagamentos});
             this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1282, 47);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
             // 
-            // pESQUISARToolStripMenuItem
+            // tsmPesquisar
             // 
-            this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(295, 43);
-            this.pESQUISARToolStripMenuItem.Text = "PESQUISAR ";
+            this.tsmPesquisar.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmPesquisar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmPesquisar.Name = "tsmPesquisar";
+            this.tsmPesquisar.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.tsmPesquisar.Size = new System.Drawing.Size(295, 43);
+            this.tsmPesquisar.Text = "PESQUISAR ";
+            this.tsmPesquisar.Click += new System.EventHandler(this.tsmPesquisar_Click);
             // 
-            // cLIENTESToolStripMenuItem
+            // clientesToolStripMenuItem
             // 
-            this.cLIENTESToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastrarToolStripMenuItem,
-            this.vizualisarToolStripMenuItem});
-            this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
-            this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
+            this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCadastroCliente,
+            this.tsmVisualizarCliente});
+            this.clientesToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clientesToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
+            this.clientesToolStripMenuItem.Text = "CLIENTES";
             // 
-            // cadastrarToolStripMenuItem
+            // tsmCadastroCliente
             // 
-            this.cadastrarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.cadastrarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
-            this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
-            this.cadastrarToolStripMenuItem.Text = "Cadastrar ";
-            this.cadastrarToolStripMenuItem.Click += new System.EventHandler(this.cadastrarToolStripMenuItem_Click);
+            this.tsmCadastroCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.tsmCadastroCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmCadastroCliente.Name = "tsmCadastroCliente";
+            this.tsmCadastroCliente.Size = new System.Drawing.Size(196, 44);
+            this.tsmCadastroCliente.Text = "Cadastrar ";
+            this.tsmCadastroCliente.Click += new System.EventHandler(this.tsmCadastroCliente_Click);
             // 
-            // vizualisarToolStripMenuItem
+            // tsmVisualizarCliente
             // 
-            this.vizualisarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.vizualisarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.vizualisarToolStripMenuItem.Name = "vizualisarToolStripMenuItem";
-            this.vizualisarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
-            this.vizualisarToolStripMenuItem.Text = "Visualizar";
-            this.vizualisarToolStripMenuItem.Click += new System.EventHandler(this.vizualisarToolStripMenuItem_Click);
+            this.tsmVisualizarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.tsmVisualizarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmVisualizarCliente.Name = "tsmVisualizarCliente";
+            this.tsmVisualizarCliente.Size = new System.Drawing.Size(196, 44);
+            this.tsmVisualizarCliente.Text = "Visualizar";
+            this.tsmVisualizarCliente.Click += new System.EventHandler(this.tsmVisualizarCliente_Click);
             // 
-            // eSTOQUEToolStripMenuItem
+            // estoqueToolStripMenuItem
             // 
-            this.eSTOQUEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastrarToolStripMenuItem1,
-            this.visualizarToolStripMenuItem});
-            this.eSTOQUEToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eSTOQUEToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.eSTOQUEToolStripMenuItem.Name = "eSTOQUEToolStripMenuItem";
-            this.eSTOQUEToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
-            this.eSTOQUEToolStripMenuItem.Text = "ESTOQUE";
+            this.estoqueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCadastrarEstoque,
+            this.tsmVisualizarEstoque});
+            this.estoqueToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estoqueToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
+            this.estoqueToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
+            this.estoqueToolStripMenuItem.Text = "ESTOQUE";
             // 
-            // cadastrarToolStripMenuItem1
+            // tsmCadastrarEstoque
             // 
-            this.cadastrarToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.cadastrarToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.cadastrarToolStripMenuItem1.Name = "cadastrarToolStripMenuItem1";
-            this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
-            this.cadastrarToolStripMenuItem1.Text = "Cadastrar";
-            this.cadastrarToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarToolStripMenuItem1_Click);
+            this.tsmCadastrarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.tsmCadastrarEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmCadastrarEstoque.Name = "tsmCadastrarEstoque";
+            this.tsmCadastrarEstoque.Size = new System.Drawing.Size(191, 44);
+            this.tsmCadastrarEstoque.Text = "Cadastrar";
+            this.tsmCadastrarEstoque.Click += new System.EventHandler(this.tsmCadastrarEstoque_Click);
             // 
-            // visualizarToolStripMenuItem
+            // tsmVisualizarEstoque
             // 
-            this.visualizarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.visualizarToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
-            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
-            this.visualizarToolStripMenuItem.Text = "Visualizar";
-            this.visualizarToolStripMenuItem.Click += new System.EventHandler(this.visualizarToolStripMenuItem_Click);
+            this.tsmVisualizarEstoque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.tsmVisualizarEstoque.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmVisualizarEstoque.Name = "tsmVisualizarEstoque";
+            this.tsmVisualizarEstoque.Size = new System.Drawing.Size(191, 44);
+            this.tsmVisualizarEstoque.Text = "Visualizar";
+            this.tsmVisualizarEstoque.Click += new System.EventHandler(this.tsmVisualizarEstoque_Click);
             // 
-            // pAGAMENTOSToolStripMenuItem
+            // tsmGerarPagamentos
             // 
-            this.pAGAMENTOSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gerarPagamentoToolStripMenuItem,
-            this.visualizarToolStripMenuItem1});
-            this.pAGAMENTOSToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pAGAMENTOSToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.pAGAMENTOSToolStripMenuItem.Name = "pAGAMENTOSToolStripMenuItem";
-            this.pAGAMENTOSToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(319, 43);
-            this.pAGAMENTOSToolStripMenuItem.Text = "PAGAMENTOS";
+            this.tsmGerarPagamentos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmGerarPagamento,
+            this.tsmVisualizarPagamentos});
+            this.tsmGerarPagamentos.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmGerarPagamentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmGerarPagamentos.Name = "tsmGerarPagamentos";
+            this.tsmGerarPagamentos.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.tsmGerarPagamentos.Size = new System.Drawing.Size(319, 43);
+            this.tsmGerarPagamentos.Text = "PAGAMENTOS";
             // 
-            // gerarPagamentoToolStripMenuItem
+            // tsmGerarPagamento
             // 
-            this.gerarPagamentoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.gerarPagamentoToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gerarPagamentoToolStripMenuItem.Name = "gerarPagamentoToolStripMenuItem";
-            this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
-            this.gerarPagamentoToolStripMenuItem.Text = "Gerar Pagamento";
-            this.gerarPagamentoToolStripMenuItem.Click += new System.EventHandler(this.gerarPagamentoToolStripMenuItem_Click);
+            this.tsmGerarPagamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.tsmGerarPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmGerarPagamento.Name = "tsmGerarPagamento";
+            this.tsmGerarPagamento.Size = new System.Drawing.Size(190, 44);
+            this.tsmGerarPagamento.Text = "Gerar";
+            this.tsmGerarPagamento.Click += new System.EventHandler(this.tsmGerarPagamento_Click);
             // 
-            // visualizarToolStripMenuItem1
+            // tsmVisualizarPagamentos
             // 
-            this.visualizarToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.visualizarToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
-            this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(269, 44);
-            this.visualizarToolStripMenuItem1.Text = "Visualizar";
-            this.visualizarToolStripMenuItem1.Click += new System.EventHandler(this.visualizarToolStripMenuItem1_Click);
+            this.tsmVisualizarPagamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.tsmVisualizarPagamentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmVisualizarPagamentos.Name = "tsmVisualizarPagamentos";
+            this.tsmVisualizarPagamentos.Size = new System.Drawing.Size(190, 44);
+            this.tsmVisualizarPagamentos.Text = "Visualizar";
+            this.tsmVisualizarPagamentos.Click += new System.EventHandler(this.tsmVisualizarPagamentos_Click);
             // 
             // pictureBox1
             // 
@@ -262,16 +263,16 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem pESQUISARToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vizualisarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eSTOQUEToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pAGAMENTOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmPesquisar;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmCadastroCliente;
+        private System.Windows.Forms.ToolStripMenuItem tsmVisualizarCliente;
+        private System.Windows.Forms.ToolStripMenuItem estoqueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmCadastrarEstoque;
+        private System.Windows.Forms.ToolStripMenuItem tsmVisualizarEstoque;
+        private System.Windows.Forms.ToolStripMenuItem tsmGerarPagamentos;
+        private System.Windows.Forms.ToolStripMenuItem tsmGerarPagamento;
+        private System.Windows.Forms.ToolStripMenuItem tsmVisualizarPagamentos;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblBanco;
         private System.Windows.Forms.TextBox txtPesquisa;

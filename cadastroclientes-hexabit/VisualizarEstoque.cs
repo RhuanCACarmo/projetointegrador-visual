@@ -150,5 +150,112 @@ namespace cadastroclientes_hexabit
             }
         }
 
+        private void btnDeletarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verifica se há itens selecionados
+                if (lstProdutos.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("Selecione um produto primeiro!", "Aviso",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Pega o primeiro item selecionado
+                ListViewItem itemSelecionado = lstProdutos.SelectedItems[0];
+
+                // Obtém o ID do produto a partir do Tag (que foi armazenado durante o carregamento)
+                if (itemSelecionado.Tag == null || !int.TryParse(itemSelecionado.Tag.ToString(), out int idProduto))
+                {
+                    MessageBox.Show("Não foi possível identificar o produto selecionado!", "Erro",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Obtém informações para exibir na confirmação
+                string nomeProduto = itemSelecionado.SubItems[0].Text;
+                string marca = itemSelecionado.SubItems[3].Text;
+
+                // Confirmação do usuário
+                DialogResult confirmacao = MessageBox.Show(
+                    $"Tem certeza que deseja excluir o produto:\n\n" +
+                    $"Nome: {nomeProduto}\n" +
+                    $"Marca: {marca}\n\n" +
+                    "Esta ação não poderá ser desfeita!",
+                    "Confirmar Exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2); // Default no "Não" para prevenir exclusões acidentais
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    using (var conexao = new MySqlConnection(data_source))
+                    {
+                        conexao.Open();
+
+                        using (var transaction = conexao.BeginTransaction())
+                        {
+                            try
+                            {
+                                // 1. Verifica se o produto está vinculado a algum pagamento
+                                using (var cmdVerifica = new MySqlCommand(
+                                    "SELECT COUNT(*) FROM pagamento WHERE idestoque = @id",
+                                    conexao, transaction))
+                                {
+                                    cmdVerifica.Parameters.AddWithValue("@id", idProduto);
+                                    int registrosVinculados = Convert.ToInt32(cmdVerifica.ExecuteScalar());
+
+                                    if (registrosVinculados > 0)
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("Este produto não pode ser excluído porque está vinculado a pagamentos existentes.",
+                                                      "Erro",
+                                                      MessageBoxButtons.OK,
+                                                      MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                }
+
+                                // 2. Comando SQL para deletar o produto
+                                using (var cmdDeletar = new MySqlCommand(
+                                    "DELETE FROM estoque WHERE idestoque = @id",
+                                    conexao, transaction))
+                                {
+                                    cmdDeletar.Parameters.AddWithValue("@id", idProduto);
+                                    int linhasAfetadas = cmdDeletar.ExecuteNonQuery();
+
+                                    if (linhasAfetadas > 0)
+                                    {
+                                        transaction.Commit();
+                                        MessageBox.Show("Produto excluído com sucesso!", "Sucesso",
+                                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        carregar_produtos(); // Atualiza a lista
+                                    }
+                                    else
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("Nenhum produto foi excluído.", "Aviso",
+                                                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show($"Erro ao excluir produto: {ex.Message}", "Erro",
+                                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

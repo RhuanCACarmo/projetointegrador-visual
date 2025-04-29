@@ -45,6 +45,7 @@
             this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnFecharPrograma = new System.Windows.Forms.Button();
+            this.btnDeletarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -224,12 +225,28 @@
             this.btnFecharPrograma.Text = "X";
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
             // 
+            // btnDeletarCliente
+            // 
+            this.btnDeletarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletarCliente.BackColor = System.Drawing.Color.DimGray;
+            this.btnDeletarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeletarCliente.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnDeletarCliente.Location = new System.Drawing.Point(1089, 797);
+            this.btnDeletarCliente.Name = "btnDeletarCliente";
+            this.btnDeletarCliente.Size = new System.Drawing.Size(224, 54);
+            this.btnDeletarCliente.TabIndex = 19;
+            this.btnDeletarCliente.Text = "DELETAR";
+            this.btnDeletarCliente.UseVisualStyleBackColor = false;
+            this.btnDeletarCliente.Click += new System.EventHandler(this.btnDeletarCliente_Click);
+            // 
             // frmVisualizarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(1620, 920);
+            this.Controls.Add(this.btnDeletarCliente);
             this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnAtualizar);
@@ -266,5 +283,6 @@
         private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem3;
         private System.Windows.Forms.Button btnFecharPrograma;
+        private System.Windows.Forms.Button btnDeletarCliente;
     }
 }

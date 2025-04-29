@@ -49,8 +49,8 @@ namespace cadastroclientes_hexabit
             this.txtCidade = new System.Windows.Forms.TextBox();
             this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cADASTRARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vISUALIZARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eSTOQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cADASTRARToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gERENCIARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -265,8 +265,8 @@ namespace cadastroclientes_hexabit
             // 
             this.cLIENTESToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.cLIENTESToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cADASTRARToolStripMenuItem,
-            this.vISUALIZARToolStripMenuItem});
+            this.cadastrarToolStripMenuItem,
+            this.visualizarToolStripMenuItem});
             this.cLIENTESToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cLIENTESToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
@@ -274,22 +274,21 @@ namespace cadastroclientes_hexabit
             this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.cLIENTESToolStripMenuItem.Text = "CLIENTES";
             // 
-            // cADASTRARToolStripMenuItem
+            // cadastrarToolStripMenuItem
             // 
-            this.cADASTRARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.cADASTRARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.cADASTRARToolStripMenuItem.Name = "cADASTRARToolStripMenuItem";
-            this.cADASTRARToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
-            this.cADASTRARToolStripMenuItem.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.cadastrarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
+            this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
+            this.cadastrarToolStripMenuItem.Text = "Cadastrar";
             // 
-            // vISUALIZARToolStripMenuItem
+            // visualizarToolStripMenuItem
             // 
-            this.vISUALIZARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.vISUALIZARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.vISUALIZARToolStripMenuItem.Name = "vISUALIZARToolStripMenuItem";
-            this.vISUALIZARToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
-            this.vISUALIZARToolStripMenuItem.Text = "Visualizar";
-            this.vISUALIZARToolStripMenuItem.Click += new System.EventHandler(this.vISUALIZARToolStripMenuItem_Click);
+            this.visualizarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
+            this.visualizarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
+            this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
+            this.visualizarToolStripMenuItem.Text = "Visualizar";
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -303,7 +302,6 @@ namespace cadastroclientes_hexabit
             this.eSTOQUEToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
             this.eSTOQUEToolStripMenuItem.Size = new System.Drawing.Size(270, 43);
             this.eSTOQUEToolStripMenuItem.Text = "ESTOQUE";
-            this.eSTOQUEToolStripMenuItem.Click += new System.EventHandler(this.eSTOQUEToolStripMenuItem_Click);
             // 
             // cADASTRARToolStripMenuItem1
             // 
@@ -341,7 +339,6 @@ namespace cadastroclientes_hexabit
             this.gERARPAGAMENTOToolStripMenuItem.Name = "gERARPAGAMENTOToolStripMenuItem";
             this.gERARPAGAMENTOToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
             this.gERARPAGAMENTOToolStripMenuItem.Text = "Gerar Pagamento";
-            this.gERARPAGAMENTOToolStripMenuItem.Click += new System.EventHandler(this.gERARPAGAMENTOToolStripMenuItem_Click);
             // 
             // gERENCIARPAGAMENTOToolStripMenuItem
             // 
@@ -364,7 +361,7 @@ namespace cadastroclientes_hexabit
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1277, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -501,8 +498,8 @@ namespace cadastroclientes_hexabit
         private System.Windows.Forms.TextBox txtCidade;
         private System.Windows.Forms.ToolStripMenuItem pESQUISARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cADASTRARToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vISUALIZARToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eSTOQUEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cADASTRARToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gERENCIARToolStripMenuItem;
