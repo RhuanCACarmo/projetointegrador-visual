@@ -62,7 +62,7 @@
             this.tsmGerarPagamentos});
             this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1282, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
@@ -232,6 +232,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmPesquisar
             // 

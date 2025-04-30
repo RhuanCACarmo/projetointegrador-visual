@@ -12,8 +12,13 @@ using MySql.Data.MySqlClient;
 
 namespace cadastroclientes_hexabit
 {
+
     public partial class frmVisualizarClientes : Form
     {
+        public int? idestoque { get; private set; }
+        public int? idpagamento { get; private set; }
+
+
         MySqlConnection conexao;
         string data_source = "datasource=localhost; username=root; password=; database=hexabits";
 
@@ -33,12 +38,12 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstClientes.Columns.Add("ID CLIENTE", 200, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("ID CLIENTE", 100, HorizontalAlignment.Left);
             lstClientes.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
             lstClientes.Columns.Add("NOME", 300, HorizontalAlignment.Left);
             lstClientes.Columns.Add("EMAIL", 300, HorizontalAlignment.Left);
             lstClientes.Columns.Add("TELEFONE", 200, HorizontalAlignment.Left);
-            lstClientes.Columns.Add("ENDEREÇO", 400, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("ENDEREÇO", 200, HorizontalAlignment.Left);
 
 
 
@@ -47,77 +52,51 @@ namespace cadastroclientes_hexabit
 
 
         }
-        private void carregar_clientes_com_query(string query)
+        private void carregar_clientes_com_query(string query, MySqlParameter parameter = null)
         {
             try
             {
-                conexao = new MySqlConnection(data_source);
-                conexao.Open();
-
-
-                //Executa a consulta SQL fornecida
-
-                MySqlCommand cmd = new MySqlCommand(query, conexao);
-
-                //Se a consulta contém o parâmetro @q, adiciona o valor da caixa de pesquisa
-                if (query.Contains("@q"))
+                using (conexao = new MySqlConnection(data_source))
                 {
-                    cmd.Parameters.AddWithValue("@q", "%" + txtBuscarCliente.Text + "%");
-                }
+                    conexao.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conexao);
 
-                //Executa o comando e obtém os resultados
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-
-                //Limpar os itens existentes no ListView
-                lstClientes.Items.Clear();
-
-
-                //Preenche o ListView com os dados dos clientes
-                while (reader.Read())
-                {
-                    string[] row =
+                    // Adiciona o parâmetro se existir
+                    if (parameter != null)
                     {
-                        Convert.ToString(reader.GetInt64(0)),
-                        Convert.ToString(reader.GetInt64(1)),
+                        cmd.Parameters.Add(parameter);
+                    }
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        lstClientes.Items.Clear();
+
+                        while (reader.Read())
+                        {
+                            string[] row =
+                            {
+                        reader.GetInt64(0).ToString(),
+                        reader.GetInt64(1).ToString(),
                         reader.GetString(2),
                         reader.GetString(3),
                         reader.GetString(4),
-                        reader.GetString(7)
+                        reader.GetString(7) // Assumindo que endereço está na posição 7
                     };
-
-                    lstClientes.Items.Add(new ListViewItem(row));
-
+                            lstClientes.Items.Add(new ListViewItem(row));
+                        }
+                    }
                 }
-
-
             }
-
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erro" + ex.Number + "ocorreu:" + ex.Message,
-                     "Erro",
-                      MessageBoxButtons.OK,
-                      MessageBoxIcon.Error);
+                MessageBox.Show($"Erro MySQL ({ex.Number}): {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu:" + ex.Message,
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            finally
-            {
-                if (conexao != null && conexao.State == ConnectionState.Open)
-                {
-                    conexao.Close();
-                }
-            }
-
-
         }
 
         private void carregar_clientes()
@@ -268,6 +247,154 @@ namespace cadastroclientes_hexabit
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+             public static class FormManager
+        {
+            // Versão sem parâmetros (para formulários que não precisam de argumentos)
+            public static void ShowForm<T>() where T : Form, new()
+            {
+                ShowForm<T>(null);
+            }
+
+            // Versão com parâmetros (para formulários que precisam de argumentos)
+            public static void ShowForm<T>(params object[] args) where T : Form
+            {
+                // Verifica se o formulário já está aberto
+                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                if (existingForm != null)
+                {
+                    existingForm.BringToFront();
+                    return;
+                }
+
+                // Cria nova instância com ou sem parâmetros
+                T form;
+                if (args == null || args.Length == 0)
+                {
+                    form = Activator.CreateInstance<T>();
+                }
+                else
+                {
+                    form = (T)Activator.CreateInstance(typeof(T), args);
+                }
+
+                form.Show();
+            }
+
+            public static void CloseAllForms()
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
+
+            }
+        }
+
+        private void pesquisarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmPesquisar>();
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroClientes>(idcliente);
+        }
+
+        private void visualizarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarClientes>();
+        }
+
+        private void cadastrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastrarEstoque>(idestoque);
+        }
+
+        private void visualizarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarEstoque>();
+        }
+
+        private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroPagamento>(idpagamento);
+        }
+
+        private void visualizarToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarPagamentos>();
+        }
+
+        private void btnFecharPrograma_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+       private void txtBuscarCliente_TextChanged(object sender, EventArgs e)
+{
+    try
+    {
+        string termoBusca = txtBuscarCliente.Text.Trim();
+        
+        // Se o campo estiver vazio, carrega todos os clientes
+        if (string.IsNullOrEmpty(termoBusca))
+        {
+            carregar_clientes();
+            return;
+        }
+
+        // Conexão com o banco de dados
+        using (MySqlConnection conexao = new MySqlConnection(data_source))
+        {
+            conexao.Open();
+            
+            // Query SQL para buscar por nome ou CPF/CNPJ
+            string query = @"SELECT * FROM cliente 
+                           WHERE nome LIKE @termo OR 
+                                 cpf_cnpj LIKE @termo OR
+                                 email LIKE @termo OR
+                                telefone LIKE @termo OR
+                                rua LIKE @termo
+                           ORDER BY nome ASC";
+            
+            MySqlCommand cmd = new MySqlCommand(query, conexao);
+            cmd.Parameters.AddWithValue("@termo", "%" + termoBusca + "%");
+
+            // Executa a consulta
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                lstClientes.Items.Clear();
+                
+                // Preenche o ListView com os resultados
+                while (reader.Read())
+                {
+                    string[] row =
+                    {
+                        reader["idcliente"].ToString(),
+                        reader["cpf_cnpj"].ToString(),
+                        reader["nome"].ToString(),
+                        reader["email"].ToString(),
+                        reader["telefone"].ToString(),
+                        reader["rua"].ToString()
+                    };
+                    lstClientes.Items.Add(new ListViewItem(row));
+                }
+            }
+        }
+    }
+    catch (MySqlException ex)
+    {
+        MessageBox.Show($"Erro ao buscar clientes: {ex.Message}", "Erro", 
+                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                      MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 }
+    }
+}
+
+
       

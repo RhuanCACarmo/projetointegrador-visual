@@ -15,6 +15,10 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmCadastrarEstoque : Form
     {
+        public int? idcliente { get; private set; }
+       
+        public int? idpagamento { get; private set; }
+
         private readonly string connectionString = "datasource=localhost;username=root;password=;database=hexabits";
 
         private int? _idestoque = null;
@@ -215,12 +219,7 @@ namespace cadastroclientes_hexabit
                 e.Handled = true;
             }
         }
-        private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            frmCadastroPagamento form3 = new frmCadastroPagamento();
-            form3.Show();
-        }
+       
 
         private void btnFecharPrograma_Click(object sender, EventArgs e)
         {
@@ -235,6 +234,86 @@ namespace cadastroclientes_hexabit
                 decimal precoVenda = precoCompra * 1.32m; // Aplica 32% de lucro
                 txtPrecoVenda.Text = precoVenda.ToString("N2"); // Formata com 2 casas decimais
             }
+        }
+        public static class FormManager
+        {
+            // Versão sem parâmetros (para formulários que não precisam de argumentos)
+            public static void ShowForm<T>() where T : Form, new()
+            {
+                ShowForm<T>(null);
+            }
+
+            // Versão com parâmetros (para formulários que precisam de argumentos)
+            public static void ShowForm<T>(params object[] args) where T : Form
+            {
+                // Verifica se o formulário já está aberto
+                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                if (existingForm != null)
+                {
+                    existingForm.BringToFront();
+                    return;
+                }
+
+                // Cria nova instância com ou sem parâmetros
+                T form;
+                if (args == null || args.Length == 0)
+                {
+                    form = Activator.CreateInstance<T>();
+                }
+                else
+                {
+                    form = (T)Activator.CreateInstance(typeof(T), args);
+                }
+
+                form.Show();
+            }
+
+            public static void CloseAllForms()
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
+
+            }
+        }
+
+        private void pesquisarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmPesquisar>();
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroClientes>(idcliente);
+        }
+
+        private void visualizarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            FormManager.ShowForm<frmVisualizarClientes>();
+        }
+
+        private void cadastrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastrarEstoque>();
+
+        }
+
+        private void visualizarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarEstoque>(); FormManager.ShowForm<frmVisualizarEstoque>();
+        }
+
+        private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroPagamento>(idpagamento);
+
+        }
+
+        private void visualizarToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarPagamentos>();
         }
     }
 }

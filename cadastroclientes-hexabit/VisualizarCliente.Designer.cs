@@ -76,8 +76,9 @@
             this.txtBuscarCliente.ForeColor = System.Drawing.Color.Black;
             this.txtBuscarCliente.Location = new System.Drawing.Point(417, 169);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(663, 33);
+            this.txtBuscarCliente.Size = new System.Drawing.Size(643, 33);
             this.txtBuscarCliente.TabIndex = 3;
+            this.txtBuscarCliente.TextChanged += new System.EventHandler(this.txtBuscarCliente_TextChanged);
             // 
             // btnAtualizar
             // 
@@ -86,7 +87,7 @@
             this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAtualizar.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtualizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnAtualizar.Location = new System.Drawing.Point(1335, 797);
+            this.btnAtualizar.Location = new System.Drawing.Point(1362, 786);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(224, 54);
             this.btnAtualizar.TabIndex = 16;
@@ -98,7 +99,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(20, 749);
+            this.pictureBox1.Location = new System.Drawing.Point(22, 768);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(141, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -116,7 +117,7 @@
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(206, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(196, 33);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
             this.menuStrip1.TabIndex = 17;
@@ -129,6 +130,7 @@
             this.pesquisarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
             this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
             this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
+            this.pesquisarToolStripMenuItem.Click += new System.EventHandler(this.pesquisarToolStripMenuItem_Click);
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -148,6 +150,7 @@
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
             this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem.Click += new System.EventHandler(this.cadastrarToolStripMenuItem_Click);
             // 
             // visualizarToolStripMenuItem1
             // 
@@ -156,6 +159,7 @@
             this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
             this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
+            this.visualizarToolStripMenuItem1.Click += new System.EventHandler(this.visualizarToolStripMenuItem1_Click);
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -175,6 +179,7 @@
             this.cadastrarToolStripMenuItem1.Name = "cadastrarToolStripMenuItem1";
             this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem1.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarToolStripMenuItem1_Click);
             // 
             // visualizarToolStripMenuItem2
             // 
@@ -183,6 +188,7 @@
             this.visualizarToolStripMenuItem2.Name = "visualizarToolStripMenuItem2";
             this.visualizarToolStripMenuItem2.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem2.Text = "Visualizar";
+            this.visualizarToolStripMenuItem2.Click += new System.EventHandler(this.visualizarToolStripMenuItem2_Click);
             // 
             // pAGAMENTOToolStripMenuItem
             // 
@@ -202,6 +208,7 @@
             this.gerarPagamentoToolStripMenuItem.Name = "gerarPagamentoToolStripMenuItem";
             this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
             this.gerarPagamentoToolStripMenuItem.Text = "Gerar Pagamento";
+            this.gerarPagamentoToolStripMenuItem.Click += new System.EventHandler(this.gerarPagamentoToolStripMenuItem_Click);
             // 
             // visualizarToolStripMenuItem3
             // 
@@ -210,6 +217,7 @@
             this.visualizarToolStripMenuItem3.Name = "visualizarToolStripMenuItem3";
             this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem3.Text = "Visualizar";
+            this.visualizarToolStripMenuItem3.Click += new System.EventHandler(this.visualizarToolStripMenuItem3_Click);
             // 
             // btnFecharPrograma
             // 
@@ -218,12 +226,13 @@
             this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
-            this.btnFecharPrograma.Location = new System.Drawing.Point(1559, 12);
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1539, 12);
             this.btnFecharPrograma.Name = "btnFecharPrograma";
             this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
             this.btnFecharPrograma.TabIndex = 18;
             this.btnFecharPrograma.Text = "X";
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
+            this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
             // 
             // btnDeletarCliente
             // 
@@ -232,7 +241,7 @@
             this.btnDeletarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeletarCliente.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletarCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnDeletarCliente.Location = new System.Drawing.Point(1089, 797);
+            this.btnDeletarCliente.Location = new System.Drawing.Point(1123, 786);
             this.btnDeletarCliente.Name = "btnDeletarCliente";
             this.btnDeletarCliente.Size = new System.Drawing.Size(224, 54);
             this.btnDeletarCliente.TabIndex = 19;
@@ -245,7 +254,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.ClientSize = new System.Drawing.Size(1620, 920);
+            this.ClientSize = new System.Drawing.Size(1600, 900);
             this.Controls.Add(this.btnDeletarCliente);
             this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.menuStrip1);

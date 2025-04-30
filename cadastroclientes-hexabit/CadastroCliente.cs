@@ -379,6 +379,41 @@ namespace cadastroclientes_hexabit
             }
 
         }
+
+        private void pESQUISARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmPesquisar>();
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroClientes>();
+        }
+
+        private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarClientes>();
+        }
+
+        private void cADASTRARToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastrarEstoque>(idestoque);
+        }
+
+        private void gERENCIARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarEstoque>();
+        }
+
+        private void gERARPAGAMENTOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroPagamento>(idpagamento);
+        }
+
+        private void gERENCIARPAGAMENTOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarPagamentos>();
+        }
     }
 }
 

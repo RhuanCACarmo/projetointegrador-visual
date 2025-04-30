@@ -85,6 +85,7 @@
             this.pESQUISARToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
             this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(295, 43);
             this.pESQUISARToolStripMenuItem.Text = "PESQUISAR ";
+            this.pESQUISARToolStripMenuItem.Click += new System.EventHandler(this.pESQUISARToolStripMenuItem_Click);
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -105,6 +106,7 @@
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
             this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
             this.cadastrarToolStripMenuItem.Text = "Cadastrar ";
+            this.cadastrarToolStripMenuItem.Click += new System.EventHandler(this.cadastrarToolStripMenuItem_Click);
             // 
             // visualisarToolStripMenuItem
             // 
@@ -113,6 +115,7 @@
             this.visualisarToolStripMenuItem.Name = "visualisarToolStripMenuItem";
             this.visualisarToolStripMenuItem.Size = new System.Drawing.Size(196, 44);
             this.visualisarToolStripMenuItem.Text = "Visuailzar";
+            this.visualisarToolStripMenuItem.Click += new System.EventHandler(this.visualisarToolStripMenuItem_Click);
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -133,6 +136,7 @@
             this.cadastrarToolStripMenuItem1.Name = "cadastrarToolStripMenuItem1";
             this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem1.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarToolStripMenuItem1_Click);
             // 
             // visualizarToolStripMenuItem
             // 
@@ -141,6 +145,7 @@
             this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
             this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem.Text = "Visualizar";
+            this.visualizarToolStripMenuItem.Click += new System.EventHandler(this.visualizarToolStripMenuItem_Click);
             // 
             // pAGAMENTOSToolStripMenuItem
             // 
@@ -153,6 +158,7 @@
             this.pAGAMENTOSToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
             this.pAGAMENTOSToolStripMenuItem.Size = new System.Drawing.Size(319, 43);
             this.pAGAMENTOSToolStripMenuItem.Text = "PAGAMENTOS";
+            this.pAGAMENTOSToolStripMenuItem.Click += new System.EventHandler(this.pAGAMENTOSToolStripMenuItem_Click);
             // 
             // gerarPagamentoToolStripMenuItem
             // 
@@ -169,6 +175,7 @@
             this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
             this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
+            this.visualizarToolStripMenuItem1.Click += new System.EventHandler(this.visualizarToolStripMenuItem1_Click);
             // 
             // pictureBox1
             // 

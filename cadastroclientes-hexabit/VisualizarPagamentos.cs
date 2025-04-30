@@ -14,6 +14,8 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmVisualizarPagamentos : Form
     {
+        public int? idcliente { get; private set; }
+        public int? idestoque { get; private set; }
 
         MySqlConnection conexao;
         string data_source = "datasource=localhost; username=root; password=; database=hexabits";
@@ -23,7 +25,7 @@ namespace cadastroclientes_hexabit
             InitializeComponent();
 
 
-            // Configuração inicial da ListView para a exibição dos dados
+            // Configuração inicial da ListView
             lstPagamentos.View = View.Details;
             lstPagamentos.LabelEdit = true;
             lstPagamentos.AllowColumnReorder = true;
@@ -33,12 +35,15 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstPagamentos.Columns.Add("ID DE CLIENTE", 400, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("ID DE ESTOQUE", 200, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("PREÇO DA COMPRA", 200, HorizontalAlignment.Left);
+            // Definição das colunas atualizadas
+            lstPagamentos.Columns.Add("ID PAGAMENTO", 150, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("CLIENTE", 250, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("CPF/CNPJ", 150, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("PRODUTO", 250, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("PREÇO TOTAL", 150, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("QUANTIDADE", 100, HorizontalAlignment.Left);
-
+            lstPagamentos.Columns.Add("FORMA PAGTO", 120, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("STATUS", 100, HorizontalAlignment.Left);
 
 
             //Carrega os dados dos clientes na interface
@@ -64,12 +69,14 @@ namespace cadastroclientes_hexabit
                     {
                         while (reader.Read())
                         {
-                            // Armazena o ID como Tag do item (não visível)
-                            ListViewItem item = new ListViewItem(reader["idcliente"].ToString());
+                            ListViewItem item = new ListViewItem(reader["idpagamento"].ToString());
+                            item.SubItems.Add(reader["nome_cliente"].ToString());
                             item.SubItems.Add(reader["cpf_cnpj"].ToString());
-                            item.SubItems.Add(reader["idestoque"].ToString());
-                            item.SubItems.Add(reader["precodecompra"].ToString());
+                            item.SubItems.Add(reader["nomedoproduto"].ToString());
+                            item.SubItems.Add(reader["precodecompra"].ToString()); // Formato monetário
                             item.SubItems.Add(reader["quantidade"].ToString());
+                            item.SubItems.Add(reader["formadepagamento"].ToString());
+                            item.SubItems.Add(reader["situacao"].ToString());
                             item.Tag = reader["idpagamento"]; // Armazena o ID
 
                             lstPagamentos.Items.Add(item);
@@ -79,14 +86,26 @@ namespace cadastroclientes_hexabit
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}");
+                MessageBox.Show($"Erro ao carregar pagamentos: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void carregar_pagamentos()
         {
-            string query = "SELECT * FROM pagamento ORDER BY idpagamento DESC ";
-            carregar_pagamentos_com_query(query);
+            string query = @"SELECT p.idpagamento, 
+                           c.nome AS nome_cliente, 
+                           c.cpf_cnpj, 
+                           e.nomedoproduto, 
+                           p.precodecompra, 
+                           p.quantidade,
+                           p.formadepagamento,
+                           p.situacao
+                    FROM pagamento p
+                    JOIN cliente c ON p.idcliente = c.idcliente
+                    JOIN estoque e ON p.idestoque = e.idestoque
+                    ORDER BY p.idpagamento DESC";
 
+            carregar_pagamentos_com_query(query);
         }
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
@@ -141,25 +160,10 @@ namespace cadastroclientes_hexabit
 
         private int ObterIdPagamentoSelecionado(ListViewItem item)
         {
-            try
-            {
-                using (var conexao = new MySqlConnection(data_source))
-                {
-                    conexao.Open();
-
-                    // Busca o ID do pagamento baseado no CPF/CNPJ (ou outros campos únicos)
-                    string query = "SELECT idpagamento FROM pagamento WHERE idcliente = @idcliente LIMIT 1";
-                    MySqlCommand cmd = new MySqlCommand(query, conexao);
-                    cmd.Parameters.AddWithValue("@idcliente", item.SubItems[0].Text);
-
-                    object result = cmd.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1;
-                }
-            }
-            catch
-            {
+            if (item == null || item.Tag == null)
                 return -1;
-            }
+
+            return Convert.ToInt32(item.Tag);
         }
 
         private void btnDeletarCliente_Click(object sender, EventArgs e)
@@ -251,6 +255,122 @@ namespace cadastroclientes_hexabit
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao excluir pagamento: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public static class FormManager
+        {
+            // Versão sem parâmetros (para formulários que não precisam de argumentos)
+            public static void ShowForm<T>() where T : Form, new()
+            {
+                ShowForm<T>(null);
+            }
+
+            // Versão com parâmetros (para formulários que precisam de argumentos)
+            public static void ShowForm<T>(params object[] args) where T : Form
+            {
+                // Verifica se o formulário já está aberto
+                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                if (existingForm != null)
+                {
+                    existingForm.BringToFront();
+                    return;
+                }
+
+                // Cria nova instância com ou sem parâmetros
+                T form;
+                if (args == null || args.Length == 0)
+                {
+                    form = Activator.CreateInstance<T>();
+                }
+                else
+                {
+                    form = (T)Activator.CreateInstance(typeof(T), args);
+                }
+
+                form.Show();
+            }
+
+            public static void CloseAllForms()
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
+
+            }
+
+        }
+
+        private void pesquisarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmPesquisar>();
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroClientes>(idcliente);
+        }
+
+        private void visualizarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarClientes>();
+        }
+
+        private void cadastrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastrarEstoque>(idestoque);
+        }
+
+        private void visualizarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarEstoque>(); FormManager.ShowForm<frmVisualizarEstoque>();
+        }
+
+        private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroPagamento>(idestoque);
+        }
+
+        private void visualizarToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarPagamentos>();
+        }
+
+        private void txtBuscarPagamento_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string termoBusca = txtBuscarPagamento.Text.Trim();
+
+                if (string.IsNullOrEmpty(termoBusca))
+                {
+                    carregar_pagamentos();
+                    return;
+                }
+
+                string query = @"SELECT p.idpagamento, 
+                               c.nome AS nome_cliente, 
+                               c.cpf_cnpj, 
+                               e.nomedoproduto, 
+                               p.precodecompra, 
+                               p.quantidade,
+                               p.formadepagamento,
+                               p.situacao
+                        FROM pagamento p
+                        JOIN cliente c ON p.idcliente = c.idcliente
+                        JOIN estoque e ON p.idestoque = e.idestoque
+                        WHERE c.nome LIKE @termo OR 
+                              c.cpf_cnpj LIKE @termo OR
+                              e.nomedoproduto LIKE @termo OR
+                              p.idpagamento LIKE @termo
+                        ORDER BY p.idpagamento DESC";
+
+                carregar_pagamentos_com_query(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro na busca: {ex.Message}", "Erro",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

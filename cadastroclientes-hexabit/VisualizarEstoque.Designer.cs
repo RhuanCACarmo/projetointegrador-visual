@@ -134,6 +134,7 @@ namespace cadastroclientes_hexabit
             this.txtBuscarProduto.Name = "txtBuscarProduto";
             this.txtBuscarProduto.Size = new System.Drawing.Size(663, 33);
             this.txtBuscarProduto.TabIndex = 20;
+            this.txtBuscarProduto.TextChanged += new System.EventHandler(this.txtBuscarProduto_TextChanged);
             // 
             // lstProdutos
             // 
@@ -176,6 +177,7 @@ namespace cadastroclientes_hexabit
             this.pesquisarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
             this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
             this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
+            this.pesquisarToolStripMenuItem.Click += new System.EventHandler(this.pesquisarToolStripMenuItem_Click);
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -195,6 +197,7 @@ namespace cadastroclientes_hexabit
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
             this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem.Click += new System.EventHandler(this.cadastrarToolStripMenuItem_Click);
             // 
             // visualizarToolStripMenuItem1
             // 
@@ -203,6 +206,7 @@ namespace cadastroclientes_hexabit
             this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
             this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
+            this.visualizarToolStripMenuItem1.Click += new System.EventHandler(this.visualizarToolStripMenuItem1_Click);
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -222,6 +226,7 @@ namespace cadastroclientes_hexabit
             this.cadastrarToolStripMenuItem1.Name = "cadastrarToolStripMenuItem1";
             this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem1.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarToolStripMenuItem1_Click);
             // 
             // visualizarToolStripMenuItem2
             // 
@@ -230,6 +235,7 @@ namespace cadastroclientes_hexabit
             this.visualizarToolStripMenuItem2.Name = "visualizarToolStripMenuItem2";
             this.visualizarToolStripMenuItem2.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem2.Text = "Visualizar";
+            this.visualizarToolStripMenuItem2.Click += new System.EventHandler(this.visualizarToolStripMenuItem2_Click);
             // 
             // pAGAMENTOToolStripMenuItem
             // 
@@ -249,6 +255,7 @@ namespace cadastroclientes_hexabit
             this.gerarPagamentoToolStripMenuItem.Name = "gerarPagamentoToolStripMenuItem";
             this.gerarPagamentoToolStripMenuItem.Size = new System.Drawing.Size(269, 44);
             this.gerarPagamentoToolStripMenuItem.Text = "Gerar Pagamento";
+            this.gerarPagamentoToolStripMenuItem.Click += new System.EventHandler(this.gerarPagamentoToolStripMenuItem_Click);
             // 
             // visualizarToolStripMenuItem3
             // 
@@ -257,6 +264,7 @@ namespace cadastroclientes_hexabit
             this.visualizarToolStripMenuItem3.Name = "visualizarToolStripMenuItem3";
             this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem3.Text = "Visualizar";
+            this.visualizarToolStripMenuItem3.Click += new System.EventHandler(this.visualizarToolStripMenuItem3_Click);
             // 
             // frmVisualizarEstoque
             // 

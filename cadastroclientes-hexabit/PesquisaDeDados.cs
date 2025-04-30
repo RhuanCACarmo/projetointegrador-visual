@@ -108,13 +108,19 @@ namespace cadastroclientes_hexabit
         {
             FormManager.ShowForm<frmVisualizarEstoque>();
         }
+        private void tsmGerarPagamento_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroPagamento>(idpagamento);
+        }
+
         private void tsmVisualizarPagamentos_Click(object sender, EventArgs e)
         {
             FormManager.ShowForm<frmVisualizarPagamentos>();
         }
-        private void tsmGerarPagamento_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            FormManager.ShowForm<frmCadastroPagamento>(idpagamento);
+
         }
     }
 }

@@ -191,7 +191,7 @@
             this.pAGAMENTOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(206, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1277, 47);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -202,6 +202,7 @@
             this.pesquisarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
             this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
             this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
+            this.pesquisarToolStripMenuItem.Click += new System.EventHandler(this.pesquisarToolStripMenuItem_Click);
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -221,6 +222,7 @@
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
             this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem.Click += new System.EventHandler(this.cadastrarToolStripMenuItem_Click);
             // 
             // visualizarToolStripMenuItem1
             // 
@@ -229,6 +231,7 @@
             this.visualizarToolStripMenuItem1.Name = "visualizarToolStripMenuItem1";
             this.visualizarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem1.Text = "Visualizar";
+            this.visualizarToolStripMenuItem1.Click += new System.EventHandler(this.visualizarToolStripMenuItem1_Click);
             // 
             // eSTOQUEToolStripMenuItem
             // 
@@ -248,6 +251,7 @@
             this.cadastrarToolStripMenuItem1.Name = "cadastrarToolStripMenuItem1";
             this.cadastrarToolStripMenuItem1.Size = new System.Drawing.Size(191, 44);
             this.cadastrarToolStripMenuItem1.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarToolStripMenuItem1_Click);
             // 
             // visualizarToolStripMenuItem2
             // 
@@ -256,6 +260,7 @@
             this.visualizarToolStripMenuItem2.Name = "visualizarToolStripMenuItem2";
             this.visualizarToolStripMenuItem2.Size = new System.Drawing.Size(191, 44);
             this.visualizarToolStripMenuItem2.Text = "Visualizar";
+            this.visualizarToolStripMenuItem2.Click += new System.EventHandler(this.visualizarToolStripMenuItem2_Click);
             // 
             // pAGAMENTOToolStripMenuItem
             // 
@@ -284,6 +289,7 @@
             this.visualizarToolStripMenuItem3.Name = "visualizarToolStripMenuItem3";
             this.visualizarToolStripMenuItem3.Size = new System.Drawing.Size(269, 44);
             this.visualizarToolStripMenuItem3.Text = "Visualizar";
+            this.visualizarToolStripMenuItem3.Click += new System.EventHandler(this.visualizarToolStripMenuItem3_Click);
             // 
             // pbLogo
             // 

@@ -14,6 +14,10 @@ namespace cadastroclientes_hexabit
 {
     public partial class frmVisualizarEstoque : Form
     {
+        public int? idcliente { get; private set; }
+
+        public int? idpagamento { get; private set; }
+
         MySqlConnection conexao;
         string data_source = "datasource=localhost; username=root; password=; database=hexabits";
 
@@ -43,7 +47,7 @@ namespace cadastroclientes_hexabit
             //Carrega os dados dos clientes na interface
             carregar_produtos();
         }
-        private void carregar_produtos_com_query(string query)
+        private void carregar_produtos_com_query(string query, string termoBusca = null)
         {
             try
             {
@@ -54,16 +58,15 @@ namespace cadastroclientes_hexabit
                     conexao.Open();
                     MySqlCommand cmd = new MySqlCommand(query, conexao);
 
-                    if (query.Contains("@q"))
+                    if (termoBusca != null)
                     {
-                        cmd.Parameters.AddWithValue("@q", "%" + txtBuscarProduto.Text + "%");
+                        cmd.Parameters.AddWithValue("@termo", "%" + termoBusca + "%");
                     }
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            // Armazena o ID como Tag do item (não visível)
                             ListViewItem item = new ListViewItem(reader["nomedoproduto"].ToString());
                             item.SubItems.Add(reader["precodecompra"].ToString());
                             item.SubItems.Add(reader["precodevenda"].ToString());
@@ -256,6 +259,117 @@ namespace cadastroclientes_hexabit
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public static class FormManager
+        {
+            // Versão sem parâmetros (para formulários que não precisam de argumentos)
+            public static void ShowForm<T>() where T : Form, new()
+            {
+                ShowForm<T>(null);
+            }
 
+            // Versão com parâmetros (para formulários que precisam de argumentos)
+            public static void ShowForm<T>(params object[] args) where T : Form
+            {
+                // Verifica se o formulário já está aberto
+                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                if (existingForm != null)
+                {
+                    existingForm.BringToFront();
+                    return;
+                }
+
+                // Cria nova instância com ou sem parâmetros
+                T form;
+                if (args == null || args.Length == 0)
+                {
+                    form = Activator.CreateInstance<T>();
+                }
+                else
+                {
+                    form = (T)Activator.CreateInstance(typeof(T), args);
+                }
+
+                form.Show();
+            }
+
+            public static void CloseAllForms()
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
+
+            }
+        }
+
+        private void pesquisarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmPesquisar>();
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroClientes>(idcliente);
+        }
+
+        private void visualizarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarClientes>();
+        }
+
+        private void cadastrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastrarEstoque>();
+        }
+
+        private void visualizarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarEstoque>(); FormManager.ShowForm<frmVisualizarEstoque>();
+        }
+
+        private void gerarPagamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmCadastroPagamento>(idpagamento);
+        }
+
+        private void visualizarToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FormManager.ShowForm<frmVisualizarPagamentos>();
+        }
+
+        private void txtBuscarProduto_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string termoBusca = txtBuscarProduto.Text.Trim();
+
+                // Se o campo estiver vazio, carrega todos os produtos
+                if (string.IsNullOrEmpty(termoBusca))
+                {
+                    carregar_produtos();
+                    return;
+                }
+
+                // Query SQL correta para buscar produtos
+                string query = @"SELECT * FROM estoque 
+                       WHERE nomedoproduto LIKE @termo OR
+                             marca LIKE @termo OR
+                             precodecompra LIKE @termo OR
+                             precodevenda LIKE @termo
+                       ORDER BY nomedoproduto ASC";
+
+                carregar_produtos_com_query(query, termoBusca);
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erro ao buscar produto: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
