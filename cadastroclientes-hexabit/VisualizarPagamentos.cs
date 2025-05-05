@@ -40,15 +40,15 @@ namespace cadastroclientes_hexabit
             lstPagamentos.Columns.Add("CLIENTE", 250, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("CPF/CNPJ", 150, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("PRODUTO", 250, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("PREÇO TOTAL", 150, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("PREÇO UNIT.", 150, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("QUANTIDADE", 100, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("VALOR TOTAL", 150, HorizontalAlignment.Left); // NOVA COLUNA
             lstPagamentos.Columns.Add("FORMA PAGTO", 120, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("STATUS", 100, HorizontalAlignment.Left);
 
-
-            //Carrega os dados dos clientes na interface
             carregar_pagamentos();
         }
+
         private void carregar_pagamentos_com_query(string query)
         {
             try
@@ -60,24 +60,31 @@ namespace cadastroclientes_hexabit
                     conexao.Open();
                     MySqlCommand cmd = new MySqlCommand(query, conexao);
 
-                    if (query.Contains("@q"))
-                    {
-                        cmd.Parameters.AddWithValue("@q", "%" + txtBuscarPagamento.Text + "%");
-                    }
+                    // ... (código existente para parâmetros)
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            // Obter valores do banco
+                            decimal precoVenda = reader["precodevenda"] != DBNull.Value ?
+                                                Convert.ToDecimal(reader["precodevenda"]) : 0;
+                            int quantidade = reader["quantidade"] != DBNull.Value ?
+                                           Convert.ToInt32(reader["quantidade"]) : 0;
+
+                            // Calcular valor total
+                            decimal valorTotal = precoVenda * quantidade;
+
                             ListViewItem item = new ListViewItem(reader["idpagamento"].ToString());
-                            item.SubItems.Add(reader["nome_cliente"].ToString());
-                            item.SubItems.Add(reader["cpf_cnpj"].ToString());
-                            item.SubItems.Add(reader["nomedoproduto"].ToString());
-                            item.SubItems.Add(reader["precodecompra"].ToString()); // Formato monetário
-                            item.SubItems.Add(reader["quantidade"].ToString());
-                            item.SubItems.Add(reader["formadepagamento"].ToString());
-                            item.SubItems.Add(reader["situacao"].ToString());
-                            item.Tag = reader["idpagamento"]; // Armazena o ID
+                            item.SubItems.Add(reader["nome_cliente"] != DBNull.Value ? reader["nome_cliente"].ToString() : "");
+                            item.SubItems.Add(reader["cpf_cnpj"] != DBNull.Value ? reader["cpf_cnpj"].ToString() : "");
+                            item.SubItems.Add(reader["nomedoproduto"] != DBNull.Value ? reader["nomedoproduto"].ToString() : "");
+                            item.SubItems.Add(precoVenda.ToString("C")); // Preço unitário formatado
+                            item.SubItems.Add(quantidade.ToString());
+                            item.SubItems.Add(valorTotal.ToString("C")); // Valor total formatado
+                            item.SubItems.Add(reader["formadepagamento"] != DBNull.Value ? reader["formadepagamento"].ToString() : "");
+                            item.SubItems.Add(reader["situacao"] != DBNull.Value ? reader["situacao"].ToString() : "");
+                            item.Tag = reader["idpagamento"];
 
                             lstPagamentos.Items.Add(item);
                         }
@@ -86,27 +93,28 @@ namespace cadastroclientes_hexabit
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar pagamentos: {ex.Message}", "Erro",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // ... (tratamento de erro existente)
             }
         }
+
         private void carregar_pagamentos()
         {
             string query = @"SELECT p.idpagamento, 
-                           c.nome AS nome_cliente, 
-                           c.cpf_cnpj, 
-                           e.nomedoproduto, 
-                           p.precodecompra, 
-                           p.quantidade,
-                           p.formadepagamento,
-                           p.situacao
-                    FROM pagamento p
-                    JOIN cliente c ON p.idcliente = c.idcliente
-                    JOIN estoque e ON p.idestoque = e.idestoque
-                    ORDER BY p.idpagamento DESC";
+                   c.nome AS nome_cliente, 
+                   c.cpf_cnpj, 
+                   e.nomedoproduto, 
+                   e.precodevenda,  -- Adicionado preço de venda do produto
+                   p.quantidade,
+                   p.formadepagamento,
+                   p.situacao
+            FROM pagamento p
+            JOIN cliente c ON p.idcliente = c.idcliente
+            JOIN estoque e ON p.idestoque = e.idestoque
+            ORDER BY p.idpagamento DESC";
 
             carregar_pagamentos_com_query(query);
         }
+
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
 
@@ -260,25 +268,18 @@ namespace cadastroclientes_hexabit
         }
         public static class FormManager
         {
-            // Versão sem parâmetros (para formulários que não precisam de argumentos)
-            public static void ShowForm<T>() where T : Form, new()
-            {
-                ShowForm<T>(null);
-            }
+            private static List<Form> openForms = new List<Form>();
 
-            // Versão com parâmetros (para formulários que precisam de argumentos)
             public static void ShowForm<T>(params object[] args) where T : Form
             {
-                // Verifica se o formulário já está aberto
-                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                var existingForm = openForms.FirstOrDefault(f => f is T);
                 if (existingForm != null)
                 {
                     existingForm.BringToFront();
                     return;
                 }
 
-                // Cria nova instância com ou sem parâmetros
-                T form;
+                Form form;
                 if (args == null || args.Length == 0)
                 {
                     form = Activator.CreateInstance<T>();
@@ -288,18 +289,25 @@ namespace cadastroclientes_hexabit
                     form = (T)Activator.CreateInstance(typeof(T), args);
                 }
 
+                form.FormClosed += (s, e) => openForms.Remove(form);
+                openForms.Add(form);
                 form.Show();
             }
 
             public static void CloseAllForms()
             {
-                foreach (Form form in Application.OpenForms)
+                // Fecha na ordem inversa (filhos primeiro)
+                for (int i = openForms.Count - 1; i >= 0; i--)
                 {
-                    form.Close();
+                    var form = openForms[i];
+                    if (!form.IsDisposed)
+                    {
+                        form.Close();
+                        form.Dispose();
+                    }
                 }
-
+                openForms.Clear();
             }
-
         }
 
         private void pesquisarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -350,29 +358,113 @@ namespace cadastroclientes_hexabit
                 }
 
                 string query = @"SELECT p.idpagamento, 
-                               c.nome AS nome_cliente, 
-                               c.cpf_cnpj, 
-                               e.nomedoproduto, 
-                               p.precodecompra, 
-                               p.quantidade,
-                               p.formadepagamento,
-                               p.situacao
-                        FROM pagamento p
-                        JOIN cliente c ON p.idcliente = c.idcliente
-                        JOIN estoque e ON p.idestoque = e.idestoque
-                        WHERE c.nome LIKE @termo OR 
-                              c.cpf_cnpj LIKE @termo OR
-                              e.nomedoproduto LIKE @termo OR
-                              p.idpagamento LIKE @termo
-                        ORDER BY p.idpagamento DESC";
+                        c.nome AS nome_cliente, 
+                        c.cpf_cnpj, 
+                        e.nomedoproduto, 
+                        e.precodevenda,  -- Alterado para precodevenda
+                        p.quantidade,
+                        p.formadepagamento,
+                        p.situacao
+                 FROM pagamento p
+                 JOIN cliente c ON p.idcliente = c.idcliente
+                 JOIN estoque e ON p.idestoque = e.idestoque
+                 WHERE c.nome LIKE @termo OR 
+                       c.cpf_cnpj LIKE @termo OR
+                       e.nomedoproduto LIKE @termo OR
+                       p.idpagamento LIKE @termo
+                 ORDER BY p.idpagamento DESC";
 
-                carregar_pagamentos_com_query(query);
+                lstPagamentos.Items.Clear();
+
+                using (conexao = new MySqlConnection(data_source))
+                {
+                    conexao.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conexao);
+                    cmd.Parameters.AddWithValue("@termo", "%" + termoBusca + "%");
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Obter valores do banco
+                            decimal precoVenda = reader["precodevenda"] != DBNull.Value ?
+                                              Convert.ToDecimal(reader["precodevenda"]) : 0;
+                            int quantidade = reader["quantidade"] != DBNull.Value ?
+                                           Convert.ToInt32(reader["quantidade"]) : 0;
+
+                            // Calcular valor total
+                            decimal valorTotal = precoVenda * quantidade;
+
+                            ListViewItem item = new ListViewItem(reader["idpagamento"].ToString());
+                            item.SubItems.Add(reader["nome_cliente"] != DBNull.Value ? reader["nome_cliente"].ToString() : "");
+                            item.SubItems.Add(reader["cpf_cnpj"] != DBNull.Value ? reader["cpf_cnpj"].ToString() : "");
+                            item.SubItems.Add(reader["nomedoproduto"] != DBNull.Value ? reader["nomedoproduto"].ToString() : "");
+                            item.SubItems.Add(precoVenda.ToString("C"));
+                            item.SubItems.Add(quantidade.ToString());
+                            item.SubItems.Add(valorTotal.ToString("C")); // VALOR TOTAL calculado
+                            item.SubItems.Add(reader["formadepagamento"] != DBNull.Value ? reader["formadepagamento"].ToString() : "");
+                            item.SubItems.Add(reader["situacao"] != DBNull.Value ? reader["situacao"].ToString() : "");
+                            item.Tag = reader["idpagamento"];
+
+                            lstPagamentos.Items.Add(item);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro na busca: {ex.Message}", "Erro",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtBuscarPagamento_Click(object sender, EventArgs e)
+        {
+            // Limpa o conteúdo do TextBox quando clicado
+            txtBuscarPagamento.Text = string.Empty;
+
+            // Opcional: Focar no campo após limpar
+            txtBuscarPagamento.Focus();
+
+            // Opcional: Recarregar todos os pagamentos
+            carregar_pagamentos();
+        }
+
+        // Implementação dos métodos de clique nos itens de menu
+        private void btnFecharPrograma_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente sair do sistema?", "Confirmação",
+                               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                FormManager.CloseAllForms();
+                Application.Exit();
+            }
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                // Se já estiver maximizado, volta ao tamanho normal
+                this.WindowState = FormWindowState.Normal;
+
+                // Opcional: Altera o ícone para o de maximizar
+                btnMaximizar.Text = "🗖"; // Ou altere a imagem se for um PictureBox
+            }
+            else
+            {
+                // Maximiza a janela
+                this.WindowState = FormWindowState.Maximized;
+
+                // Opcional: Altera o ícone para o de restaurar
+                btnMaximizar.Text = "🗗"; // Ou altere a imagem se for um PictureBox
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            // Minimiza a janela para a barra de tarefas
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

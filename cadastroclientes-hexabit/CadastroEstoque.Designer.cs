@@ -52,6 +52,9 @@
             this.gerarPagamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnMaximizar = new System.Windows.Forms.Button();
+            this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
@@ -63,7 +66,7 @@
             this.lblNomeProduto.AutoSize = true;
             this.lblNomeProduto.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomeProduto.ForeColor = System.Drawing.Color.White;
-            this.lblNomeProduto.Location = new System.Drawing.Point(407, 343);
+            this.lblNomeProduto.Location = new System.Drawing.Point(397, 333);
             this.lblNomeProduto.Name = "lblNomeProduto";
             this.lblNomeProduto.Size = new System.Drawing.Size(193, 35);
             this.lblNomeProduto.TabIndex = 1;
@@ -75,7 +78,7 @@
             this.lblPrecoCompra.AutoSize = true;
             this.lblPrecoCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrecoCompra.ForeColor = System.Drawing.Color.White;
-            this.lblPrecoCompra.Location = new System.Drawing.Point(407, 405);
+            this.lblPrecoCompra.Location = new System.Drawing.Point(397, 395);
             this.lblPrecoCompra.Name = "lblPrecoCompra";
             this.lblPrecoCompra.Size = new System.Drawing.Size(182, 35);
             this.lblPrecoCompra.TabIndex = 2;
@@ -87,7 +90,7 @@
             this.lblMarca.AutoSize = true;
             this.lblMarca.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarca.ForeColor = System.Drawing.Color.White;
-            this.lblMarca.Location = new System.Drawing.Point(407, 514);
+            this.lblMarca.Location = new System.Drawing.Point(397, 504);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(80, 35);
             this.lblMarca.TabIndex = 3;
@@ -99,7 +102,7 @@
             this.lblPrecoVenda.AutoSize = true;
             this.lblPrecoVenda.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrecoVenda.ForeColor = System.Drawing.Color.White;
-            this.lblPrecoVenda.Location = new System.Drawing.Point(407, 460);
+            this.lblPrecoVenda.Location = new System.Drawing.Point(397, 450);
             this.lblPrecoVenda.Name = "lblPrecoVenda";
             this.lblPrecoVenda.Size = new System.Drawing.Size(164, 35);
             this.lblPrecoVenda.TabIndex = 4;
@@ -111,7 +114,7 @@
             this.lblQuantidade.AutoSize = true;
             this.lblQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantidade.ForeColor = System.Drawing.Color.White;
-            this.lblQuantidade.Location = new System.Drawing.Point(407, 562);
+            this.lblQuantidade.Location = new System.Drawing.Point(397, 552);
             this.lblQuantidade.Name = "lblQuantidade";
             this.lblQuantidade.Size = new System.Drawing.Size(132, 35);
             this.lblQuantidade.TabIndex = 5;
@@ -121,7 +124,7 @@
             // 
             this.txtNomeProduto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNomeProduto.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeProduto.Location = new System.Drawing.Point(645, 342);
+            this.txtNomeProduto.Location = new System.Drawing.Point(635, 332);
             this.txtNomeProduto.Name = "txtNomeProduto";
             this.txtNomeProduto.Size = new System.Drawing.Size(291, 31);
             this.txtNomeProduto.TabIndex = 6;
@@ -130,7 +133,7 @@
             // 
             this.txtPrecoCompra.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPrecoCompra.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecoCompra.Location = new System.Drawing.Point(645, 404);
+            this.txtPrecoCompra.Location = new System.Drawing.Point(635, 394);
             this.txtPrecoCompra.Name = "txtPrecoCompra";
             this.txtPrecoCompra.Size = new System.Drawing.Size(183, 31);
             this.txtPrecoCompra.TabIndex = 7;
@@ -140,7 +143,7 @@
             // 
             this.txtPrecoVenda.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPrecoVenda.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecoVenda.Location = new System.Drawing.Point(645, 459);
+            this.txtPrecoVenda.Location = new System.Drawing.Point(635, 449);
             this.txtPrecoVenda.Name = "txtPrecoVenda";
             this.txtPrecoVenda.Size = new System.Drawing.Size(183, 31);
             this.txtPrecoVenda.TabIndex = 9;
@@ -149,7 +152,7 @@
             // 
             this.txtMarca.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMarca.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarca.Location = new System.Drawing.Point(645, 513);
+            this.txtMarca.Location = new System.Drawing.Point(635, 503);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(291, 31);
             this.txtMarca.TabIndex = 10;
@@ -158,7 +161,7 @@
             // 
             this.txtQuantidade.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtQuantidade.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuantidade.Location = new System.Drawing.Point(645, 561);
+            this.txtQuantidade.Location = new System.Drawing.Point(635, 551);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(183, 31);
             this.txtQuantidade.TabIndex = 11;
@@ -170,9 +173,9 @@
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSalvar.Font = new System.Drawing.Font("Open Sans Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnSalvar.Location = new System.Drawing.Point(1425, 804);
+            this.btnSalvar.Location = new System.Drawing.Point(1321, 816);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(169, 68);
+            this.btnSalvar.Size = new System.Drawing.Size(224, 54);
             this.btnSalvar.TabIndex = 12;
             this.btnSalvar.Text = "SALVAR";
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -189,9 +192,9 @@
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(206, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(196, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1277, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -295,35 +298,83 @@
             // 
             this.pbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(24, 781);
+            this.pbLogo.Location = new System.Drawing.Point(20, 768);
             this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(110, 106);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogo.Size = new System.Drawing.Size(141, 110);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLogo.TabIndex = 15;
             this.pbLogo.TabStop = false;
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLimpar.BackColor = System.Drawing.Color.DimGray;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpar.Font = new System.Drawing.Font("Open Sans Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnLimpar.Location = new System.Drawing.Point(1091, 816);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(224, 54);
+            this.btnLimpar.TabIndex = 31;
+            this.btnLimpar.Text = "LIMPAR";
+            this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // btnMaximizar
+            // 
+            this.btnMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximizar.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMaximizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaximizar.ForeColor = System.Drawing.Color.White;
+            this.btnMaximizar.Location = new System.Drawing.Point(1515, 12);
+            this.btnMaximizar.Name = "btnMaximizar";
+            this.btnMaximizar.Size = new System.Drawing.Size(30, 12);
+            this.btnMaximizar.TabIndex = 36;
+            this.btnMaximizar.Text = "X";
+            this.btnMaximizar.UseVisualStyleBackColor = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
+            // 
+            // btnMinimizar
+            // 
+            this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimizar.BackColor = System.Drawing.Color.Orange;
+            this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMinimizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinimizar.ForeColor = System.Drawing.Color.White;
+            this.btnMinimizar.Location = new System.Drawing.Point(1479, 12);
+            this.btnMinimizar.Name = "btnMinimizar";
+            this.btnMinimizar.Size = new System.Drawing.Size(30, 12);
+            this.btnMinimizar.TabIndex = 35;
+            this.btnMinimizar.Text = "X";
+            this.btnMinimizar.UseVisualStyleBackColor = false;
+            this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
             // 
             // btnFecharPrograma
             // 
             this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
+            this.btnFecharPrograma.BackColor = System.Drawing.Color.DarkRed;
             this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
-            this.btnFecharPrograma.Location = new System.Drawing.Point(1559, 12);
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1551, 12);
             this.btnFecharPrograma.Name = "btnFecharPrograma";
-            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
-            this.btnFecharPrograma.TabIndex = 16;
+            this.btnFecharPrograma.Size = new System.Drawing.Size(30, 12);
+            this.btnFecharPrograma.TabIndex = 34;
             this.btnFecharPrograma.Text = "X";
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
-            this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
+            this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click_1);
             // 
             // frmCadastrarEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.ClientSize = new System.Drawing.Size(1620, 920);
+            this.ClientSize = new System.Drawing.Size(1600, 900);
+            this.Controls.Add(this.btnMaximizar);
+            this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnFecharPrograma);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtQuantidade);
@@ -375,6 +426,9 @@
         private System.Windows.Forms.ToolStripMenuItem gerarPagamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem3;
         private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Button btnMaximizar;
+        private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnFecharPrograma;
     }
 }

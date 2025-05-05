@@ -28,59 +28,45 @@ namespace cadastroclientes_hexabit
 
         public static class FormManager
         {
-            // Versão sem parâmetros
-            public static void ShowForm<T>() where T : Form, new()
-            {
-                ShowForm<T>(null);
-            }
+            private static List<Form> openForms = new List<Form>();
 
-            // Versão com parâmetros
             public static void ShowForm<T>(params object[] args) where T : Form
             {
-                // Verifica se o formulário já está aberto
-                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                var existingForm = openForms.FirstOrDefault(f => f is T);
                 if (existingForm != null)
                 {
                     existingForm.BringToFront();
-                    existingForm.WindowState = FormWindowState.Normal; // Restaura se minimizado
                     return;
                 }
 
-                // Cria nova instância
-                T form;
-                try
+                Form form;
+                if (args == null || args.Length == 0)
                 {
-                    form = args == null || args.Length == 0
-                        ? Activator.CreateInstance<T>()
-                        : (T)Activator.CreateInstance(typeof(T), args);
+                    form = Activator.CreateInstance<T>();
+                }
+                else
+                {
+                    form = (T)Activator.CreateInstance(typeof(T), args);
+                }
 
-                    form.Show();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao abrir o formulário: {ex.Message}", "Erro",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                form.FormClosed += (s, e) => openForms.Remove(form);
+                openForms.Add(form);
+                form.Show();
             }
 
             public static void CloseAllForms()
             {
-                // Fecha todos os forms exceto o principal
-                for (int i = Application.OpenForms.Count - 1; i >= 1; i--)
+                // Fecha na ordem inversa (filhos primeiro)
+                for (int i = openForms.Count - 1; i >= 0; i--)
                 {
-                    Application.OpenForms[i].Close();
+                    var form = openForms[i];
+                    if (!form.IsDisposed)
+                    {
+                        form.Close();
+                        form.Dispose();
+                    }
                 }
-            }
-        }
-
-        // Implementação dos métodos de clique nos itens de menu
-        private void btnFecharPrograma_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Deseja realmente sair do sistema?", "Confirmação",
-                               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                FormManager.CloseAllForms();
-                Application.Exit();
+                openForms.Clear();
             }
         }
 
@@ -118,9 +104,41 @@ namespace cadastroclientes_hexabit
             FormManager.ShowForm<frmVisualizarPagamentos>();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Implementação dos métodos de clique nos itens de menu
+        private void btnFecharPrograma_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Deseja realmente sair do sistema?", "Confirmação",
+                               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                FormManager.CloseAllForms();
+                Application.Exit();
+            }
+        }
 
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                // Se já estiver maximizado, volta ao tamanho normal
+                this.WindowState = FormWindowState.Normal;
+
+                // Opcional: Altera o ícone para o de maximizar
+                btnMaximizar.Text = "🗖"; // Ou altere a imagem se for um PictureBox
+            }
+            else
+            {
+                // Maximiza a janela
+                this.WindowState = FormWindowState.Maximized;
+
+                // Opcional: Altera o ícone para o de restaurar
+                btnMaximizar.Text = "🗗"; // Ou altere a imagem se for um PictureBox
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            // Minimiza a janela para a barra de tarefas
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

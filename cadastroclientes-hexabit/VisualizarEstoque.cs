@@ -36,17 +36,17 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstProdutos.Columns.Add("NOME DO PRODUTO", 400, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("PREÇO DE COMPRA", 200, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("PREÇO DE VENDA", 200, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("MARCA", 200, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("QUANTIDADE", 100, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("ID", 50, HorizontalAlignment.Left); // Adicionei coluna ID
+            lstProdutos.Columns.Add("NOME DO PRODUTO", 300, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("PREÇO COMPRA", 100, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("PREÇO VENDA", 100, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("MARCA", 150, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("QUANTIDADE", 80, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("VALOR TOTAL", 120, HorizontalAlignment.Left); // NOVA COLUNA
 
-
-
-            //Carrega os dados dos clientes na interface
             carregar_produtos();
         }
+
         private void carregar_produtos_com_query(string query, string termoBusca = null)
         {
             try
@@ -67,12 +67,21 @@ namespace cadastroclientes_hexabit
                     {
                         while (reader.Read())
                         {
-                            ListViewItem item = new ListViewItem(reader["nomedoproduto"].ToString());
-                            item.SubItems.Add(reader["precodecompra"].ToString());
-                            item.SubItems.Add(reader["precodevenda"].ToString());
+                            // Obter valores importantes
+                            decimal precoVenda = reader["precodevenda"] != DBNull.Value ?
+                                               Convert.ToDecimal(reader["precodevenda"]) : 0;
+                            int quantidade = reader["quantidade"] != DBNull.Value ?
+                                            Convert.ToInt32(reader["quantidade"]) : 0;
+                            decimal valorTotal = precoVenda * quantidade;
+
+                            ListViewItem item = new ListViewItem(reader["idestoque"].ToString()); // ID
+                            item.SubItems.Add(reader["nomedoproduto"].ToString());
+                            item.SubItems.Add(Convert.ToDecimal(reader["precodecompra"]).ToString("C"));
+                            item.SubItems.Add(precoVenda.ToString("C"));
                             item.SubItems.Add(reader["marca"].ToString());
-                            item.SubItems.Add(reader["quantidade"].ToString());
-                            item.Tag = reader["idestoque"]; // Armazena o ID
+                            item.SubItems.Add(quantidade.ToString());
+                            item.SubItems.Add(valorTotal.ToString("C")); // VALOR TOTAL
+                            item.Tag = reader["idestoque"];
 
                             lstProdutos.Items.Add(item);
                         }
@@ -81,14 +90,14 @@ namespace cadastroclientes_hexabit
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}");
+                MessageBox.Show($"Erro ao carregar produtos: {ex.Message}", "Erro",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void carregar_produtos()
         {
-            string query = "SELECT * FROM estoque ORDER BY idestoque DESC ";
+            string query = "SELECT * FROM estoque ORDER BY idestoque DESC";
             carregar_produtos_com_query(query);
-
         }
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
@@ -132,25 +141,10 @@ namespace cadastroclientes_hexabit
 
         private int ObterIdProdutoSelecionado(ListViewItem item)
         {
-            try
-            {
-                using (var conexao = new MySqlConnection(data_source))
-                {
-                    conexao.Open();
-
-                    // Busca o ID do produto baseado no nome (ou outros campos únicos)
-                    string query = "SELECT idestoque FROM estoque WHERE nomedoproduto = @nome LIMIT 1";
-                    MySqlCommand cmd = new MySqlCommand(query, conexao);
-                    cmd.Parameters.AddWithValue("@nome", item.SubItems[0].Text);
-
-                    object result = cmd.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1;
-                }
-            }
-            catch
-            {
+            if (item == null || item.Tag == null)
                 return -1;
-            }
+
+            return Convert.ToInt32(item.Tag);
         }
 
         private void btnDeletarCliente_Click(object sender, EventArgs e)
@@ -261,25 +255,18 @@ namespace cadastroclientes_hexabit
         }
         public static class FormManager
         {
-            // Versão sem parâmetros (para formulários que não precisam de argumentos)
-            public static void ShowForm<T>() where T : Form, new()
-            {
-                ShowForm<T>(null);
-            }
+            private static List<Form> openForms = new List<Form>();
 
-            // Versão com parâmetros (para formulários que precisam de argumentos)
             public static void ShowForm<T>(params object[] args) where T : Form
             {
-                // Verifica se o formulário já está aberto
-                var existingForm = Application.OpenForms.OfType<T>().FirstOrDefault();
+                var existingForm = openForms.FirstOrDefault(f => f is T);
                 if (existingForm != null)
                 {
                     existingForm.BringToFront();
                     return;
                 }
 
-                // Cria nova instância com ou sem parâmetros
-                T form;
+                Form form;
                 if (args == null || args.Length == 0)
                 {
                     form = Activator.CreateInstance<T>();
@@ -289,16 +276,24 @@ namespace cadastroclientes_hexabit
                     form = (T)Activator.CreateInstance(typeof(T), args);
                 }
 
+                form.FormClosed += (s, e) => openForms.Remove(form);
+                openForms.Add(form);
                 form.Show();
             }
 
             public static void CloseAllForms()
             {
-                foreach (Form form in Application.OpenForms)
+                // Fecha na ordem inversa (filhos primeiro)
+                for (int i = openForms.Count - 1; i >= 0; i--)
                 {
-                    form.Close();
+                    var form = openForms[i];
+                    if (!form.IsDisposed)
+                    {
+                        form.Close();
+                        form.Dispose();
+                    }
                 }
-
+                openForms.Clear();
             }
         }
 
@@ -343,14 +338,12 @@ namespace cadastroclientes_hexabit
             {
                 string termoBusca = txtBuscarProduto.Text.Trim();
 
-                // Se o campo estiver vazio, carrega todos os produtos
                 if (string.IsNullOrEmpty(termoBusca))
                 {
                     carregar_produtos();
                     return;
                 }
 
-                // Query SQL correta para buscar produtos
                 string query = @"SELECT * FROM estoque 
                        WHERE nomedoproduto LIKE @termo OR
                              marca LIKE @termo OR
@@ -360,16 +353,57 @@ namespace cadastroclientes_hexabit
 
                 carregar_produtos_com_query(query, termoBusca);
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show($"Erro ao buscar produto: {ex.Message}", "Erro",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro",
+                MessageBox.Show($"Erro na busca: {ex.Message}", "Erro",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtBuscarProduto_Click(object sender, EventArgs e)
+        {
+            txtBuscarProduto.Text = string.Empty;
+
+            txtBuscarProduto.Focus();
+
+            carregar_produtos();
+        }
+
+        // Implementação dos métodos de clique nos itens de menu
+        private void btnFecharPrograma_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente sair do sistema?", "Confirmação",
+                               MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                FormManager.CloseAllForms();
+                Application.Exit();
+            }
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                // Se já estiver maximizado, volta ao tamanho normal
+                this.WindowState = FormWindowState.Normal;
+
+                // Opcional: Altera o ícone para o de maximizar
+                btnMaximizar.Text = "🗖"; // Ou altere a imagem se for um PictureBox
+            }
+            else
+            {
+                // Maximiza a janela
+                this.WindowState = FormWindowState.Maximized;
+
+                // Opcional: Altera o ícone para o de restaurar
+                btnMaximizar.Text = "🗗"; // Ou altere a imagem se for um PictureBox
+            }
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            // Minimiza a janela para a barra de tarefas
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

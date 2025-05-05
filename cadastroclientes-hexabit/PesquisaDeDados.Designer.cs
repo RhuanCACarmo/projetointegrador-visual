@@ -45,6 +45,8 @@
             this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnMinimizar = new System.Windows.Forms.Button();
+            this.btnMaximizar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +62,7 @@
             this.clientesToolStripMenuItem,
             this.estoqueToolStripMenuItem,
             this.tsmGerarPagamentos});
-            this.menuStrip1.Location = new System.Drawing.Point(206, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(214, 33);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
             this.menuStrip1.TabIndex = 1;
@@ -154,8 +156,8 @@
             this.tsmGerarPagamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.tsmGerarPagamento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.tsmGerarPagamento.Name = "tsmGerarPagamento";
-            this.tsmGerarPagamento.Size = new System.Drawing.Size(190, 44);
-            this.tsmGerarPagamento.Text = "Gerar";
+            this.tsmGerarPagamento.Size = new System.Drawing.Size(269, 44);
+            this.tsmGerarPagamento.Text = "Gerar Pagamento";
             this.tsmGerarPagamento.Click += new System.EventHandler(this.tsmGerarPagamento_Click);
             // 
             // tsmVisualizarPagamentos
@@ -163,7 +165,7 @@
             this.tsmVisualizarPagamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.tsmVisualizarPagamentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.tsmVisualizarPagamentos.Name = "tsmVisualizarPagamentos";
-            this.tsmVisualizarPagamentos.Size = new System.Drawing.Size(190, 44);
+            this.tsmVisualizarPagamentos.Size = new System.Drawing.Size(269, 44);
             this.tsmVisualizarPagamentos.Text = "Visualizar";
             this.tsmVisualizarPagamentos.Click += new System.EventHandler(this.tsmVisualizarPagamentos_Click);
             // 
@@ -175,7 +177,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(434, 112);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(738, 303);
+            this.pictureBox1.Size = new System.Drawing.Size(754, 342);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -185,7 +187,7 @@
             this.lblBanco.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblBanco.AutoSize = true;
             this.lblBanco.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBanco.Location = new System.Drawing.Point(698, 479);
+            this.lblBanco.Location = new System.Drawing.Point(706, 518);
             this.lblBanco.Name = "lblBanco";
             this.lblBanco.Size = new System.Drawing.Size(189, 35);
             this.lblBanco.TabIndex = 3;
@@ -197,9 +199,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPesquisa.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisa.ForeColor = System.Drawing.Color.Black;
-            this.txtPesquisa.Location = new System.Drawing.Point(515, 546);
+            this.txtPesquisa.Location = new System.Drawing.Point(515, 585);
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(548, 33);
+            this.txtPesquisa.Size = new System.Drawing.Size(564, 33);
             this.txtPesquisa.TabIndex = 4;
             this.txtPesquisa.Text = "Digite um nome ou CPF";
             this.txtPesquisa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -207,13 +209,13 @@
             // btnFecharPrograma
             // 
             this.btnFecharPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFecharPrograma.BackColor = System.Drawing.Color.Red;
+            this.btnFecharPrograma.BackColor = System.Drawing.Color.DarkRed;
             this.btnFecharPrograma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFecharPrograma.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFecharPrograma.ForeColor = System.Drawing.Color.White;
-            this.btnFecharPrograma.Location = new System.Drawing.Point(1523, 12);
+            this.btnFecharPrograma.Location = new System.Drawing.Point(1558, 12);
             this.btnFecharPrograma.Name = "btnFecharPrograma";
-            this.btnFecharPrograma.Size = new System.Drawing.Size(49, 51);
+            this.btnFecharPrograma.Size = new System.Drawing.Size(30, 12);
             this.btnFecharPrograma.TabIndex = 5;
             this.btnFecharPrograma.Text = "X";
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
@@ -226,13 +228,42 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1069, 546);
+            this.button1.Location = new System.Drawing.Point(1085, 585);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(44, 33);
             this.button1.TabIndex = 6;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnMinimizar
+            // 
+            this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimizar.BackColor = System.Drawing.Color.Orange;
+            this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMinimizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinimizar.ForeColor = System.Drawing.Color.White;
+            this.btnMinimizar.Location = new System.Drawing.Point(1486, 12);
+            this.btnMinimizar.Name = "btnMinimizar";
+            this.btnMinimizar.Size = new System.Drawing.Size(30, 12);
+            this.btnMinimizar.TabIndex = 7;
+            this.btnMinimizar.Text = "X";
+            this.btnMinimizar.UseVisualStyleBackColor = false;
+            this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
+            // 
+            // btnMaximizar
+            // 
+            this.btnMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximizar.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMaximizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaximizar.ForeColor = System.Drawing.Color.White;
+            this.btnMaximizar.Location = new System.Drawing.Point(1522, 12);
+            this.btnMaximizar.Name = "btnMaximizar";
+            this.btnMaximizar.Size = new System.Drawing.Size(30, 12);
+            this.btnMaximizar.TabIndex = 8;
+            this.btnMaximizar.Text = "X";
+            this.btnMaximizar.UseVisualStyleBackColor = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // frmPesquisar
             // 
@@ -240,7 +271,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1584, 861);
+            this.ClientSize = new System.Drawing.Size(1600, 900);
+            this.Controls.Add(this.btnMaximizar);
+            this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.txtPesquisa);
@@ -279,5 +312,7 @@
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.Button btnFecharPrograma;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMinimizar;
+        private System.Windows.Forms.Button btnMaximizar;
     }
 }
