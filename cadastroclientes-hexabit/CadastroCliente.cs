@@ -35,7 +35,12 @@ namespace cadastroclientes_hexabit
             public string uf { get; set; }            // Estado (sigla)
             public string erro { get; set; }          // Indica se o CEP é inválido
         }
-        public frmCadastroClientes(int? idcliente = null)
+
+        public frmCadastroClientes() : this(null)
+        {
+        }
+
+        public frmCadastroClientes(int? idcliente)
         {
             InitializeComponent();
             _idcliente = idcliente;
@@ -49,6 +54,68 @@ namespace cadastroclientes_hexabit
             {
                 this.Text = "Novo Cliente";
             }
+        }
+
+        // Validação de CPF
+        private bool ValidarCPF(string cpf)
+        {
+            // Remove caracteres não numéricos
+            cpf = new string(cpf.Where(char.IsDigit).ToArray());
+
+            // Verifica se tem 11 dígitos ou se todos são iguais
+            if (cpf.Length != 11 || cpf.All(c => c == cpf[0]))
+                return false;
+
+            // Calcula primeiro dígito verificador
+            int soma = 0;
+            for (int i = 0; i < 9; i++)
+                soma += (cpf[i] - '0') * (10 - i);
+
+            int resto = soma % 11;
+            int digito1 = resto < 2 ? 0 : 11 - resto;
+
+            // Calcula segundo dígito verificador
+            soma = 0;
+            for (int i = 0; i < 10; i++)
+                soma += (cpf[i] - '0') * (11 - i);
+
+            resto = soma % 11;
+            int digito2 = resto < 2 ? 0 : 11 - resto;
+
+            // Verifica se os dígitos calculados conferem com os informados
+            return (cpf[9] - '0' == digito1) && (cpf[10] - '0' == digito2);
+        }
+
+        // Validação de CNPJ
+        private bool ValidarCNPJ(string cnpj)
+        {
+            // Remove caracteres não numéricos
+            cnpj = new string(cnpj.Where(char.IsDigit).ToArray());
+
+            // Verifica se tem 14 dígitos ou se todos são iguais
+            if (cnpj.Length != 14 || cnpj.All(c => c == cnpj[0]))
+                return false;
+
+            // Calcula primeiro dígito verificador
+            int[] multiplicadores1 = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int soma = 0;
+            for (int i = 0; i < 12; i++)
+                soma += (cnpj[i] - '0') * multiplicadores1[i];
+
+            int resto = soma % 11;
+            int digito1 = resto < 2 ? 0 : 11 - resto;
+
+            // Calcula segundo dígito verificador
+            int[] multiplicadores2 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            soma = 0;
+            for (int i = 0; i < 13; i++)
+                soma += (cnpj[i] - '0') * multiplicadores2[i];
+
+            resto = soma % 11;
+            int digito2 = resto < 2 ? 0 : 11 - resto;
+
+            // Verifica se os dígitos calculados conferem com os informados
+            return (cnpj[12] - '0' == digito1) && (cnpj[13] - '0' == digito2);
         }
 
         private void carregar_cliente(int idcliente)
@@ -161,12 +228,32 @@ namespace cadastroclientes_hexabit
                 }
 
                 string cpfCnpjNumerico = new string(txtCpfCnpj.Text.Where(char.IsDigit).ToArray());
-                if (cpfCnpjNumerico.Length != 11 && cpfCnpjNumerico.Length != 14)
+
+                if (cpfCnpjNumerico.Length == 11)
+                {
+                    if (!ValidarCPF(cpfCnpjNumerico))
+                    {
+                        MessageBox.Show("CPF inválido. Por favor, digite um CPF válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCpfCnpj.Focus();
+                        return;
+                    }
+                }
+                else if (cpfCnpjNumerico.Length == 14)
+                {
+                    if (!ValidarCNPJ(cpfCnpjNumerico))
+                    {
+                        MessageBox.Show("CNPJ inválido. Por favor, digite um CNPJ válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtCpfCnpj.Focus();
+                        return;
+                    }
+                }
+                else
                 {
                     MessageBox.Show("CPF deve ter 11 dígitos ou CNPJ deve ter 14 dígitos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCpfCnpj.Focus();
                     return;
                 }
+
                 txtCpfCnpj.Text = cpfCnpjNumerico;
 
                 // Validação do CEP (obrigatório e formato) - AGORA ANTES DO NÚMERO

@@ -17,16 +17,24 @@ namespace cadastroclientes_hexabit
     {
         public int? idcliente { get; private set; }
         public int? idestoque { get; private set; }
-      
+
 
         private readonly string connectionString = "datasource=localhost;username=root;password=;database=hexabits";
 
         private int? _idpagamento = null;
 
-        public frmCadastroPagamento(int? idpagamento = null)
+        public frmCadastroPagamento() : this(null)
+        {
+        }
+
+        public frmCadastroPagamento(int? idpagamento)
         {
             InitializeComponent();
             _idpagamento = idpagamento;
+            cmbFormaPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
+            CarregarFormasPagamento();
+            txtIdCliente.Enter += txtIdCliente_Enter;
+            txtIdEstoque.Enter += txtIdEstoque_Enter;
 
             if (_idpagamento.HasValue)
             {
@@ -38,6 +46,111 @@ namespace cadastroclientes_hexabit
                 this.Text = "Novo Pagamento";
             }
         }
+        private void BuscarInfoEstoquePorId(int idEstoque)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(connectionString))
+                {
+                    conexao.Open();
+                    var cmd = new MySqlCommand("SELECT quantidade, precodecompra FROM estoque WHERE idestoque = @id", conexao);
+                    cmd.Parameters.AddWithValue("@id", idEstoque);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Atualiza o preço de compra automaticamente
+                            txtPrecoDeCompra.Text = reader["precodecompra"].ToString();
+
+                            // Armazena a quantidade disponível para validação posterior
+                            // Você pode mostrar essa informação em um label se quiser
+                            int quantidadeDisponivel = Convert.ToInt32(reader["quantidade"]);
+                            // Exemplo: lblQuantidadeDisponivel.Text = $"Disponível: {quantidadeDisponivel}";
+                        }
+                        else
+                        {
+                            txtPrecoDeCompra.Text = string.Empty;
+                            MessageBox.Show("Estoque não encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar estoque: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPrecoDeCompra.Text = string.Empty;
+            }
+        }
+        private int ObterQuantidadeDisponivelEstoque(int idEstoque)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(connectionString))
+                {
+                    conexao.Open();
+                    var cmd = new MySqlCommand("SELECT quantidade FROM estoque WHERE idestoque = @id", conexao);
+                    cmd.Parameters.AddWithValue("@id", idEstoque);
+
+                    var result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private void BuscarCpfCnpjPorIdCliente(int idCliente)
+        {
+            try
+            {
+                using (var conexao = new MySqlConnection(connectionString))
+                {
+                    conexao.Open();
+                    var cmd = new MySqlCommand("SELECT cpf_cnpj FROM cliente WHERE idcliente = @id", conexao);
+                    cmd.Parameters.AddWithValue("@id", idCliente);
+
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        txtCpfCnpj.Text = result.ToString();
+                    }
+                    else
+                    {
+                        txtCpfCnpj.Text = string.Empty;
+                        MessageBox.Show("Cliente não encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCpfCnpj.Text = string.Empty;
+            }
+        }
+        private void CarregarFormasPagamento()
+        {
+            try
+            {
+                cmbFormaPagamento.Items.Clear();
+
+                // Lista padrão de formas de pagamento
+                var formasPadrao = new List<string> { "DINHEIRO", "CRÉDITO", "DÉBITO", "PIX" };
+
+                // Adiciona as formas padrão
+                cmbFormaPagamento.Items.AddRange(formasPadrao.ToArray());
+
+                // Seleciona o primeiro item por padrão
+                if (cmbFormaPagamento.Items.Count > 0)
+                    cmbFormaPagamento.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar formas de pagamento: {ex.Message}");
+            }
+        }
 
         private void CarregarPagamento(int idpagamento)
         {
@@ -46,7 +159,7 @@ namespace cadastroclientes_hexabit
                 using (var conexao = new MySqlConnection(connectionString))
                 {
                     conexao.Open();
-                    var cmd = new MySqlCommand("SELECT * FROM pagamento WHERE idpagamento = @id", conexao); // Corrigido para idpagamento
+                    var cmd = new MySqlCommand("SELECT * FROM pagamento WHERE idpagamento = @id", conexao);
                     cmd.Parameters.AddWithValue("@id", idpagamento);
 
                     using (var reader = cmd.ExecuteReader())
@@ -58,6 +171,12 @@ namespace cadastroclientes_hexabit
                             txtIdEstoque.Text = reader["idestoque"].ToString();
                             txtPrecoDeCompra.Text = reader["precodecompra"].ToString();
                             txtQuantidade.Text = reader["quantidade"].ToString();
+                            string formaPagamento = reader["formadepagamento"].ToString();
+                            if (!cmbFormaPagamento.Items.Contains(formaPagamento))
+                            {
+                                cmbFormaPagamento.Items.Add(formaPagamento);
+                            }
+                            cmbFormaPagamento.SelectedItem = formaPagamento;
                         }
                     }
                 }
@@ -101,10 +220,50 @@ namespace cadastroclientes_hexabit
                 return false;
             }
 
-            // Validação da Quantidade
-            if (!int.TryParse(txtQuantidade.Text, out int quantidade) || quantidade < 0)
+            if (cmbFormaPagamento.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, selecione uma forma de pagamento.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cmbFormaPagamento.Focus();
+                return false;
+            }
+
+            // Validação do ID do Cliente
+            if (string.IsNullOrWhiteSpace(txtIdCliente.Text) || !int.TryParse(txtIdCliente.Text, out _))
+            {
+                MessageBox.Show("Por favor, digite um ID de cliente válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdCliente.Focus();
+                return false;
+            }
+
+            // Validação do CPF/CNPJ
+            if (string.IsNullOrWhiteSpace(txtCpfCnpj.Text))
+            {
+                MessageBox.Show("Não foi possível encontrar o CPF/CNPJ do cliente. Verifique o ID.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdCliente.Focus();
+                return false;
+            }
+
+            // Validação do ID do Estoque
+            if (string.IsNullOrWhiteSpace(txtIdEstoque.Text) || !int.TryParse(txtIdEstoque.Text, out int idEstoque))
+            {
+                MessageBox.Show("Por favor, digite um ID de estoque válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtIdEstoque.Focus();
+                return false;
+            }
+
+            // Validação da Quantidade vs Estoque
+            if (!int.TryParse(txtQuantidade.Text, out int quantidade) || quantidade <= 0)
             {
                 MessageBox.Show("Por favor, digite uma quantidade válida (número inteiro positivo).", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtQuantidade.Focus();
+                return false;
+            }
+
+            int quantidadeDisponivel = ObterQuantidadeDisponivelEstoque(idEstoque);
+            if (quantidade > quantidadeDisponivel)
+            {
+                MessageBox.Show($"Quantidade solicitada ({quantidade}) maior que disponível no estoque ({quantidadeDisponivel}).",
+                              "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtQuantidade.Focus();
                 return false;
             }
@@ -117,60 +276,82 @@ namespace cadastroclientes_hexabit
             if (!ValidarPagamentos())
                 return;
 
+            MySqlTransaction transaction = null;
+
             try
             {
                 using (var conexao = new MySqlConnection(connectionString))
                 {
                     conexao.Open();
+                    transaction = conexao.BeginTransaction();
 
-                    using (var cmd = new MySqlCommand { Connection = conexao })
+                    using (var cmd = new MySqlCommand { Connection = conexao, Transaction = transaction })
                     {
+                        int idEstoque = int.Parse(txtIdEstoque.Text);
+                        int quantidade = int.Parse(txtQuantidade.Text);
+
                         if (_idpagamento.HasValue)
                         {
                             // UPDATE
                             cmd.CommandText = @"UPDATE pagamento SET 
-                                idcliente = @idcliente,
-                                cpf_cnpj = @cpf_cnpj,
-                                idestoque = @idestoque,
-                                precodecompra = @precodecompra,
-                                quantidade = @quantidade
-                                WHERE idpagamento = @id";
+                        idcliente = @idcliente,
+                        cpf_cnpj = @cpf_cnpj,
+                        idestoque = @idestoque,
+                        precodecompra = @precodecompra,
+                        quantidade = @quantidade,
+                        formadepagamento = @formadepagamento
+                        WHERE idpagamento = @id";
 
                             cmd.Parameters.AddWithValue("@id", _idpagamento.Value);
                         }
                         else
                         {
-                            // INSERT
+                            // INSERT do pagamento
                             cmd.CommandText = @"INSERT INTO pagamento(
-                                idcliente, cpf_cnpj, idestoque, 
-                                precodecompra, quantidade) 
-                                VALUES (
-                                @idcliente, @cpf_cnpj, @idestoque, 
-                                @precodecompra, @quantidade)";
+                        idcliente, cpf_cnpj, idestoque, 
+                        precodecompra, quantidade, formadepagamento) 
+                        VALUES (
+                        @idcliente, @cpf_cnpj, @idestoque, 
+                        @precodecompra, @quantidade, @formadepagamento)";
+
+                            // Parâmetros comuns
+                            cmd.Parameters.AddWithValue("@idcliente", int.Parse(txtIdCliente.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim());
+                            cmd.Parameters.AddWithValue("@idestoque", int.Parse(txtIdEstoque.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@precodecompra", decimal.Parse(txtPrecoDeCompra.Text));
+                            cmd.Parameters.AddWithValue("@quantidade", int.Parse(txtQuantidade.Text.Trim()));
+                            cmd.Parameters.AddWithValue("@formadepagamento", cmbFormaPagamento.SelectedItem.ToString());
+
+                            int linhasAfetadas = cmd.ExecuteNonQuery();
+
+                            if (linhasAfetadas > 0)
+                            {
+                                MessageBox.Show(_idpagamento.HasValue
+                                    ? "Pagamento atualizado com sucesso!"
+                                    : "Pagamento cadastrado com sucesso!",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nenhum registro foi atualizado. Verifique se o ID existe.",
+                                              "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            cmd.CommandText = "UPDATE estoque SET quantidade = quantidade - @quantidade WHERE idestoque = @idestoque";
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@quantidade", quantidade);
+                            cmd.Parameters.AddWithValue("@idestoque", idEstoque);
+                            cmd.ExecuteNonQuery();
                         }
 
-                        // Parâmetros comuns - CORRIGIDOS
-                        cmd.Parameters.AddWithValue("@idcliente", int.Parse(txtIdCliente.Text.Trim()));
-                        cmd.Parameters.AddWithValue("@cpf_cnpj", txtCpfCnpj.Text.Trim()); // Mantido como string
-                        cmd.Parameters.AddWithValue("@idestoque", int.Parse(txtIdEstoque.Text.Trim()));
-                        cmd.Parameters.AddWithValue("@precodecompra", decimal.Parse(txtPrecoDeCompra.Text));
-                        cmd.Parameters.AddWithValue("@quantidade", int.Parse(txtQuantidade.Text.Trim()));
+                        transaction.Commit();
 
-                        int linhasAfetadas = cmd.ExecuteNonQuery();
+                        MessageBox.Show(_idpagamento.HasValue
+                            ? "Pagamento atualizado e estoque ajustado com sucesso!"
+                            : "Pagamento cadastrado e estoque atualizado com sucesso!",
+                            "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        if (linhasAfetadas > 0)
-                        {
-                            MessageBox.Show(_idpagamento.HasValue
-                                ? "Pagamento atualizado com sucesso!"
-                                : "Pagamento cadastrado com sucesso!",
-                                "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Nenhum registro foi atualizado. Verifique se o ID existe.",
-                                          "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        this.Close();
                     }
                 }
             }
@@ -181,8 +362,8 @@ namespace cadastroclientes_hexabit
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                transaction?.Rollback();
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static class FormManager
@@ -275,6 +456,10 @@ namespace cadastroclientes_hexabit
             txtPrecoDeCompra.Text = string.Empty;
             txtQuantidade.Text = string.Empty;
 
+            // Reseta o ComboBox
+            if (cmbFormaPagamento.Items.Count > 0)
+                cmbFormaPagamento.SelectedIndex = 0;
+
             txtIdCliente.Focus();
         }
 
@@ -313,6 +498,86 @@ namespace cadastroclientes_hexabit
         {
             // Minimiza a janela para a barra de tarefas
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void txtIdCliente_Enter(object sender, EventArgs e)
+        {
+            {
+                if (!string.IsNullOrWhiteSpace(txtIdCliente.Text))
+                {
+                    if (int.TryParse(txtIdCliente.Text, out int idCliente))
+                    {
+                        BuscarCpfCnpjPorIdCliente(idCliente);
+                    }
+                    else
+                    {
+                        txtCpfCnpj.Text = string.Empty;
+                    }
+                }
+                else
+                {
+                    txtCpfCnpj.Text = string.Empty;
+                }
+            }
+        }
+
+        private void txtIdEstoque_Enter(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtIdEstoque.Text))
+            {
+                if (int.TryParse(txtIdEstoque.Text, out int idEstoque))
+                {
+                    BuscarInfoEstoquePorId(idEstoque);
+                }
+                else
+                {
+                    txtPrecoDeCompra.Text = string.Empty;
+                }
+            }
+            else
+            {
+                txtPrecoDeCompra.Text = string.Empty;
+            }
+        }
+
+        private void txtIdEstoque_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtIdEstoque.Text))
+            {
+                if (int.TryParse(txtIdEstoque.Text, out int idEstoque))
+                {
+                    BuscarInfoEstoquePorId(idEstoque);
+                }
+                else
+                {
+                    txtPrecoDeCompra.Text = string.Empty;
+                }
+            }
+            else
+            {
+                txtPrecoDeCompra.Text = string.Empty;
+            }
+        }
+
+        private void txtIdCliente_Leave(object sender, EventArgs e)
+        {
+            {
+                if (!string.IsNullOrWhiteSpace(txtIdCliente.Text))
+                {
+                    if (int.TryParse(txtIdCliente.Text, out int idCliente))
+                    {
+                        BuscarCpfCnpjPorIdCliente(idCliente);
+                    }
+                    else
+                    {
+                        txtCpfCnpj.Text = string.Empty;
+                    }
+                }
+                else
+                {
+                    txtCpfCnpj.Text = string.Empty;
+                }
+            }
         }
     }
 }

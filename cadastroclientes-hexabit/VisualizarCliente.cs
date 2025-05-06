@@ -41,9 +41,9 @@ namespace cadastroclientes_hexabit
             lstClientes.Columns.Add("ID CLIENTE", 100, HorizontalAlignment.Left);
             lstClientes.Columns.Add("CPF/CNPJ", 200, HorizontalAlignment.Left);
             lstClientes.Columns.Add("NOME", 300, HorizontalAlignment.Left);
-            lstClientes.Columns.Add("EMAIL", 300, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("EMAIL", 340, HorizontalAlignment.Left);
             lstClientes.Columns.Add("TELEFONE", 200, HorizontalAlignment.Left);
-            lstClientes.Columns.Add("ENDEREÇO", 200, HorizontalAlignment.Left);
+            lstClientes.Columns.Add("ENDEREÇO", 238, HorizontalAlignment.Left);
 
 
 

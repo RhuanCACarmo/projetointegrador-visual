@@ -58,8 +58,11 @@
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnFecharPrograma = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCadastroPagamentos = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -196,7 +199,7 @@
             this.btnAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAtualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(88)))), ((int)(((byte)(123)))));
             this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAtualizar.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtualizar.Font = new System.Drawing.Font("Open Sans Condensed", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtualizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btnAtualizar.Location = new System.Drawing.Point(1321, 816);
             this.btnAtualizar.Name = "btnAtualizar";
@@ -214,7 +217,7 @@
             this.lblCpf_Cnpj.AutoSize = true;
             this.lblCpf_Cnpj.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCpf_Cnpj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblCpf_Cnpj.Location = new System.Drawing.Point(488, 332);
+            this.lblCpf_Cnpj.Location = new System.Drawing.Point(73, 31);
             this.lblCpf_Cnpj.Name = "lblCpf_Cnpj";
             this.lblCpf_Cnpj.Size = new System.Drawing.Size(95, 31);
             this.lblCpf_Cnpj.TabIndex = 2;
@@ -228,7 +231,7 @@
             this.lblPrecodeCompra.AutoSize = true;
             this.lblPrecodeCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrecodeCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblPrecodeCompra.Location = new System.Drawing.Point(492, 388);
+            this.lblPrecodeCompra.Location = new System.Drawing.Point(73, 90);
             this.lblPrecodeCompra.Name = "lblPrecodeCompra";
             this.lblPrecodeCompra.Size = new System.Drawing.Size(87, 31);
             this.lblPrecodeCompra.TabIndex = 4;
@@ -242,7 +245,7 @@
             this.lblQuantidade.AutoSize = true;
             this.lblQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.lblQuantidade.Location = new System.Drawing.Point(483, 443);
+            this.lblQuantidade.Location = new System.Drawing.Point(56, 145);
             this.lblQuantidade.Name = "lblQuantidade";
             this.lblQuantidade.Size = new System.Drawing.Size(104, 31);
             this.lblQuantidade.TabIndex = 5;
@@ -251,15 +254,17 @@
             // txtIdCliente
             // 
             this.txtIdCliente.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtIdCliente.Location = new System.Drawing.Point(635, 327);
+            this.txtIdCliente.Location = new System.Drawing.Point(174, 25);
             this.txtIdCliente.Name = "txtIdCliente";
             this.txtIdCliente.Size = new System.Drawing.Size(214, 40);
             this.txtIdCliente.TabIndex = 8;
+            this.txtIdCliente.Enter += new System.EventHandler(this.txtIdCliente_Enter);
+            this.txtIdCliente.Leave += new System.EventHandler(this.txtIdCliente_Leave);
             // 
             // txtCpfCnpj
             // 
             this.txtCpfCnpj.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtCpfCnpj.Location = new System.Drawing.Point(635, 383);
+            this.txtCpfCnpj.Location = new System.Drawing.Point(174, 81);
             this.txtCpfCnpj.Name = "txtCpfCnpj";
             this.txtCpfCnpj.Size = new System.Drawing.Size(214, 40);
             this.txtCpfCnpj.TabIndex = 10;
@@ -267,15 +272,17 @@
             // txtIdEstoque
             // 
             this.txtIdEstoque.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtIdEstoque.Location = new System.Drawing.Point(635, 438);
+            this.txtIdEstoque.Location = new System.Drawing.Point(174, 136);
             this.txtIdEstoque.Name = "txtIdEstoque";
             this.txtIdEstoque.Size = new System.Drawing.Size(214, 40);
             this.txtIdEstoque.TabIndex = 11;
+            this.txtIdEstoque.Enter += new System.EventHandler(this.txtIdEstoque_Enter);
+            this.txtIdEstoque.Leave += new System.EventHandler(this.txtIdEstoque_Leave);
             // 
             // txtQuantidade
             // 
             this.txtQuantidade.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtQuantidade.Location = new System.Drawing.Point(635, 551);
+            this.txtQuantidade.Location = new System.Drawing.Point(174, 249);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(214, 40);
             this.txtQuantidade.TabIndex = 19;
@@ -283,7 +290,7 @@
             // txtPrecoDeCompra
             // 
             this.txtPrecoDeCompra.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold);
-            this.txtPrecoDeCompra.Location = new System.Drawing.Point(635, 495);
+            this.txtPrecoDeCompra.Location = new System.Drawing.Point(174, 193);
             this.txtPrecoDeCompra.Name = "txtPrecoDeCompra";
             this.txtPrecoDeCompra.Size = new System.Drawing.Size(214, 40);
             this.txtPrecoDeCompra.TabIndex = 18;
@@ -296,7 +303,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.label2.Location = new System.Drawing.Point(479, 556);
+            this.label2.Location = new System.Drawing.Point(47, 249);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 62);
             this.label2.TabIndex = 16;
@@ -310,11 +317,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.label3.Location = new System.Drawing.Point(455, 500);
+            this.label3.Location = new System.Drawing.Point(7, 199);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(161, 31);
+            this.label3.Size = new System.Drawing.Size(162, 31);
             this.label3.TabIndex = 15;
-            this.label3.Text = "PREÇO DE COMPRA";
+            this.label3.Text = "PREÇO DA COMPRA";
             // 
             // label1
             // 
@@ -323,7 +330,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.label1.Location = new System.Drawing.Point(881, 322);
+            this.label1.Location = new System.Drawing.Point(449, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(197, 31);
             this.label1.TabIndex = 20;
@@ -337,7 +344,7 @@
             "Crédito",
             "Débito",
             "Pix"});
-            this.cmbFormaPagamento.Location = new System.Drawing.Point(876, 356);
+            this.cmbFormaPagamento.Location = new System.Drawing.Point(441, 54);
             this.cmbFormaPagamento.Name = "cmbFormaPagamento";
             this.cmbFormaPagamento.Size = new System.Drawing.Size(214, 21);
             this.cmbFormaPagamento.TabIndex = 22;
@@ -402,6 +409,37 @@
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
             this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.lblQuantidade);
+            this.panel1.Controls.Add(this.lblPrecodeCompra);
+            this.panel1.Controls.Add(this.cmbFormaPagamento);
+            this.panel1.Controls.Add(this.txtQuantidade);
+            this.panel1.Controls.Add(this.lblCpf_Cnpj);
+            this.panel1.Controls.Add(this.txtPrecoDeCompra);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtIdCliente);
+            this.panel1.Controls.Add(this.txtCpfCnpj);
+            this.panel1.Controls.Add(this.txtIdEstoque);
+            this.panel1.Location = new System.Drawing.Point(395, 341);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(669, 316);
+            this.panel1.TabIndex = 40;
+            // 
+            // lblCadastroPagamentos
+            // 
+            this.lblCadastroPagamentos.AutoSize = true;
+            this.lblCadastroPagamentos.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCadastroPagamentos.ForeColor = System.Drawing.Color.White;
+            this.lblCadastroPagamentos.Location = new System.Drawing.Point(410, 292);
+            this.lblCadastroPagamentos.Name = "lblCadastroPagamentos";
+            this.lblCadastroPagamentos.Size = new System.Drawing.Size(308, 46);
+            this.lblCadastroPagamentos.TabIndex = 36;
+            this.lblCadastroPagamentos.Text = "Cadastro de Pagamentos";
+            // 
             // frmCadastroPagamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,25 +448,15 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(1600, 900);
+            this.Controls.Add(this.lblCadastroPagamentos);
             this.Controls.Add(this.btnMaximizar);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.btnLimpar);
-            this.Controls.Add(this.cmbFormaPagamento);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtQuantidade);
-            this.Controls.Add(this.txtPrecoDeCompra);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.txtIdEstoque);
-            this.Controls.Add(this.txtCpfCnpj);
-            this.Controls.Add(this.txtIdCliente);
-            this.Controls.Add(this.lblQuantidade);
-            this.Controls.Add(this.lblPrecodeCompra);
-            this.Controls.Add(this.lblCpf_Cnpj);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmCadastroPagamento";
@@ -439,6 +467,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,5 +505,7 @@
         private System.Windows.Forms.Button btnMaximizar;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnFecharPrograma;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblCadastroPagamentos;
     }
 }

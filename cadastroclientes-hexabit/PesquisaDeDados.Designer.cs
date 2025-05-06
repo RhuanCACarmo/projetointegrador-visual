@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPesquisar));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.tsmPesquisar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLogin = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCadastroCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVisualizarCliente = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,12 +41,13 @@
             this.tsmGerarPagamento = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmVisualizarPagamentos = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblBanco = new System.Windows.Forms.Label();
+            this.lblLogin = new System.Windows.Forms.Label();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.btnFecharPrograma = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnAcessar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -58,26 +59,26 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmPesquisar,
+            this.tsmLogin,
             this.clientesToolStripMenuItem,
             this.estoqueToolStripMenuItem,
             this.tsmGerarPagamentos});
             this.menuStrip1.Location = new System.Drawing.Point(214, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(1111, 47);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
             // 
-            // tsmPesquisar
+            // tsmLogin
             // 
-            this.tsmPesquisar.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsmPesquisar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.tsmPesquisar.Name = "tsmPesquisar";
-            this.tsmPesquisar.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.tsmPesquisar.Size = new System.Drawing.Size(295, 43);
-            this.tsmPesquisar.Text = "PESQUISAR ";
-            this.tsmPesquisar.Click += new System.EventHandler(this.tsmPesquisar_Click);
+            this.tsmLogin.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsmLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.tsmLogin.Name = "tsmLogin";
+            this.tsmLogin.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
+            this.tsmLogin.Size = new System.Drawing.Size(244, 43);
+            this.tsmLogin.Text = "LOGIN";
+            this.tsmLogin.Click += new System.EventHandler(this.tsmPesquisar_Click);
             // 
             // clientesToolStripMenuItem
             // 
@@ -175,23 +176,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(434, 112);
+            this.pictureBox1.Location = new System.Drawing.Point(424, 166);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(754, 342);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // lblBanco
+            // lblLogin
             // 
-            this.lblBanco.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lblBanco.AutoSize = true;
-            this.lblBanco.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBanco.Location = new System.Drawing.Point(706, 518);
-            this.lblBanco.Name = "lblBanco";
-            this.lblBanco.Size = new System.Drawing.Size(189, 35);
-            this.lblBanco.TabIndex = 3;
-            this.lblBanco.Text = "BANCO DE CLIENTES";
+            this.lblLogin.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogin.Location = new System.Drawing.Point(764, 535);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(71, 35);
+            this.lblLogin.TabIndex = 3;
+            this.lblLogin.Text = "LOGIN";
             // 
             // txtPesquisa
             // 
@@ -199,11 +200,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPesquisa.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPesquisa.ForeColor = System.Drawing.Color.Black;
-            this.txtPesquisa.Location = new System.Drawing.Point(515, 585);
+            this.txtPesquisa.Location = new System.Drawing.Point(635, 586);
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(564, 33);
+            this.txtPesquisa.Size = new System.Drawing.Size(329, 33);
             this.txtPesquisa.TabIndex = 4;
-            this.txtPesquisa.Text = "Digite um nome ou CPF";
+            this.txtPesquisa.Text = "Usuário";
             this.txtPesquisa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnFecharPrograma
@@ -220,20 +221,6 @@
             this.btnFecharPrograma.Text = "X";
             this.btnFecharPrograma.UseVisualStyleBackColor = false;
             this.btnFecharPrograma.Click += new System.EventHandler(this.btnFecharPrograma_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1085, 585);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(44, 33);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // btnMinimizar
             // 
@@ -265,6 +252,33 @@
             this.btnMaximizar.UseVisualStyleBackColor = false;
             this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
+            this.textBox1.Location = new System.Drawing.Point(635, 625);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(329, 33);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.Text = "Senha";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnAcessar
+            // 
+            this.btnAcessar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAcessar.BackColor = System.Drawing.Color.DimGray;
+            this.btnAcessar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAcessar.Font = new System.Drawing.Font("Open Sans Condensed", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcessar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnAcessar.Location = new System.Drawing.Point(701, 676);
+            this.btnAcessar.Name = "btnAcessar";
+            this.btnAcessar.Size = new System.Drawing.Size(192, 44);
+            this.btnAcessar.TabIndex = 31;
+            this.btnAcessar.Text = "ACESSAR";
+            this.btnAcessar.UseVisualStyleBackColor = false;
+            // 
             // frmPesquisar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,12 +286,13 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1600, 900);
+            this.Controls.Add(this.btnAcessar);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnMaximizar);
             this.Controls.Add(this.btnMinimizar);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnFecharPrograma);
             this.Controls.Add(this.txtPesquisa);
-            this.Controls.Add(this.lblBanco);
+            this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -297,7 +312,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem tsmPesquisar;
+        private System.Windows.Forms.ToolStripMenuItem tsmLogin;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmCadastroCliente;
         private System.Windows.Forms.ToolStripMenuItem tsmVisualizarCliente;
@@ -308,11 +323,12 @@
         private System.Windows.Forms.ToolStripMenuItem tsmGerarPagamento;
         private System.Windows.Forms.ToolStripMenuItem tsmVisualizarPagamentos;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblBanco;
+        private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.Button btnFecharPrograma;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnMaximizar;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnAcessar;
     }
 }

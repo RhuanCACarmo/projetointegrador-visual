@@ -43,8 +43,7 @@ namespace cadastroclientes_hexabit
             lstPagamentos.Columns.Add("PREÇO UNIT.", 150, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("QUANTIDADE", 100, HorizontalAlignment.Left);
             lstPagamentos.Columns.Add("VALOR TOTAL", 150, HorizontalAlignment.Left); // NOVA COLUNA
-            lstPagamentos.Columns.Add("FORMA PAGTO", 120, HorizontalAlignment.Left);
-            lstPagamentos.Columns.Add("STATUS", 100, HorizontalAlignment.Left);
+            lstPagamentos.Columns.Add("FORMA DE PAGAMENTO", 178, HorizontalAlignment.Left);
 
             carregar_pagamentos();
         }

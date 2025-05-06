@@ -23,7 +23,11 @@ namespace cadastroclientes_hexabit
 
         private int? _idestoque = null;
 
-        public frmCadastrarEstoque(int? idestoque = null)
+        public frmCadastrarEstoque() : this(null)
+        {
+        }
+
+        public frmCadastrarEstoque(int? idestoque)
         {
             InitializeComponent();
             _idestoque = idestoque;
