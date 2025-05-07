@@ -151,11 +151,11 @@
     <Compile Include="VisualizarCliente.Designer.cs">
       <DependentUpon>VisualizarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="PesquisaDeDados.cs">
+    <Compile Include="Abertura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PesquisaDeDados.Designer.cs">
-      <DependentUpon>PesquisaDeDados.cs</DependentUpon>
+    <Compile Include="Abertura.Designer.cs">
+      <DependentUpon>Abertura.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -183,8 +183,8 @@
     <EmbeddedResource Include="VisualizarCliente.resx">
       <DependentUpon>VisualizarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PesquisaDeDados.resx">
-      <DependentUpon>PesquisaDeDados.cs</DependentUpon>
+    <EmbeddedResource Include="Abertura.resx">
+      <DependentUpon>Abertura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

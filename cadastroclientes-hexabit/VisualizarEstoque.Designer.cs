@@ -31,7 +31,6 @@ namespace cadastroclientes_hexabit
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVisualizarEstoque));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pesquisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,24 +61,14 @@ namespace cadastroclientes_hexabit
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pesquisarToolStripMenuItem,
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(204, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(400, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(867, 47);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // pesquisarToolStripMenuItem
-            // 
-            this.pesquisarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.pesquisarToolStripMenuItem.Name = "pesquisarToolStripMenuItem";
-            this.pesquisarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.pesquisarToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
-            this.pesquisarToolStripMenuItem.Text = "PESQUISAR";
-            this.pesquisarToolStripMenuItem.Click += new System.EventHandler(this.pesquisarToolStripMenuItem_Click);
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -181,7 +170,7 @@ namespace cadastroclientes_hexabit
             this.lstProdutos.HideSelection = false;
             this.lstProdutos.Location = new System.Drawing.Point(122, 238);
             this.lstProdutos.Name = "lstProdutos";
-            this.lstProdutos.Size = new System.Drawing.Size(1378, 492);
+            this.lstProdutos.Size = new System.Drawing.Size(1140, 492);
             this.lstProdutos.TabIndex = 19;
             this.lstProdutos.UseCompatibleStateImageBehavior = false;
             // 
@@ -329,7 +318,6 @@ namespace cadastroclientes_hexabit
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem pesquisarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem1;

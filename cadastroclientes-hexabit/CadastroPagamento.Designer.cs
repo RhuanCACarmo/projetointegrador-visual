@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastroPagamento));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,26 +71,15 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pESQUISARToolStripMenuItem,
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOSToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(204, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(400, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1162, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
-            // 
-            // pESQUISARToolStripMenuItem
-            // 
-            this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(295, 43);
-            this.pESQUISARToolStripMenuItem.Text = "PESQUISAR ";
-            this.pESQUISARToolStripMenuItem.Click += new System.EventHandler(this.pESQUISARToolStripMenuItem_Click);
             // 
             // cLIENTESToolStripMenuItem
             // 
@@ -477,7 +465,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem pESQUISARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eSTOQUEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pAGAMENTOSToolStripMenuItem;

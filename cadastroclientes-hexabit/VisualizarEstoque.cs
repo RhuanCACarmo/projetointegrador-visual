@@ -36,13 +36,13 @@ namespace cadastroclientes_hexabit
 
             //Definição das colunas da ListView
 
-            lstProdutos.Columns.Add("ID", 50, HorizontalAlignment.Left); // Adicionei coluna ID
+            lstProdutos.Columns.Add("ID ESTOQUE", 120, HorizontalAlignment.Left); // Adicionei coluna ID
             lstProdutos.Columns.Add("NOME DO PRODUTO", 300, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("PREÇO COMPRA", 100, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("PREÇO VENDA", 100, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("PREÇO DE COMPRA", 150, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("PREÇO DE VENDA", 150, HorizontalAlignment.Left);
             lstProdutos.Columns.Add("MARCA", 150, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("QUANTIDADE", 80, HorizontalAlignment.Left);
-            lstProdutos.Columns.Add("VALOR TOTAL", 120, HorizontalAlignment.Left); // NOVA COLUNA
+            lstProdutos.Columns.Add("QUANTIDADE", 120, HorizontalAlignment.Left);
+            lstProdutos.Columns.Add("VALOR TOTAL", 150, HorizontalAlignment.Left); // NOVA COLUNA
 
             carregar_produtos();
         }

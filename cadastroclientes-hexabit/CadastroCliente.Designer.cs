@@ -47,7 +47,6 @@ namespace cadastroclientes_hexabit
             this.txtBairro = new System.Windows.Forms.TextBox();
             this.txtRua = new System.Windows.Forms.TextBox();
             this.txtCidade = new System.Windows.Forms.TextBox();
-            this.pESQUISARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -266,17 +265,6 @@ namespace cadastroclientes_hexabit
             this.txtCidade.Size = new System.Drawing.Size(355, 27);
             this.txtCidade.TabIndex = 21;
             // 
-            // pESQUISARToolStripMenuItem
-            // 
-            this.pESQUISARToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
-            this.pESQUISARToolStripMenuItem.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pESQUISARToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.pESQUISARToolStripMenuItem.Name = "pESQUISARToolStripMenuItem";
-            this.pESQUISARToolStripMenuItem.Padding = new System.Windows.Forms.Padding(80, 0, 80, 0);
-            this.pESQUISARToolStripMenuItem.Size = new System.Drawing.Size(290, 43);
-            this.pESQUISARToolStripMenuItem.Text = "PESQUISAR";
-            this.pESQUISARToolStripMenuItem.Click += new System.EventHandler(this.pESQUISARToolStripMenuItem_Click);
-            // 
             // cLIENTESToolStripMenuItem
             // 
             this.cLIENTESToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(44)))), ((int)(((byte)(69)))));
@@ -377,13 +365,12 @@ namespace cadastroclientes_hexabit
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pESQUISARToolStripMenuItem,
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOSToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(196, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(400, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1157, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -588,7 +575,6 @@ namespace cadastroclientes_hexabit
         private System.Windows.Forms.TextBox txtBairro;
         private System.Windows.Forms.TextBox txtRua;
         private System.Windows.Forms.TextBox txtCidade;
-        private System.Windows.Forms.ToolStripMenuItem pESQUISARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
