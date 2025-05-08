@@ -59,6 +59,7 @@
             this.btnFecharPrograma = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCadastroPagamentos = new System.Windows.Forms.Label();
+            this.lblQuantidadeDisponivel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -76,7 +77,7 @@
             this.pAGAMENTOSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(400, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(987, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(867, 47);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;
@@ -274,6 +275,7 @@
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(214, 40);
             this.txtQuantidade.TabIndex = 19;
+            this.txtQuantidade.Leave += new System.EventHandler(this.txtQuantidade_Leave);
             // 
             // txtPrecoDeCompra
             // 
@@ -400,6 +402,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.Controls.Add(this.lblQuantidadeDisponivel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblQuantidade);
@@ -427,6 +430,19 @@
             this.lblCadastroPagamentos.Size = new System.Drawing.Size(308, 46);
             this.lblCadastroPagamentos.TabIndex = 36;
             this.lblCadastroPagamentos.Text = "Cadastro de Pagamentos";
+            // 
+            // lblQuantidadeDisponivel
+            // 
+            this.lblQuantidadeDisponivel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblQuantidadeDisponivel.AutoSize = true;
+            this.lblQuantidadeDisponivel.Font = new System.Drawing.Font("Open Sans Condensed SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantidadeDisponivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblQuantidadeDisponivel.Location = new System.Drawing.Point(435, 136);
+            this.lblQuantidadeDisponivel.Name = "lblQuantidadeDisponivel";
+            this.lblQuantidadeDisponivel.Size = new System.Drawing.Size(0, 31);
+            this.lblQuantidadeDisponivel.TabIndex = 23;
             // 
             // frmCadastroPagamento
             // 
@@ -494,5 +510,6 @@
         private System.Windows.Forms.Button btnFecharPrograma;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblCadastroPagamentos;
+        private System.Windows.Forms.Label lblQuantidadeDisponivel;
     }
 }

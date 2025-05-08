@@ -273,10 +273,10 @@ namespace cadastroclientes_hexabit
                     return;
                 }
 
-                // Validação do Número (obrigatório e numérico)
-                if (string.IsNullOrWhiteSpace(txtNumero.Text) || !double.TryParse(txtNumero.Text, out double numero))
+                // Validação do Número (obrigatório)
+                if (string.IsNullOrWhiteSpace(txtNumero.Text))
                 {
-                    MessageBox.Show("Por favor, digite um número de endereço válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Por favor, digite o número do endereço.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNumero.Focus();
                     return;
                 }
@@ -396,6 +396,7 @@ namespace cadastroclientes_hexabit
                         cmd.Parameters.AddWithValue("@bairro", txtBairro.Text.Trim());
                         cmd.Parameters.AddWithValue("@cidade", txtCidade.Text.Trim());
                         cmd.Parameters.AddWithValue("@cep", txtCep.Text.Trim());
+                        
 
                         int linhasAfetadas = cmd.ExecuteNonQuery();
 

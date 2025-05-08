@@ -116,47 +116,33 @@ namespace cadastroclientes_hexabit
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-
             try
             {
-                // Verifica se há itens selecionados
                 if (lstPagamentos.SelectedItems.Count == 0)
                 {
-                    MessageBox.Show("Selecione um produto primeiro!", "Aviso",
+                    MessageBox.Show("Selecione um pagamento primeiro!", "Aviso",
                                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Pega o primeiro item selecionado
                 ListViewItem itemSelecionado = lstPagamentos.SelectedItems[0];
-
-                // Precisamos obter o ID do produto - precisamos modificcar o carregar_produtos para incluir o ID
-                // Primeiro, precisamos buscar o ID do produto selecionado
                 int idpagamento = ObterIdPagamentoSelecionado(itemSelecionado);
 
                 if (idpagamento <= 0)
                 {
-                    MessageBox.Show("Não foi possível identificar o pagamento selecionado!", "Erro",
+                    MessageBox.Show("ID do pagamento inválido!", "Erro",
                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                int idestoque = ObterIdPagamentoSelecionado(itemSelecionado);
-
-                if (idestoque <= 0)
+                // Abre o formulário de edição com o ID CORRETO (idpagamento)
+                using (var formEdicao = new frmCadastroPagamento(idpagamento))
                 {
-                    MessageBox.Show("Não foi possível identificar o produto selecionado!", "Erro",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (formEdicao.ShowDialog() == DialogResult.OK)
+                    {
+                        carregar_pagamentos(); // Atualiza a lista apenas se houve alteração
+                    }
                 }
-
-                // Abre o formulário de edição correto
-                var formEdicao = new frmCadastroPagamento(idestoque);
-                formEdicao.ShowDialog();
-                formEdicao.ShowDialog();
-
-                // Atualiza a lista após edição
-                carregar_pagamentos();
             }
             catch (Exception ex)
             {
