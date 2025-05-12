@@ -121,7 +121,7 @@ namespace cadastroclientes_hexabit
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(400, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(370, 33);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(987, 47);
             this.menuStrip1.TabIndex = 23;

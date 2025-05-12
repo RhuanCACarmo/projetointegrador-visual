@@ -58,9 +58,9 @@
             this.clientesToolStripMenuItem,
             this.estoqueToolStripMenuItem,
             this.tsmGerarPagamentos});
-            this.menuStrip1.Location = new System.Drawing.Point(400, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(370, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(867, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 47);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.UseWaitCursor = true;

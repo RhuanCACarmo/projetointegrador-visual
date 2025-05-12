@@ -64,9 +64,9 @@ namespace cadastroclientes_hexabit
             this.cLIENTESToolStripMenuItem,
             this.eSTOQUEToolStripMenuItem,
             this.pAGAMENTOToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(400, 33);
+            this.menuStrip1.Location = new System.Drawing.Point(370, 33);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(867, 47);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 47);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -185,7 +185,7 @@ namespace cadastroclientes_hexabit
             this.txtBuscarProduto.Name = "txtBuscarProduto";
             this.txtBuscarProduto.Size = new System.Drawing.Size(659, 33);
             this.txtBuscarProduto.TabIndex = 20;
-            this.txtBuscarProduto.Text = "Digite um nome ou CPF/CNPJ";
+            this.txtBuscarProduto.Text = "Digite um nome ou marca";
             this.txtBuscarProduto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBuscarProduto.Click += new System.EventHandler(this.txtBuscarProduto_Click);
             this.txtBuscarProduto.TextChanged += new System.EventHandler(this.txtBuscarProduto_TextChanged);
